@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b0a">
+<title>CYBERNEX | Cybersecurity Hub</title>
+<style>
+:root {
+  --bg:#070b0a;
+  --panel:#101816;
+  --green:#00ff9c;
+  --muted:#91a69d;
+  --border:#1c3028;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;background:var(--bg);color:#eafff3;
+ font-family:Inter,Segoe UI,Arial,sans-serif;
+}
+header{
+ display:flex;justify-content:space-between;align-items:center;
+ padding:20px 7%;border-bottom:1px solid var(--border);
+ position:sticky;top:0;background:#070b0aee;z-index:10;
+ backdrop-filter:blur(15px);
+}
+.logo{font-size:25px;font-weight:900;color:var(--green)}
+.logo span{color:white}
+nav{display:flex;gap:22px}
+nav a{color:var(--muted);text-decoration:none;font-size:14px}
+nav a:hover{color:var(--green)}
+button,.btn{
+ background:var(--green);color:#06100b;border:0;
+ padding:12px 19px;border-radius:7px;font-weight:bold;
+ cursor:pointer;text-decoration:none;
+}
+button:hover,.btn:hover{opacity:.8}
+.hero{
+ padding:100px 8% 75px;text-align:center;
+ background:radial-gradient(ellipse at top,#073c28 0%,#070b0a 65%);
+}
+.tag{color:var(--green);letter-spacing:3px;font-size:12px}
+.hero h1{font-size:clamp(40px,7vw,78px);margin:18px 0}
+.hero h1 span{color:var(--green)}
+.hero p{color:var(--muted);max-width:650px;margin:0 auto 30px;line-height:1.8}
+.status{color:var(--green);font-size:12px;margin-bottom:20px}
+section{padding:65px 8%}
+.section-title{font-size:29px;margin-bottom:8px}
+.subtitle{color:var(--muted);margin-bottom:30px}
+.grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+ gap:18px;
+}
+.card{
+ background:var(--panel);border:1px solid var(--border);
+ border-radius:12px;padding:23px;transition:.25s;
+}
+.card:hover{transform:translateY(-5px);border-color:var(--green)}
+.icon{font-size:29px}
+.card h3{margin-bottom:8px}
+.card p{color:var(--muted);font-size:14px;line-height:1.6;min-height:44px}
+.card button{margin-top:10px}
+.tool-area{
+ background:#0b1210;border:1px solid var(--border);
+ padding:25px;border-radius:12px;margin-top:20px;
+}
+input,textarea,select{
+ width:100%;padding:13px;margin:8px 0 15px;
+ background:#080e0c;color:white;border:1px solid var(--border);
+ border-radius:7px;outline:none;
+}
+textarea{min-height:100px;resize:vertical}
+input:focus,textarea:focus{border-color:var(--green)}
+.result{
+ color:var(--green);overflow-wrap:anywhere;
+ padding:12px;background:#06100b;border-radius:7px;
+ margin-top:12px;white-space:pre-wrap;
+}
+.hidden{display:none}
+footer{
+ text-align:center;padding:35px;color:var(--muted);
+ border-top:1px solid var(--border);
+}
+@media(max-width:700px){
+ header{padding:17px 5%}
+ nav{display:none}
+ section{padding:45px 5%}
+ .hero{padding:75px 5%}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">CYBER<span>NEX</span></div>
+ <nav>
+  <a href="#home">Home</a>
+  <a href="#tools">Tools</a>
+  <a href="#learn">Learn</a>
+  <a href="#about">About</a>
+ </nav>
+ <a href="#tools" class="btn">Explore Tools</a>
+</header>
+
+<div class="hero" id="home">
+ <div class="status">● SYSTEM ONLINE — EDUCATIONAL MODE</div>
+ <div class="tag">THE NEXT GENERATION OF CYBERSECURITY</div>
+ <h1>Explore The <span>Cyber</span> World.</h1>
+ <p>
+  Your all-in-one cybersecurity destination.
+  Explore security utilities, understand networking,
+  learn ethical hacking concepts and improve your digital knowledge.
+ </p>
+ <a href="#tools" class="btn">Explore Platform →</a>
+</div>
+
+<section id="tools">
+ <h2 class="section-title">Cybersecurity Tools</h2>
+ <p class="subtitle">Useful browser-based utilities for learning and security awareness.</p>
+
+ <div class="grid">
+  <div class="card">
+   <div class="icon">🔐</div><h3>Password Checker</h3>
+   <p>Evaluate password complexity and security characteristics.</p>
+   <button onclick="show('password')">Open Tool</button>
+  </div>
+  <div class="card">
+   <div class="icon">#️⃣</div><h3>SHA-256 Generator</h3>
+   <p>Generate cryptographic SHA-256 hashes in your browser.</p>
+   <button onclick="show('hash')">Open Tool</button>
+  </div>
+  <div class="card">
+   <div class="icon">🔄</div><h3>Base64 Encoder</h3>
+   <p>Encode and decode text using Base64.</p>
+   <button onclick="show('base64')">Open Tool</button>
+  </div>
+  <div class="card">
+   <div class="icon">🌐</div><h3>URL Encoder</h3>
+   <p>Encode and decode URL components.</p>
+   <button onclick="show('url')">Open Tool</button>
+  </div>
+  <div class="card">
+   <div class="icon">📡</div><h3>IP Information</h3>
+   <p>Check your public IP address and basic location information.</p>
+   <button onclick="show('ip')">Open Tool</button>
+  </div>
+  <div class="card">
+   <div class="icon">🧩</div><h3>JSON Formatter</h3>
+   <p>Format and validate JSON data.</p>
+   <button onclick="show('json')">Open Tool</button>
+  </div>
+ </div>
+
+ <div class="tool-area hidden" id="password">
+  <h2>Password Strength Checker</h2>
+  <input id="pass" type="password" placeholder="Enter a sample password">
+  <button onclick="checkPassword()">Check Strength</button>
+  <div class="result" id="passResult">Your result will appear here.</div>
+  <p class="subtitle">This check runs locally. Never enter a real password.</p>
+ </div>
+
+ <div class="tool-area hidden" id="hash">
+  <h2>SHA-256 Generator</h2>
+  <textarea id="hashInput" placeholder="Enter text to hash"></textarea>
+  <button onclick="generateHash()">Generate Hash</button>
+  <div class="result" id="hashResult"></div>
+ </div>
+
+ <div class="tool-area hidden" id="base64">
+  <h2>Base64 Encoder / Decoder</h2>
+  <textarea id="baseInput" placeholder="Enter text"></textarea>
+  <button onclick="baseEncode()">Encode</button>
+  <button onclick="baseDecode()">Decode</button>
+  <div class="result" id="baseResult"></div>
+ </div>
+
+ <div class="tool-area hidden" id="url">
+  <h2>URL Encoder / Decoder</h2>
+  <textarea id="urlInput" placeholder="Enter text or URL component"></textarea>
+  <button onclick="urlEncode()">Encode</button>
+  <button onclick="urlDecode()">Decode</button>
+  <div class="result" id="urlResult"></div>
+ </div>
+
+ <div class="tool-area hidden" id="ip">
+  <h2>Public IP Information</h2>
+  <button onclick="getIP()">Check Public IP</button>
+  <div class="result" id="ipResult">Press the button to check. This uses an external IP lookup service.</div>
+ </div>
+
+ <div class="tool-area hidden" id="json">
+  <h2>JSON Formatter</h2>
+  <textarea id="jsonInput" placeholder='{"name":"CyberNex","type":"Security"}'></textarea>
+  <button onclick="formatJSON()">Format JSON</button>
+  <div class="result" id="jsonResult"></div>
+ </div>
+</section>
+
+<section id="learn">
+ <h2 class="section-title">Cybersecurity Learning</h2>
+ <p class="subtitle">Start your journey into the world of digital security.</p>
+ <div class="grid">
+  <div class="card"><div class="icon">🖥️</div><h3>Computer Networks</h3><p>Learn IP, DNS, TCP, UDP and networking fundamentals.</p></div>
+  <div class="card"><div class="icon">🐧</div><h3>Linux Fundamentals</h3><p>Explore Linux commands, permissions and terminal basics.</p></div>
+  <div class="card"><div class="icon">🛡️</div><h3>Ethical Hacking</h3><p>Understand authorized security testing and responsible disclosure.</p></div>
+  <div class="card"><div class="icon">🔍</div><h3>Web Security</h3><p>Learn about HTTPS, authentication and common web vulnerabilities.</p></div>
+ </div>
+</section>
+
+<section id="about">
+ <h2 class="section-title">About CYBERNEX</h2>
+ <p class="subtitle">
+  CYBERNEX is an educational cybersecurity platform designed to make
+  digital security concepts and browser-based tools accessible to everyone.
+  All security testing should be performed only on systems you own or have
+  explicit permission to assess.
+ </p>
+</section>
+
+<footer>
+ <div class="logo">CYBERNEX</div>
+ <p>Learn • Explore • Secure</p>
+ <p>© 2026 CYBERNEX. Built for cybersecurity education.</p>
+</footer>
+
+<script>
+function show(id){
+ document.querySelectorAll('.tool-area').forEach(el=>el.classList.add('hidden'));
+ const target=document.getElementById(id);
+ target.classList.remove('hidden');
+ target.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function checkPassword(){
+ const p=document.getElementById('pass').value;
+ let score=0;
+ if(p.length>=12)score++;
+ if(/[A-Z]/.test(p))score++;
+ if(/[a-z]/.test(p))score++;
+ if(/[0-9]/.test(p))score++;
+ if(/[^A-Za-z0-9]/.test(p))score++;
+ const labels=['Very Weak','Weak','Fair','Good','Strong','Very Strong'];
+ document.getElementById('passResult').textContent=
+ labels[score]+' — '+score+'/5 characteristics met.';
+}
+
+async function generateHash(){
+ const text=document.getElementById('hashInput').value;
+ try{
+ const data=new TextEncoder().encode(text);
+ const hash=await crypto.subtle.digest('SHA-256',data);
+ const result=Array.from(new Uint8Array(hash))
+ .map(b=>b.toString(16).padStart(2,'0')).join('');
+ document.getElementById('hashResult').textContent=result;
+ }catch(e){
+ document.getElementById('hashResult').textContent='Use HTTPS or localhost.';
+ }
+}
+
+function baseEncode(){
+ try{
+ const s=document.getElementById('baseInput').value;
+ document.getElementById('baseResult').textContent=
+ btoa(unescape(encodeURIComponent(s)));
+ }catch(e){document.getElementById('baseResult').textContent='Encoding error.';}
+}
+function baseDecode(){
+ try{
+ document.getElementById('baseResult').textContent=
+ decodeURIComponent(escape(atob(document.getElementById('baseInput').value)));
+ }catch(e){document.getElementById('baseResult').textContent='Invalid Base64 input.';}
+}
+function urlEncode(){
+ document.getElementById('urlResult').textContent=
+ encodeURIComponent(document.getElementById('urlInput').value);
+}
+function urlDecode(){
+ try{
+ document.getElementById('urlResult').textContent=
+ decodeURIComponent(document.getElementById('urlInput').value);
+ }catch(e){document.getElementById('urlResult').textContent='Invalid URL encoding.';}
+}
+function formatJSON(){
+ try{
+ const obj=JSON.parse(document.getElementById('jsonInput').value);
+ document.getElementById('jsonResult').textContent=
+ JSON.stringify(obj,null,2);
+ }catch(e){
+ document.getElementById('jsonResult').textContent='Invalid JSON: '+e.message;
+ }
+}
+async function getIP(){
+ const result=document.getElementById('ipResult');
+ result.textContent='Checking...';
+ try{
+ const r=await fetch('https://api.ipify.org?format=json');
+ const data=await r.json();
+ result.textContent='Your public IP address: '+data.ip;
+ }catch(e){
+ result.textContent='Unable to retrieve IP. Check your internet connection.';
+ }
+}
+</script>
+</body>
+</html>
