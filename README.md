@@ -49,7 +49,7 @@ CYBERNEX/
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/USERNAME/CYBERNEX.git
+git clone https://github.com/anonymous0576/CYBERNEX.git
 ```
 
 2. Open the project folder.
