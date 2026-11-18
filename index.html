@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,298 +7,625 @@
 <title>CYBERNEX | Cybersecurity Hub</title>
 <style>
 :root {
-  --bg:#070b0a;
-  --panel:#101816;
-  --green:#00ff9c;
-  --muted:#91a69d;
-  --border:#1c3028;
+  --bg: #070b0a;
+  --panel: #101816;
+  --green: #00ff9c;
+  --green-dim: rgba(0, 255, 156, 0.12);
+  --muted: #91a69d;
+  --border: #1c3028;
+  --danger: #ff4d6d;
+  --warn: #ffb703;
 }
-*{box-sizing:border-box}
-body{
- margin:0;background:var(--bg);color:#eafff3;
- font-family:Inter,Segoe UI,Arial,sans-serif;
+* { box-sizing: border-box; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: #eafff3;
+  font-family: Inter, Segoe UI, Arial, sans-serif;
 }
-header{
- display:flex;justify-content:space-between;align-items:center;
- padding:20px 7%;border-bottom:1px solid var(--border);
- position:sticky;top:0;background:#070b0aee;z-index:10;
- backdrop-filter:blur(15px);
+
+/* Header & Navigation */
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 7%; border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; background: #070b0aee; z-index: 20;
+  backdrop-filter: blur(15px);
 }
-.logo{font-size:25px;font-weight:900;color:var(--green)}
-.logo span{color:white}
-nav{display:flex;gap:22px}
-nav a{color:var(--muted);text-decoration:none;font-size:14px}
-nav a:hover{color:var(--green)}
-button,.btn{
- background:var(--green);color:#06100b;border:0;
- padding:12px 19px;border-radius:7px;font-weight:bold;
- cursor:pointer;text-decoration:none;
+.logo { font-size: 24px; font-weight: 900; color: var(--green); letter-spacing: 1px; }
+.logo span { color: white; }
+nav { display: flex; gap: 24px; align-items: center; }
+nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: .2s; }
+nav a:hover { color: var(--green); }
+.menu-btn {
+  display: none; background: transparent; border: 1px solid var(--border);
+  color: var(--green); font-size: 20px; padding: 6px 12px; border-radius: 6px;
 }
-button:hover,.btn:hover{opacity:.8}
-.hero{
- padding:100px 8% 75px;text-align:center;
- background:radial-gradient(ellipse at top,#073c28 0%,#070b0a 65%);
+
+/* Buttons */
+button, .btn {
+  background: var(--green); color: #06100b; border: 0;
+  padding: 11px 18px; border-radius: 7px; font-weight: 700;
+  font-size: 14px; cursor: pointer; text-decoration: none;
+  transition: .2s; display: inline-flex; align-items: center; gap: 6px;
 }
-.tag{color:var(--green);letter-spacing:3px;font-size:12px}
-.hero h1{font-size:clamp(40px,7vw,78px);margin:18px 0}
-.hero h1 span{color:var(--green)}
-.hero p{color:var(--muted);max-width:650px;margin:0 auto 30px;line-height:1.8}
-.status{color:var(--green);font-size:12px;margin-bottom:20px}
-section{padding:65px 8%}
-.section-title{font-size:29px;margin-bottom:8px}
-.subtitle{color:var(--muted);margin-bottom:30px}
-.grid{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
- gap:18px;
+button:hover, .btn:hover { opacity: .85; transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: var(--green); border: 1px solid var(--green);
 }
-.card{
- background:var(--panel);border:1px solid var(--border);
- border-radius:12px;padding:23px;transition:.25s;
+.btn-outline:hover { background: var(--green-dim); }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+
+/* Hero */
+.hero {
+  padding: 95px 8% 75px; text-align: center;
+  background: radial-gradient(ellipse at top, #073c28 0%, #070b0a 65%);
 }
-.card:hover{transform:translateY(-5px);border-color:var(--green)}
-.icon{font-size:29px}
-.card h3{margin-bottom:8px}
-.card p{color:var(--muted);font-size:14px;line-height:1.6;min-height:44px}
-.card button{margin-top:10px}
-.tool-area{
- background:#0b1210;border:1px solid var(--border);
- padding:25px;border-radius:12px;margin-top:20px;
+.tag { color: var(--green); letter-spacing: 3px; font-size: 12px; font-weight: 700; }
+.hero h1 { font-size: clamp(38px, 6.5vw, 74px); margin: 16px 0; line-height: 1.1; }
+.hero h1 span { color: var(--green); }
+.hero p { color: var(--muted); max-width: 640px; margin: 0 auto 30px; line-height: 1.75; }
+.status {
+  display: inline-block; color: var(--green); font-size: 12px;
+  background: var(--green-dim); padding: 6px 14px; border-radius: 20px;
+  border: 1px solid var(--border); margin-bottom: 18px;
 }
-input,textarea,select{
- width:100%;padding:13px;margin:8px 0 15px;
- background:#080e0c;color:white;border:1px solid var(--border);
- border-radius:7px;outline:none;
+
+/* Sections & Grids */
+section { padding: 65px 8%; }
+.section-title { font-size: 28px; margin-bottom: 8px; }
+.subtitle { color: var(--muted); margin-bottom: 30px; font-size: 15px; line-height: 1.6; }
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
 }
-textarea{min-height:100px;resize:vertical}
-input:focus,textarea:focus{border-color:var(--green)}
-.result{
- color:var(--green);overflow-wrap:anywhere;
- padding:12px;background:#06100b;border-radius:7px;
- margin-top:12px;white-space:pre-wrap;
+.card {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 12px; padding: 22px; transition: .25s;
+  display: flex; flex-direction: column; justify-content: space-between;
 }
-.hidden{display:none}
-footer{
- text-align:center;padding:35px;color:var(--muted);
- border-top:1px solid var(--border);
+.card:hover, .card.active-card {
+  transform: translateY(-4px); border-color: var(--green);
+  box-shadow: 0 8px 25px rgba(0, 255, 156, 0.08);
 }
-@media(max-width:700px){
- header{padding:17px 5%}
- nav{display:none}
- section{padding:45px 5%}
- .hero{padding:75px 5%}
+.icon { font-size: 28px; margin-bottom: 10px; }
+.card h3 { margin: 0 0 8px; font-size: 18px; }
+.card p { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 0 0 16px; }
+
+/* Active Tool Box */
+.tool-area {
+  background: #0b1210; border: 1px solid var(--green);
+  padding: 26px; border-radius: 12px; margin-top: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: fadeIn .25s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.tool-header h2 { margin: 0; font-size: 22px; }
+
+input, textarea {
+  width: 100%; padding: 13px; margin: 6px 0 14px;
+  background: #070d0b; color: #eafff3; border: 1px solid var(--border);
+  border-radius: 7px; outline: none; font-family: inherit; font-size: 14px;
+}
+textarea { min-height: 105px; resize: vertical; font-family: monospace; }
+input:focus, textarea:focus { border-color: var(--green); }
+
+.input-group { position: relative; display: flex; align-items: center; }
+.input-group input { padding-right: 75px; }
+.toggle-pass {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-62%);
+  background: #14221d; color: var(--muted); border: 1px solid var(--border);
+  padding: 5px 10px; font-size: 12px; border-radius: 5px;
+}
+
+/* Password Meter */
+.meter-bar {
+  height: 6px; width: 100%; background: #14221d;
+  border-radius: 4px; overflow: hidden; margin-bottom: 10px;
+}
+.meter-fill { height: 100%; width: 0%; transition: width .3s, background .3s; }
+
+/* Result Box & Copy */
+.result-wrapper { position: relative; margin-top: 14px; }
+.result {
+  color: var(--green); overflow-wrap: anywhere; font-family: monospace;
+  padding: 14px 80px 14px 14px; background: #050a08;
+  border: 1px solid var(--border); border-radius: 7px;
+  white-space: pre-wrap; min-height: 48px; font-size: 13.5px; line-height: 1.5;
+}
+.copy-btn {
+  position: absolute; right: 8px; top: 8px;
+  background: #13241e; color: var(--green); border: 1px solid var(--border);
+  padding: 5px 10px; font-size: 12px; border-radius: 5px;
+}
+.copy-btn:hover { background: var(--green); color: #06100b; }
+
+.btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.hidden { display: none !important; }
+
+/* Learning Modal */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(3, 6, 5, 0.85);
+  backdrop-filter: blur(6px); display: flex; align-items: center;
+  justify-content: center; z-index: 50; padding: 20px;
+}
+.modal-box {
+  background: var(--panel); border: 1px solid var(--green);
+  max-width: 560px; width: 100%; border-radius: 12px; padding: 26px;
+}
+.modal-box pre {
+  background: #060b09; padding: 14px; border-radius: 8px;
+  border: 1px solid var(--border); color: var(--green);
+  overflow-x: auto; font-size: 13px; line-height: 1.5;
+}
+
+footer {
+  text-align: center; padding: 38px 20px; color: var(--muted);
+  border-top: 1px solid var(--border); font-size: 14px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 760px) {
+  header { padding: 15px 5%; flex-wrap: wrap; }
+  .menu-btn { display: block; }
+  .header-cta { display: none; }
+  nav {
+    display: none; width: 100%; flex-direction: column;
+    gap: 14px; padding-top: 16px; border-top: 1px solid var(--border); margin-top: 14px;
+  }
+  nav.open { display: flex; }
+  section { padding: 45px 5%; }
+  .hero { padding: 70px 5% 55px; }
 }
 </style>
 </head>
 <body>
 
 <header>
- <div class="logo">CYBER<span>NEX</span></div>
- <nav>
-  <a href="#home">Home</a>
-  <a href="#tools">Tools</a>
-  <a href="#learn">Learn</a>
-  <a href="#about">About</a>
- </nav>
- <a href="#tools" class="btn">Explore Tools</a>
+  <div class="logo">CYBER<span>NEX</span></div>
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Toggle Menu">☰</button>
+  <nav id="mainNav">
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#tools" onclick="closeMenu()">Tools</a>
+    <a href="#learn" onclick="closeMenu()">Learn</a>
+    <a href="#about" onclick="closeMenu()">About</a>
+  </nav>
+  <a href="#tools" class="btn header-cta">Explore Tools</a>
 </header>
 
 <div class="hero" id="home">
- <div class="status">● SYSTEM ONLINE — EDUCATIONAL MODE</div>
- <div class="tag">THE NEXT GENERATION OF CYBERSECURITY</div>
- <h1>Explore The <span>Cyber</span> World.</h1>
- <p>
-  Your all-in-one cybersecurity destination.
-  Explore security utilities, understand networking,
-  learn ethical hacking concepts and improve your digital knowledge.
- </p>
- <a href="#tools" class="btn">Explore Platform →</a>
+  <div class="status">● SYSTEM ONLINE — EDUCATIONAL MODE</div>
+  <div class="tag">THE NEXT GENERATION OF CYBERSECURITY</div>
+  <h1>Explore The <span>Cyber</span> World.</h1>
+  <p>
+    Your all-in-one cybersecurity destination.
+    Explore client-side security utilities, understand networking,
+    learn ethical hacking concepts and strengthen your digital hygiene.
+  </p>
+  <a href="#tools" class="btn">Explore Platform →</a>
 </div>
 
 <section id="tools">
- <h2 class="section-title">Cybersecurity Tools</h2>
- <p class="subtitle">Useful browser-based utilities for learning and security awareness.</p>
+  <h2 class="section-title">Cybersecurity Tools</h2>
+  <p class="subtitle">100% browser-based utilities. Your data stays locally on your device.</p>
 
- <div class="grid">
-  <div class="card">
-   <div class="icon">🔐</div><h3>Password Checker</h3>
-   <p>Evaluate password complexity and security characteristics.</p>
-   <button onclick="show('password')">Open Tool</button>
+  <div class="grid">
+    <div class="card" id="card-password">
+      <div>
+        <div class="icon">🔐</div>
+        <h3>Password Checker</h3>
+        <p>Real-time entropy and complexity analysis for sample passwords.</p>
+      </div>
+      <button onclick="show('password')">Open Tool</button>
+    </div>
+
+    <div class="card" id="card-hash">
+      <div>
+        <div class="icon">#️⃣</div>
+        <h3>SHA-256 Generator</h3>
+        <p>Generate cryptographic SHA-256 hashes using Web Crypto API.</p>
+      </div>
+      <button onclick="show('hash')">Open Tool</button>
+    </div>
+
+    <div class="card" id="card-base64">
+      <div>
+        <div class="icon">🔄</div>
+        <h3>Base64 Encoder</h3>
+        <p>UTF-8 safe Base64 text encoding and decoding utility.</p>
+      </div>
+      <button onclick="show('base64')">Open Tool</button>
+    </div>
+
+    <div class="card" id="card-url">
+      <div>
+        <div class="icon">🌐</div>
+        <h3>URL Encoder</h3>
+        <p>Safely encode and decode URI components and query parameters.</p>
+      </div>
+      <button onclick="show('url')">Open Tool</button>
+    </div>
+
+    <div class="card" id="card-ip">
+      <div>
+        <div class="icon">📡</div>
+        <h3>IP & Network Info</h3>
+        <p>Check your public IP address, ISP, and approximate location.</p>
+      </div>
+      <button onclick="show('ip')">Open Tool</button>
+    </div>
+
+    <div class="card" id="card-json">
+      <div>
+        <div class="icon">🧩</div>
+        <h3>JSON Formatter</h3>
+        <p>Prettify, minify, and validate raw JSON payloads.</p>
+      </div>
+      <button onclick="show('json')">Open Tool</button>
+    </div>
   </div>
-  <div class="card">
-   <div class="icon">#️⃣</div><h3>SHA-256 Generator</h3>
-   <p>Generate cryptographic SHA-256 hashes in your browser.</p>
-   <button onclick="show('hash')">Open Tool</button>
+
+  <!-- Password Checker -->
+  <div class="tool-area hidden" id="password">
+    <div class="tool-header">
+      <h2>Password Strength Checker</h2>
+      <button class="btn-outline btn-sm" onclick="closeTools()">✕ Close</button>
+    </div>
+    <div class="input-group">
+      <input id="pass" type="password" placeholder="Type a sample password to test live..." oninput="checkPassword()">
+      <button type="button" class="toggle-pass" onclick="togglePassVisibility()">Show</button>
+    </div>
+    <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+    <div class="result" id="passResult" style="padding-right: 14px;">Start typing to evaluate password strength.</div>
+    <p class="subtitle" style="margin: 10px 0 0; font-size: 13px;">⚠️ Runs locally in RAM. Never test your real banking or email passwords.</p>
   </div>
-  <div class="card">
-   <div class="icon">🔄</div><h3>Base64 Encoder</h3>
-   <p>Encode and decode text using Base64.</p>
-   <button onclick="show('base64')">Open Tool</button>
+
+  <!-- SHA-256 Generator -->
+  <div class="tool-area hidden" id="hash">
+    <div class="tool-header">
+      <h2>SHA-256 Hash Generator</h2>
+      <button class="btn-outline btn-sm" onclick="closeTools()">✕ Close</button>
+    </div>
+    <textarea id="hashInput" placeholder="Enter text to hash..." oninput="generateHash()"></textarea>
+    <div class="result-wrapper">
+      <div class="result" id="hashResult">Hash will appear automatically as you type...</div>
+      <button class="copy-btn" onclick="copyText('hashResult', this)">Copy</button>
+    </div>
   </div>
-  <div class="card">
-   <div class="icon">🌐</div><h3>URL Encoder</h3>
-   <p>Encode and decode URL components.</p>
-   <button onclick="show('url')">Open Tool</button>
+
+  <!-- Base64 Encoder -->
+  <div class="tool-area hidden" id="base64">
+    <div class="tool-header">
+      <h2>Base64 Encoder / Decoder</h2>
+      <button class="btn-outline btn-sm" onclick="closeTools()">✕ Close</button>
+    </div>
+    <textarea id="baseInput" placeholder="Enter plain text or Base64 string..."></textarea>
+    <div class="btn-row">
+      <button onclick="baseEncode()">Encode to Base64</button>
+      <button class="btn-outline" onclick="baseDecode()">Decode Base64</button>
+    </div>
+    <div class="result-wrapper">
+      <div class="result" id="baseResult">Output will appear here...</div>
+      <button class="copy-btn" onclick="copyText('baseResult', this)">Copy</button>
+    </div>
   </div>
-  <div class="card">
-   <div class="icon">📡</div><h3>IP Information</h3>
-   <p>Check your public IP address and basic location information.</p>
-   <button onclick="show('ip')">Open Tool</button>
+
+  <!-- URL Encoder -->
+  <div class="tool-area hidden" id="url">
+    <div class="tool-header">
+      <h2>URL Encoder / Decoder</h2>
+      <button class="btn-outline btn-sm" onclick="closeTools()">✕ Close</button>
+    </div>
+    <textarea id="urlInput" placeholder="Enter URL or text parameter..."></textarea>
+    <div class="btn-row">
+      <button onclick="urlEncode()">Encode URL</button>
+      <button class="btn-outline" onclick="urlDecode()">Decode URL</button>
+    </div>
+    <div class="result-wrapper">
+      <div class="result" id="urlResult">Output will appear here...</div>
+      <button class="copy-btn" onclick="copyText('urlResult', this)">Copy</button>
+    </div>
   </div>
-  <div class="card">
-   <div class="icon">🧩</div><h3>JSON Formatter</h3>
-   <p>Format and validate JSON data.</p>
-   <button onclick="show('json')">Open Tool</button>
+
+  <!-- IP Information -->
+  <div class="tool-area hidden" id="ip">
+    <div class="tool-header">
+      <h2>Public IP & Network Info</h2>
+      <button class="btn-outline btn-sm" onclick="closeTools()">✕ Close</button>
+    </div>
+    <button onclick="getIP()">Fetch My Public IP</button>
+    <div class="result-wrapper">
+      <div class="result" id="ipResult">Press the button above to query external IP lookup API.</div>
+      <button class="copy-btn" onclick="copyText('ipResult', this)">Copy</button>
+    </div>
   </div>
- </div>
 
- <div class="tool-area hidden" id="password">
-  <h2>Password Strength Checker</h2>
-  <input id="pass" type="password" placeholder="Enter a sample password">
-  <button onclick="checkPassword()">Check Strength</button>
-  <div class="result" id="passResult">Your result will appear here.</div>
-  <p class="subtitle">This check runs locally. Never enter a real password.</p>
- </div>
-
- <div class="tool-area hidden" id="hash">
-  <h2>SHA-256 Generator</h2>
-  <textarea id="hashInput" placeholder="Enter text to hash"></textarea>
-  <button onclick="generateHash()">Generate Hash</button>
-  <div class="result" id="hashResult"></div>
- </div>
-
- <div class="tool-area hidden" id="base64">
-  <h2>Base64 Encoder / Decoder</h2>
-  <textarea id="baseInput" placeholder="Enter text"></textarea>
-  <button onclick="baseEncode()">Encode</button>
-  <button onclick="baseDecode()">Decode</button>
-  <div class="result" id="baseResult"></div>
- </div>
-
- <div class="tool-area hidden" id="url">
-  <h2>URL Encoder / Decoder</h2>
-  <textarea id="urlInput" placeholder="Enter text or URL component"></textarea>
-  <button onclick="urlEncode()">Encode</button>
-  <button onclick="urlDecode()">Decode</button>
-  <div class="result" id="urlResult"></div>
- </div>
-
- <div class="tool-area hidden" id="ip">
-  <h2>Public IP Information</h2>
-  <button onclick="getIP()">Check Public IP</button>
-  <div class="result" id="ipResult">Press the button to check. This uses an external IP lookup service.</div>
- </div>
-
- <div class="tool-area hidden" id="json">
-  <h2>JSON Formatter</h2>
-  <textarea id="jsonInput" placeholder='{"name":"CyberNex","type":"Security"}'></textarea>
-  <button onclick="formatJSON()">Format JSON</button>
-  <div class="result" id="jsonResult"></div>
- </div>
+  <!-- JSON Formatter -->
+  <div class="tool-area hidden" id="json">
+    <div class="tool-header">
+      <h2>JSON Formatter & Validator</h2>
+      <button class="btn-outline btn-sm" onclick="closeTools()">✕ Close</button>
+    </div>
+    <textarea id="jsonInput" placeholder='{"platform":"CyberNex","secure":true,"version":2.0}'></textarea>
+    <div class="btn-row">
+      <button onclick="formatJSON(2)">Format (Prettify)</button>
+      <button class="btn-outline" onclick="formatJSON(0)">Minify</button>
+    </div>
+    <div class="result-wrapper">
+      <div class="result" id="jsonResult">Formatted JSON will appear here...</div>
+      <button class="copy-btn" onclick="copyText('jsonResult', this)">Copy</button>
+    </div>
+  </div>
 </section>
 
 <section id="learn">
- <h2 class="section-title">Cybersecurity Learning</h2>
- <p class="subtitle">Start your journey into the world of digital security.</p>
- <div class="grid">
-  <div class="card"><div class="icon">🖥️</div><h3>Computer Networks</h3><p>Learn IP, DNS, TCP, UDP and networking fundamentals.</p></div>
-  <div class="card"><div class="icon">🐧</div><h3>Linux Fundamentals</h3><p>Explore Linux commands, permissions and terminal basics.</p></div>
-  <div class="card"><div class="icon">🛡️</div><h3>Ethical Hacking</h3><p>Understand authorized security testing and responsible disclosure.</p></div>
-  <div class="card"><div class="icon">🔍</div><h3>Web Security</h3><p>Learn about HTTPS, authentication and common web vulnerabilities.</p></div>
- </div>
+  <h2 class="section-title">Cybersecurity Quick Reference</h2>
+  <p class="subtitle">Click any topic card to view essential commands and security cheat-sheets.</p>
+  <div class="grid">
+    <div class="card">
+      <div>
+        <div class="icon">🖥️</div>
+        <h3>Computer Networks</h3>
+        <p>Core ports, OSI layers, DNS, TCP/UDP, and subnetting essentials.</p>
+      </div>
+      <button class="btn-outline" onclick="openGuide('network')">View Cheat-Sheet</button>
+    </div>
+    <div class="card">
+      <div>
+        <div class="icon">🐧</div>
+        <h3>Linux Fundamentals</h3>
+        <p>File permissions (chmod), process inspection, and terminal commands.</p>
+      </div>
+      <button class="btn-outline" onclick="openGuide('linux')">View Cheat-Sheet</button>
+    </div>
+    <div class="card">
+      <div>
+        <div class="icon">🛡️</div>
+        <h3>Ethical Hacking</h3>
+        <p>Reconnaissance phases, authorized testing rules, and methodology.</p>
+      </div>
+      <button class="btn-outline" onclick="openGuide('hacking')">View Cheat-Sheet</button>
+    </div>
+    <div class="card">
+      <div>
+        <div class="icon">🔍</div>
+        <h3>Web Security</h3>
+        <p>OWASP Top 10 concepts: XSS, SQLi, CSRF, and secure headers.</p>
+      </div>
+      <button class="btn-outline" onclick="openGuide('web')">View Cheat-Sheet</button>
+    </div>
+  </div>
 </section>
 
 <section id="about">
- <h2 class="section-title">About CYBERNEX</h2>
- <p class="subtitle">
-  CYBERNEX is an educational cybersecurity platform designed to make
-  digital security concepts and browser-based tools accessible to everyone.
-  All security testing should be performed only on systems you own or have
-  explicit permission to assess.
- </p>
+  <h2 class="section-title">About CYBERNEX</h2>
+  <p class="subtitle">
+    CYBERNEX is an educational cybersecurity platform built to make digital security
+    concepts and client-side utilities accessible to students and learners.
+    All security assessments and testing techniques should strictly be performed on
+    systems you own or have explicit written authorization to test.
+  </p>
 </section>
 
 <footer>
- <div class="logo">CYBERNEX</div>
- <p>Learn • Explore • Secure</p>
- <p>© 2026 CYBERNEX. Built for cybersecurity education.</p>
+  <div class="logo">CYBER<span>NEX</span></div>
+  <p>Learn • Explore • Secure</p>
+  <p>© 2026 CYBERNEX. Built for cybersecurity education.</p>
 </footer>
 
+<!-- Cheat-Sheet Modal -->
+<div class="modal-backdrop hidden" id="guideModal" onclick="closeModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="tool-header">
+      <h2 id="modalTitle">Topic Guide</h2>
+      <button class="btn-outline btn-sm" onclick="document.getElementById('guideModal').classList.add('hidden')">✕</button>
+    </div>
+    <p class="subtitle" id="modalDesc" style="margin-bottom: 12px;"></p>
+    <pre id="modalCode"></pre>
+  </div>
+</div>
+
 <script>
-function show(id){
- document.querySelectorAll('.tool-area').forEach(el=>el.classList.add('hidden'));
- const target=document.getElementById(id);
- target.classList.remove('hidden');
- target.scrollIntoView({behavior:'smooth',block:'center'});
+// Mobile Navigation
+function toggleMenu() {
+  document.getElementById('mainNav').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mainNav').classList.remove('open');
 }
 
-function checkPassword(){
- const p=document.getElementById('pass').value;
- let score=0;
- if(p.length>=12)score++;
- if(/[A-Z]/.test(p))score++;
- if(/[a-z]/.test(p))score++;
- if(/[0-9]/.test(p))score++;
- if(/[^A-Za-z0-9]/.test(p))score++;
- const labels=['Very Weak','Weak','Fair','Good','Strong','Very Strong'];
- document.getElementById('passResult').textContent=
- labels[score]+' — '+score+'/5 characteristics met.';
+// Show / Hide Tools
+function show(id) {
+  closeTools();
+  const target = document.getElementById(id);
+  const card = document.getElementById('card-' + id);
+  target.classList.remove('hidden');
+  if (card) card.classList.add('active-card');
+  target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-async function generateHash(){
- const text=document.getElementById('hashInput').value;
- try{
- const data=new TextEncoder().encode(text);
- const hash=await crypto.subtle.digest('SHA-256',data);
- const result=Array.from(new Uint8Array(hash))
- .map(b=>b.toString(16).padStart(2,'0')).join('');
- document.getElementById('hashResult').textContent=result;
- }catch(e){
- document.getElementById('hashResult').textContent='Use HTTPS or localhost.';
- }
+function closeTools() {
+  document.querySelectorAll('.tool-area').forEach(el => el.classList.add('hidden'));
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('active-card'));
 }
 
-function baseEncode(){
- try{
- const s=document.getElementById('baseInput').value;
- document.getElementById('baseResult').textContent=
- btoa(unescape(encodeURIComponent(s)));
- }catch(e){document.getElementById('baseResult').textContent='Encoding error.';}
+// Copy to Clipboard Helper
+async function copyText(elementId, btn) {
+  const text = document.getElementById(elementId).textContent;
+  if (!text) return;
+  try {
+    await navigator.clipboard.writeText(text);
+    const original = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = original, 1500);
+  } catch (e) {
+    btn.textContent = 'Failed';
+  }
 }
-function baseDecode(){
- try{
- document.getElementById('baseResult').textContent=
- decodeURIComponent(escape(atob(document.getElementById('baseInput').value)));
- }catch(e){document.getElementById('baseResult').textContent='Invalid Base64 input.';}
+
+// 1. Password Checker
+function togglePassVisibility() {
+  const input = document.getElementById('pass');
+  const btn = document.querySelector('.toggle-pass');
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = 'Hide';
+  } else {
+    input.type = 'password';
+    btn.textContent = 'Show';
+  }
 }
-function urlEncode(){
- document.getElementById('urlResult').textContent=
- encodeURIComponent(document.getElementById('urlInput').value);
+
+function checkPassword() {
+  const p = document.getElementById('pass').value;
+  const fill = document.getElementById('meterFill');
+  const res = document.getElementById('passResult');
+
+  if (!p) {
+    fill.style.width = '0%';
+    res.textContent = 'Start typing to evaluate password strength.';
+    return;
+  }
+
+  let score = 0;
+  if (p.length >= 8) score++;
+  if (p.length >= 12) score++;
+  if (/[A-Z]/.test(p) && /[a-z]/.test(p)) score++;
+  if (/[0-9]/.test(p)) score++;
+  if (/[^A-Za-z0-9]/.test(p)) score++;
+
+  const labels = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong', 'Very Strong'];
+  const colors = ['#ff4d6d', '#ff4d6d', '#ffb703', '#ffb703', '#00ff9c', '#00ff9c'];
+
+  fill.style.width = (score * 20) + '%';
+  fill.style.background = colors[score];
+  res.textContent = `${labels[score]} (${score}/5) — Length: ${p.length} chars`;
 }
-function urlDecode(){
- try{
- document.getElementById('urlResult').textContent=
- decodeURIComponent(document.getElementById('urlInput').value);
- }catch(e){document.getElementById('urlResult').textContent='Invalid URL encoding.';}
+
+// 2. SHA-256 Generator
+async function generateHash() {
+  const text = document.getElementById('hashInput').value;
+  const out = document.getElementById('hashResult');
+  if (!text) {
+    out.textContent = 'Hash will appear automatically as you type...';
+    return;
+  }
+  try {
+    const data = new TextEncoder().encode(text);
+    const hash = await crypto.subtle.digest('SHA-256', data);
+    out.textContent = Array.from(new Uint8Array(hash))
+      .map(b => b.toString(16).padStart(2, '0')).join('');
+  } catch (e) {
+    out.textContent = 'Web Crypto requires HTTPS or localhost.';
+  }
 }
-function formatJSON(){
- try{
- const obj=JSON.parse(document.getElementById('jsonInput').value);
- document.getElementById('jsonResult').textContent=
- JSON.stringify(obj,null,2);
- }catch(e){
- document.getElementById('jsonResult').textContent='Invalid JSON: '+e.message;
- }
+
+// 3. Base64 (UTF-8 Safe)
+function baseEncode() {
+  try {
+    const s = document.getElementById('baseInput').value;
+    const bytes = new TextEncoder().encode(s);
+    let binary = '';
+    bytes.forEach(b => binary += String.fromCharCode(b));
+    document.getElementById('baseResult').textContent = btoa(binary);
+  } catch (e) {
+    document.getElementById('baseResult').textContent = 'Encoding error.';
+  }
 }
-async function getIP(){
- const result=document.getElementById('ipResult');
- result.textContent='Checking...';
- try{
- const r=await fetch('https://api.ipify.org?format=json');
- const data=await r.json();
- result.textContent='Your public IP address: '+data.ip;
- }catch(e){
- result.textContent='Unable to retrieve IP. Check your internet connection.';
- }
+
+function baseDecode() {
+  try {
+    const b64 = document.getElementById('baseInput').value.trim();
+    const binary = atob(b64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    document.getElementById('baseResult').textContent = new TextDecoder().decode(bytes);
+  } catch (e) {
+    document.getElementById('baseResult').textContent = 'Invalid Base64 input.';
+  }
+}
+
+// 4. URL Encoder
+function urlEncode() {
+  document.getElementById('urlResult').textContent =
+    encodeURIComponent(document.getElementById('urlInput').value);
+}
+function urlDecode() {
+  try {
+    document.getElementById('urlResult').textContent =
+      decodeURIComponent(document.getElementById('urlInput').value);
+  } catch (e) {
+    document.getElementById('urlResult').textContent = 'Malformed URL encoding.';
+  }
+}
+
+// 5. Public IP & Network Info
+async function getIP() {
+  const result = document.getElementById('ipResult');
+  result.textContent = 'Fetching network details...';
+  try {
+    const r = await fetch('https://ipapi.co/json/');
+    const d = await r.json();
+    if (d.error) throw new Error();
+    result.textContent =
+      `IP Address : ${d.ip}\n` +
+      `ISP / Org  : ${d.org || 'N/A'}\n` +
+      `Location   : ${d.city}, ${d.region}, ${d.country_name}`;
+  } catch (e) {
+    try {
+      const r2 = await fetch('https://api.ipify.org?format=json');
+      const d2 = await r2.json();
+      result.textContent = 'Public IP Address: ' + d2.ip;
+    } catch (err) {
+      result.textContent = 'Unable to fetch IP. Check internet or ad-blocker settings.';
+    }
+  }
+}
+
+// 6. JSON Formatter
+function formatJSON(spaces) {
+  try {
+    const obj = JSON.parse(document.getElementById('jsonInput').value);
+    document.getElementById('jsonResult').textContent = JSON.stringify(obj, null, spaces);
+  } catch (e) {
+    document.getElementById('jsonResult').textContent = 'Invalid JSON: ' + e.message;
+  }
+}
+
+// Learning Cheat-Sheets Data
+const guides = {
+  network: {
+    title: 'Common Network Ports',
+    desc: 'Standard TCP/UDP service ports every security analyst should know:',
+    code: '21  - FTP (File Transfer)\n22  - SSH (Secure Shell)\n25  - SMTP (Mail Routing)\n53  - DNS (Domain Name System)\n80  - HTTP (Unencrypted Web)\n443 - HTTPS (Encrypted Web)\n3389- RDP (Remote Desktop)'
+  },
+  linux: {
+    title: 'Essential Linux Security Commands',
+    desc: 'Quick terminal commands for permissions, users, and network sockets:',
+    code: 'chmod 600 file.key   # Owner read/write only\nss -tulnp            # List active listening ports\nps aux | grep root   # View running root processes\nsha256sum file.iso   # Verify file integrity'
+  },
+  hacking: {
+    title: '5 Phases of Ethical Hacking',
+    desc: 'Standard structured workflow for authorized penetration testing:',
+    code: '1. Reconnaissance (OSINT & passive info gathering)\n2. Scanning & Enumeration (Ports, services, versions)\n3. Gaining Access (Exploiting verified vulnerabilities)\n4. Maintaining Access (Testing persistence impact)\n5. Reporting (Documenting fixes & remediation)'
+  },
+  web: {
+    title: 'Web Security Quick Checklist',
+    desc: 'Key defenses against common web application vulnerabilities:',
+    code: '• Prevent SQLi  -> Use Parameterized Queries / Prepared Statements\n• Prevent XSS   -> Sanitize & Context-Encode User Output\n• Prevent CSRF  -> Use Anti-CSRF Tokens & SameSite Cookies\n• Transport     -> Enforce HTTPS + HSTS Headers'
+  }
+};
+
+function openGuide(key) {
+  const g = guides[key];
+  document.getElementById('modalTitle').textContent = g.title;
+  document.getElementById('modalDesc').textContent = g.desc;
+  document.getElementById('modalCode').textContent = g.code;
+  document.getElementById('guideModal').classList.remove('hidden');
+}
+
+function closeModal(e) {
+  if (e.target.id === 'guideModal') {
+    document.getElementById('guideModal').classList.add('hidden');
+  }
 }
 </script>
 </body>
