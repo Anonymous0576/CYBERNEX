@@ -6,31 +6,31 @@
   <title>CYBERNEX v4.1 - Universal Mobile &amp; Computer Security Command Center</title>
   <style>
     /* =========================================================================
-       CYBERNEX v4.1 DESIGN TOKENS & OBSIDIAN CYBER THEME
+       CYBERNEX v4.1 OBSIDIAN DESIGN TOKENS (#070b14 / #0f172a)
        ========================================================================= */
     :root {
-      --bg-obsidian: #060a13;
-      --bg-card: #0d1424;
-      --bg-card-alt: #111b30;
-      --bg-input: #080d18;
-      --border-slate: #1e293b;
-      --border-cyan: rgba(0, 240, 255, 0.42);
-      --text-primary: #f1f5f9;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --accent-cyan: #00f0ff;
-      --accent-cyan-soft: rgba(0, 240, 255, 0.14);
-      --safe-emerald: #10b981;
-      --safe-emerald-soft: rgba(16, 185, 129, 0.15);
-      --warn-amber: #f59e0b;
-      --warn-amber-soft: rgba(245, 158, 11, 0.15);
-      --danger-crimson: #ef4444;
-      --danger-crimson-soft: rgba(239, 68, 68, 0.16);
-      --radius-lg: 16px;
-      --radius-md: 12px;
+      --bg-base: #070b14;
+      --bg-surface: #0f172a;
+      --bg-surface-elev: #162038;
+      --bg-field: #080d18;
+      --line-subtle: #1e293b;
+      --line-cyan: rgba(34, 211, 238, 0.45);
+      --ink-main: #f8fafc;
+      --ink-muted: #94a3b8;
+      --ink-dim: #64748b;
+      --cyan: #22d3ee;
+      --cyan-bg: rgba(34, 211, 238, 0.12);
+      --emerald: #10b981;
+      --emerald-bg: rgba(16, 185, 129, 0.14);
+      --amber: #f59e0b;
+      --amber-bg: rgba(245, 158, 11, 0.14);
+      --crimson: #ef4444;
+      --crimson-bg: rgba(239, 68, 68, 0.16);
+      --radius-lg: 14px;
+      --radius-md: 10px;
       --radius-sm: 8px;
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
-      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
     *, *::before, *::after {
@@ -40,27 +40,14 @@
     }
 
     html, body {
-      background-color: var(--bg-obsidian);
-      color: var(--text-primary);
-      font-family: var(--font-sans);
+      background-color: var(--bg-base);
+      color: var(--ink-main);
+      font-family: var(--font-ui);
       font-size: 14px;
-      line-height: 1.55;
+      line-height: 1.5;
       min-height: 100vh;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-    }
-
-    /* Subtle tactical grid backdrop */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(to right, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-      background-size: 32px 32px;
-      pointer-events: none;
-      z-index: 0;
     }
 
     .mono {
@@ -70,17 +57,17 @@
     /* =========================================================================
        STICKY TOP BAR
        ========================================================================= */
-    .sticky-header {
+    .topbar {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(6, 10, 19, 0.92);
+      z-index: 120;
+      background: rgba(7, 11, 20, 0.92);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-slate);
+      border-bottom: 1px solid var(--line-subtle);
     }
 
     .topbar-inner {
-      max-width: 1400px;
+      max-width: 1440px;
       margin: 0 auto;
       padding: 12px 16px;
       display: flex;
@@ -96,117 +83,116 @@
       }
     }
 
-    .brand-wrap {
+    .brand {
       display: flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
     }
 
-    .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--accent-cyan-soft);
-      border: 1px solid var(--border-cyan);
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background: var(--cyan-bg);
+      border: 1px solid var(--line-cyan);
+      color: var(--cyan);
       display: grid;
       place-items: center;
-      color: var(--accent-cyan);
       flex-shrink: 0;
     }
 
-    .brand-name {
-      font-size: 17px;
+    .brand-title {
+      font-size: 16px;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: #ffffff;
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
-    .ver-tag {
+    .ver-pill {
       font-size: 11px;
       font-weight: 700;
-      color: var(--accent-cyan);
-      background: var(--accent-cyan-soft);
-      border: 1px solid var(--border-cyan);
+      color: var(--cyan);
+      background: var(--cyan-bg);
+      border: 1px solid var(--line-cyan);
       padding: 1px 7px;
       border-radius: 999px;
     }
 
-    .brand-tagline {
+    .brand-sub {
       font-size: 11px;
-      color: var(--text-secondary);
+      color: var(--ink-muted);
     }
 
-    .topbar-controls {
+    .topbar-actions {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 10px;
     }
 
-    .os-live-badge {
+    .os-pill {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 6px 11px;
+      gap: 6px;
+      padding: 6px 10px;
       border-radius: var(--radius-sm);
-      background: var(--bg-card);
-      border: 1px solid var(--border-slate);
+      background: var(--bg-surface);
+      border: 1px solid var(--line-subtle);
       font-size: 12px;
-      font-weight: 600;
-      color: var(--text-primary);
+      color: var(--ink-muted);
     }
 
-    .os-select-inline {
-      background: var(--bg-input);
-      color: var(--accent-cyan);
-      border: 1px solid var(--border-slate);
+    .os-select {
+      background: var(--bg-field);
+      color: var(--cyan);
+      border: 1px solid var(--line-subtle);
       border-radius: 6px;
-      padding: 3px 7px;
+      padding: 3px 8px;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
     }
 
-    .os-select-inline:focus {
+    .os-select:focus {
       outline: none;
-      border-color: var(--accent-cyan);
+      border-color: var(--cyan);
     }
 
-    .score-pill {
+    .score-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       padding: 6px 12px;
       border-radius: 999px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-cyan);
+      background: var(--bg-surface);
+      border: 1px solid var(--line-cyan);
       font-size: 12px;
       font-weight: 700;
-      color: var(--accent-cyan);
+      color: var(--cyan);
     }
 
     /* =========================================================================
-       MAIN PAGE CONTAINER & EMERGENCY ALERT BANNER
+       MAIN SHELL & EMERGENCY ALERT BANNER
        ========================================================================= */
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 1400px;
+    .shell {
+      max-width: 1440px;
       margin: 0 auto;
       padding: 16px 16px 56px;
     }
 
     @media (min-width: 768px) {
-      .container {
+      .shell {
         padding: 20px 24px 64px;
       }
     }
 
-    .emergency-banner {
+    .alert-banner {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -214,60 +200,49 @@
       gap: 12px;
       padding: 12px 16px;
       border-radius: var(--radius-md);
-      background: var(--danger-crimson-soft);
+      background: var(--crimson-bg);
       border: 1px solid rgba(239, 68, 68, 0.5);
       margin-bottom: 18px;
     }
 
-    .emergency-text {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 1 1 320px;
-      color: #fee2e2;
+    .alert-copy {
       font-size: 13px;
-      font-weight: 500;
+      color: #fee2e2;
+      flex: 1 1 320px;
     }
 
-    .emergency-tag {
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 6px;
-      background: rgba(239, 68, 68, 0.28);
-      border: 1px solid rgba(239, 68, 68, 0.55);
-      color: #fecaca;
-      flex-shrink: 0;
+    .alert-copy strong {
+      color: #ffffff;
     }
 
-    .emergency-code {
+    .alert-code {
       color: #ffffff;
       font-weight: 700;
       padding: 1px 6px;
       border-radius: 5px;
-      background: rgba(6, 10, 19, 0.72);
+      background: rgba(7, 11, 20, 0.72);
       border: 1px solid rgba(254, 202, 202, 0.35);
     }
 
     /* =========================================================================
-       RESPONSIVE SIDEBAR / TAB LAYOUT
+       NAVIGATION & SECTION LAYOUT
        ========================================================================= */
-    .workspace-grid {
+    .layout {
       display: grid;
       grid-template-columns: 1fr;
       gap: 18px;
     }
 
     @media (min-width: 1024px) {
-      .workspace-grid {
+      .layout {
         grid-template-columns: 268px minmax(0, 1fr);
         align-items: start;
       }
     }
 
-    .nav-sidebar {
-      background: var(--bg-card);
-      border: 1px solid var(--border-slate);
+    .sidenav {
+      background: var(--bg-surface);
+      border: 1px solid var(--line-subtle);
       border-radius: var(--radius-lg);
       padding: 10px;
       display: flex;
@@ -277,7 +252,7 @@
     }
 
     @media (min-width: 1024px) {
-      .nav-sidebar {
+      .sidenav {
         flex-direction: column;
         position: sticky;
         top: 76px;
@@ -285,7 +260,7 @@
       }
     }
 
-    .nav-item {
+    .nav-btn {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -293,7 +268,7 @@
       border-radius: var(--radius-md);
       border: 1px solid transparent;
       background: transparent;
-      color: var(--text-secondary);
+      color: var(--ink-muted);
       font-family: inherit;
       font-size: 13px;
       font-weight: 600;
@@ -304,43 +279,51 @@
     }
 
     @media (min-width: 1024px) {
-      .nav-item {
+      .nav-btn {
         width: 100%;
         flex-shrink: 1;
       }
     }
 
-    .nav-item:hover {
-      background: var(--bg-card-alt);
-      color: var(--text-primary);
+    .nav-btn:hover {
+      background: var(--bg-surface-elev);
+      color: var(--ink-main);
     }
 
-    .nav-item.active {
-      background: var(--accent-cyan-soft);
-      border-color: var(--border-cyan);
-      color: var(--accent-cyan);
+    .nav-btn.active {
+      background: var(--cyan-bg);
+      border-color: var(--line-cyan);
+      color: var(--cyan);
     }
 
-    .nav-idx {
+    .nav-num {
       font-size: 11px;
       padding: 2px 6px;
       border-radius: 6px;
-      background: var(--bg-input);
-      border: 1px solid var(--border-slate);
-      color: var(--text-muted);
+      background: var(--bg-field);
+      border: 1px solid var(--line-subtle);
+      color: var(--ink-dim);
     }
 
-    .nav-item.active .nav-idx {
-      color: var(--accent-cyan);
-      border-color: var(--border-cyan);
+    .nav-btn.active .nav-num {
+      color: var(--cyan);
+      border-color: var(--line-cyan);
+    }
+
+    .panel {
+      display: none;
+    }
+
+    .panel.active {
+      display: block;
     }
 
     /* =========================================================================
-       CARDS, GRIDS, BUTTONS, INPUTS & BADGES
+       CARDS, GRIDS, FORM CONTROLS & BUTTONS
        ========================================================================= */
     .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-slate);
+      background: var(--bg-surface);
+      border: 1px solid var(--line-subtle);
       border-radius: var(--radius-lg);
       padding: 20px;
     }
@@ -349,7 +332,7 @@
       margin-top: 16px;
     }
 
-    .module-head {
+    .card-head {
       display: flex;
       flex-wrap: wrap;
       align-items: flex-start;
@@ -357,99 +340,106 @@
       gap: 12px;
       padding-bottom: 14px;
       margin-bottom: 18px;
-      border-bottom: 1px solid var(--border-slate);
+      border-bottom: 1px solid var(--line-subtle);
     }
 
-    .module-kicker {
+    .kicker {
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--accent-cyan);
-      margin-bottom: 4px;
+      color: var(--cyan);
+      margin-bottom: 3px;
     }
 
-    .module-title {
-      font-size: 20px;
+    .h-title {
+      font-size: 19px;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: #ffffff;
     }
 
-    .module-desc {
+    .h-sub {
       font-size: 13px;
-      color: var(--text-secondary);
+      color: var(--ink-muted);
       margin-top: 4px;
-      max-width: 760px;
+      max-width: 820px;
     }
 
-    .grid-2 {
+    .sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .g-2 {
       display: grid;
       grid-template-columns: 1fr;
       gap: 16px;
     }
 
-    @media (min-width: 780px) {
-      .grid-2 {
+    @media (min-width: 820px) {
+      .g-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    .grid-3 {
+    .g-3 {
       display: grid;
       grid-template-columns: 1fr;
       gap: 14px;
     }
 
-    @media (min-width: 900px) {
-      .grid-3 {
+    @media (min-width: 920px) {
+      .g-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
-    .grid-4 {
+    .g-4 {
       display: grid;
       grid-template-columns: 1fr;
       gap: 12px;
     }
 
     @media (min-width: 600px) {
-      .grid-4 {
+      .g-4 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    @media (min-width: 1160px) {
-      .grid-4 {
+    @media (min-width: 1180px) {
+      .g-4 {
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
     }
 
-    .tile {
-      background: var(--bg-input);
-      border: 1px solid var(--border-slate);
+    .box {
+      background: var(--bg-field);
+      border: 1px solid var(--line-subtle);
       border-radius: var(--radius-md);
       padding: 14px;
     }
 
-    .tile-label {
+    .box-label {
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: var(--text-muted);
+      color: var(--ink-dim);
       margin-bottom: 4px;
     }
 
-    .tile-val {
+    .box-val {
       font-size: 14px;
       font-weight: 700;
       color: #ffffff;
       word-break: break-word;
     }
 
-    .tile-sub {
+    .box-note {
       font-size: 12px;
-      color: var(--text-secondary);
+      color: var(--ink-muted);
       margin-top: 4px;
     }
 
@@ -457,23 +447,24 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
-      padding: 9px 14px;
+      gap: 6px;
+      padding: 8px 14px;
       border-radius: var(--radius-sm);
-      border: 1px solid var(--border-slate);
-      background: var(--bg-card-alt);
-      color: var(--text-primary);
+      border: 1px solid var(--line-subtle);
+      background: var(--bg-surface-elev);
+      color: var(--ink-main);
       font-family: inherit;
       font-size: 13px;
       font-weight: 600;
+      text-decoration: none;
       cursor: pointer;
       transition: all 0.15s ease;
       white-space: nowrap;
     }
 
     .btn:hover:not(:disabled) {
-      border-color: var(--text-secondary);
-      background: #172440;
+      border-color: var(--ink-muted);
+      background: #1e2d4d;
     }
 
     .btn:disabled {
@@ -481,26 +472,26 @@
       cursor: not-allowed;
     }
 
-    .btn-primary {
-      background: var(--accent-cyan);
-      border-color: var(--accent-cyan);
+    .btn-cyan {
+      background: var(--cyan);
+      border-color: var(--cyan);
       color: #041018;
       font-weight: 700;
     }
 
-    .btn-primary:hover:not(:disabled) {
-      background: #4df5ff;
-      border-color: #4df5ff;
+    .btn-cyan:hover:not(:disabled) {
+      background: #5ce1f6;
+      border-color: #5ce1f6;
     }
 
     .btn-emerald {
-      background: var(--safe-emerald-soft);
+      background: var(--emerald-bg);
       border-color: rgba(16, 185, 129, 0.5);
       color: #6ee7b7;
     }
 
-    .btn-danger {
-      background: var(--danger-crimson-soft);
+    .btn-crimson {
+      background: var(--crimson-bg);
       border-color: rgba(239, 68, 68, 0.5);
       color: #fecaca;
     }
@@ -511,101 +502,89 @@
     }
 
     .field {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
-    .field-label {
+    .lbl {
       display: block;
       font-size: 12px;
       font-weight: 600;
-      color: var(--text-secondary);
+      color: var(--ink-muted);
       margin-bottom: 5px;
     }
 
     .input, .select, .textarea {
       width: 100%;
-      background: var(--bg-input);
-      border: 1px solid var(--border-slate);
+      background: var(--bg-field);
+      border: 1px solid var(--line-subtle);
       border-radius: var(--radius-sm);
-      padding: 9px 12px;
-      color: var(--text-primary);
+      padding: 8px 11px;
+      color: var(--ink-main);
       font-family: inherit;
       font-size: 13px;
     }
 
     .input:focus, .select:focus, .textarea:focus {
       outline: none;
-      border-color: var(--accent-cyan);
+      border-color: var(--cyan);
     }
 
     .textarea {
-      min-height: 86px;
+      min-height: 78px;
       resize: vertical;
     }
 
-    .badge-safe {
+    .badge {
       display: inline-block;
       padding: 2px 8px;
       border-radius: 6px;
       font-size: 11px;
       font-weight: 700;
+    }
+
+    .b-safe {
       color: #6ee7b7;
-      background: var(--safe-emerald-soft);
+      background: var(--emerald-bg);
       border: 1px solid rgba(16, 185, 129, 0.45);
     }
 
-    .badge-warn {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
+    .b-warn {
       color: #fcd34d;
-      background: var(--warn-amber-soft);
+      background: var(--amber-bg);
       border: 1px solid rgba(245, 158, 11, 0.45);
     }
 
-    .badge-danger {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
+    .b-danger {
       color: #fca5a5;
-      background: var(--danger-crimson-soft);
+      background: var(--crimson-bg);
       border: 1px solid rgba(239, 68, 68, 0.5);
     }
 
-    .badge-cyan {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--accent-cyan);
-      background: var(--accent-cyan-soft);
-      border: 1px solid var(--border-cyan);
+    .b-cyan {
+      color: var(--cyan);
+      background: var(--cyan-bg);
+      border: 1px solid var(--line-cyan);
     }
 
     /* =========================================================================
-       SCANNER GAUGE, PROGRESS & CHECKLISTS
+       SCORE GAUGE, LOGS, SPECIAL WIDGETS & TOASTS
        ========================================================================= */
-    .scanner-layout {
+    .scan-top {
       display: grid;
       grid-template-columns: 1fr;
       gap: 18px;
       align-items: center;
     }
 
-    @media (min-width: 860px) {
-      .scanner-layout {
-        grid-template-columns: minmax(0, 1fr) 225px;
+    @media (min-width: 880px) {
+      .scan-top {
+        grid-template-columns: minmax(0, 1fr) 224px;
       }
     }
 
-    .score-box {
-      background: var(--bg-input);
-      border: 1px solid var(--border-slate);
+    .gauge-card {
+      background: var(--bg-field);
+      border: 1px solid var(--line-subtle);
       border-radius: var(--radius-lg);
       padding: 18px 14px;
       text-align: center;
@@ -614,155 +593,117 @@
       align-items: center;
     }
 
-    .score-ring {
-      width: 132px;
-      height: 132px;
+    .gauge-ring {
+      width: 128px;
+      height: 128px;
       border-radius: 50%;
       background:
-        radial-gradient(closest-side, var(--bg-input) 78%, transparent 80% 100%),
-        conic-gradient(var(--accent-cyan) calc(var(--pct, 0) * 1%), var(--border-slate) 0);
+        radial-gradient(closest-side, var(--bg-field) 78%, transparent 80% 100%),
+        conic-gradient(var(--cyan) calc(var(--p, 0) * 1%), var(--line-subtle) 0);
       display: grid;
       place-items: center;
       margin-bottom: 10px;
       transition: background 0.25s ease;
     }
 
-    .score-num {
+    .gauge-num {
       font-size: 28px;
       font-weight: 800;
       color: #ffffff;
       line-height: 1.1;
     }
 
-    .score-cap {
-      font-size: 10px;
-      color: var(--text-muted);
-    }
-
-    .progress-bar {
+    .meter {
       width: 100%;
       height: 8px;
       border-radius: 999px;
-      background: var(--bg-input);
-      border: 1px solid var(--border-slate);
+      background: var(--bg-field);
+      border: 1px solid var(--line-subtle);
       overflow: hidden;
-      margin: 10px 0;
+      margin: 8px 0;
     }
 
-    .progress-fill {
+    .meter-fill {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--accent-cyan), var(--safe-emerald));
-      transition: width 0.22s ease;
+      background: linear-gradient(90deg, var(--cyan), var(--emerald));
+      transition: width 0.2s ease;
     }
 
-    .console-log {
-      background: var(--bg-input);
-      border: 1px solid var(--border-slate);
+    .log-box {
+      background: var(--bg-field);
+      border: 1px solid var(--line-subtle);
       border-radius: var(--radius-md);
       padding: 10px 12px;
       font-size: 12px;
-      max-height: 170px;
+      max-height: 165px;
       overflow-y: auto;
       color: #cbd5e1;
     }
 
-    .log-row {
+    .log-line {
       padding: 2px 0;
       border-bottom: 1px dashed rgba(148, 163, 184, 0.08);
     }
 
-    .log-row:last-child {
+    .log-line:last-child {
       border-bottom: none;
     }
 
-    .check-row {
+    .chk-item {
       display: flex;
       align-items: flex-start;
       gap: 10px;
       padding: 10px 12px;
       border-radius: var(--radius-md);
-      background: var(--bg-input);
-      border: 1px solid var(--border-slate);
+      background: var(--bg-field);
+      border: 1px solid var(--line-subtle);
       cursor: pointer;
     }
 
-    .check-row:hover {
-      border-color: var(--border-cyan);
+    .chk-item:hover {
+      border-color: var(--line-cyan);
     }
 
-    .check-row input[type="checkbox"] {
+    .chk-item input[type="checkbox"] {
       margin-top: 2px;
       width: 16px;
       height: 16px;
-      accent-color: var(--accent-cyan);
+      accent-color: var(--cyan);
       cursor: pointer;
       flex-shrink: 0;
     }
 
-    .mono-box {
+    .copy-box {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      background: var(--bg-input);
-      border: 1px solid var(--border-slate);
+      gap: 8px;
+      background: var(--bg-field);
+      border: 1px solid var(--line-subtle);
       border-radius: var(--radius-sm);
       padding: 8px 11px;
       font-size: 12px;
-      color: var(--accent-cyan);
+      color: var(--cyan);
       margin-top: 8px;
       word-break: break-all;
     }
 
-    .drop-area {
-      border: 2px dashed var(--border-cyan);
+    .dropzone {
+      border: 2px dashed var(--line-cyan);
       border-radius: var(--radius-lg);
-      background: var(--bg-input);
-      padding: 24px 16px;
+      background: var(--bg-field);
+      padding: 22px 16px;
       text-align: center;
       cursor: pointer;
       transition: background 0.15s ease;
     }
 
-    .drop-area:hover, .drop-area.drag {
-      background: var(--accent-cyan-soft);
+    .dropzone:hover, .dropzone.over {
+      background: var(--cyan-bg);
     }
 
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .filter-btn {
-      padding: 6px 11px;
-      border-radius: 999px;
-      border: 1px solid var(--border-slate);
-      background: var(--bg-input);
-      color: var(--text-secondary);
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .filter-btn.active {
-      background: var(--accent-cyan-soft);
-      border-color: var(--border-cyan);
-      color: var(--accent-cyan);
-    }
-
-    .tab-section {
-      display: none;
-    }
-
-    .tab-section.active {
-      display: block;
-    }
-
-    /* Toast container */
-    .toast-stack {
+    .toast-wrap {
       position: fixed;
       right: 16px;
       bottom: 16px;
@@ -770,18 +711,18 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      max-width: 350px;
+      max-width: 340px;
     }
 
-    .toast-item {
-      background: var(--bg-card-alt);
-      border: 1px solid var(--border-cyan);
-      color: var(--text-primary);
+    .toast {
+      background: var(--bg-surface-elev);
+      border: 1px solid var(--line-cyan);
+      color: var(--ink-main);
       padding: 10px 14px;
       border-radius: var(--radius-md);
       font-size: 12px;
       font-weight: 600;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
     }
   </style>
 </head>
@@ -789,577 +730,669 @@
   <!-- =======================================================================
        STICKY TOP BAR
        ======================================================================= -->
-  <header class="sticky-header">
+  <header class="topbar">
     <div class="topbar-inner">
-      <div class="brand-wrap">
-        <div class="brand-mark" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             <path d="m9 12 2 2 4-4"></path>
           </svg>
         </div>
         <div>
-          <div class="brand-name">
+          <div class="brand-title">
             <span>CYBERNEX</span>
-            <span class="ver-tag mono">v4.1</span>
+            <span class="ver-pill mono">v4.1</span>
+            <span style="font-size: 12px; font-weight: 600; color: var(--ink-muted);">Universal Mobile &amp; Computer Security Command Center</span>
           </div>
-          <div class="brand-tagline">Zero-Dependency Cyber Defense &amp; Network Command Center</div>
+          <div class="brand-sub">25+ Client-Side Diagnostic, Forensic, Network &amp; Cryptographic Tools</div>
         </div>
       </div>
 
-      <div class="topbar-controls">
-        <div class="os-live-badge">
-          <span id="topDetectedLabel" style="color: var(--text-secondary);">OS:</span>
-          <select id="osProfileSelect" class="os-select-inline" aria-label="Operating System Profile" onchange="handleOsSelectChange(this.value)">
+      <div class="topbar-actions">
+        <div class="os-pill">
+          <span id="osAutoHint">OS:</span>
+          <select id="osSwitcher" class="os-select" aria-label="Operating System Switcher" onchange="onOsSwitch(this.value)">
             <option value="AUTO">Auto-Detect</option>
+            <option value="Android">Android</option>
+            <option value="iOS">iOS</option>
             <option value="Windows">Windows</option>
             <option value="Linux">Linux</option>
             <option value="macOS">macOS</option>
-            <option value="Android">Android</option>
-            <option value="iOS">iOS</option>
           </select>
         </div>
 
-        <div id="topScorePill" class="score-pill mono">SCORE: --/100</div>
+        <div id="headerScoreBadge" class="score-badge mono">SCORE: --/100</div>
 
-        <button type="button" id="runFullAuditBtn" class="btn btn-primary" onclick="runFullAudit()">
+        <button type="button" id="runFullAuditBtn" class="btn btn-cyan" onclick="runFullAudit()">
           Run Full Audit
         </button>
       </div>
     </div>
   </header>
 
-  <div class="container">
+  <div class="shell">
     <!-- =====================================================================
-         SINGLE EMERGENCY ALERT BANNER
+         SINGLE EMERGENCY CYBER ALERT BANNER
          ===================================================================== -->
-    <div class="emergency-banner" role="alert">
-      <div class="emergency-text">
-        <span class="emergency-tag mono">CYBER EMERGENCY</span>
-        <span>In case of fraud or hacking, immediately dial <span class="emergency-code mono">1930</span> or report it at <span class="emergency-code mono">cybercrime.gov.in</span>.</span>
+    <div class="alert-banner" role="alert">
+      <div class="alert-copy">
+        <strong>Emergency Cyber Alert:</strong> In case of fraud or hacking, immediately dial <span class="alert-code mono">1930</span> or report it at <span class="alert-code mono">cybercrime.gov.in</span>.
       </div>
-      <button type="button" class="btn btn-danger btn-sm mono" onclick="copyEmergencyAlert()">
+      <button type="button" class="btn btn-crimson btn-sm mono" onclick="copyEmergencyInfo()">
         Copy Alert
       </button>
     </div>
 
     <!-- =====================================================================
-         SIDEBAR / TAB NAVIGATION + 6 COMPLETE MODULES
+         6 MODULES // 25+ INTERACTIVE CLIENT-SIDE TOOLS
          ===================================================================== -->
-    <div class="workspace-grid">
-      <nav class="nav-sidebar" aria-label="Security Modules">
-        <button type="button" class="nav-item active" data-tab="scanner" onclick="switchTab('scanner')">
-          <span class="nav-idx mono">01</span>
-          <span>Device &amp; OS Scanner</span>
+    <div class="layout">
+      <nav class="sidenav" aria-label="Security Modules">
+        <button type="button" class="nav-btn active" data-panel="scanner" onclick="selectPanel('scanner')">
+          <span class="nav-num mono">01</span>
+          <span>Phone &amp; PC Scanner</span>
         </button>
-        <button type="button" class="nav-item" data-tab="spyware" onclick="switchTab('spyware')">
-          <span class="nav-idx mono">02</span>
-          <span>Spyware &amp; RAT Audit</span>
+        <button type="button" class="nav-btn" data-panel="network" onclick="selectPanel('network')">
+          <span class="nav-num mono">02</span>
+          <span>IP &amp; Network Config</span>
         </button>
-        <button type="button" class="nav-item" data-tab="network" onclick="switchTab('network')">
-          <span class="nav-idx mono">03</span>
-          <span>IP, DNS &amp; Network</span>
-        </button>
-        <button type="button" class="nav-item" data-tab="forensics" onclick="switchTab('forensics')">
-          <span class="nav-idx mono">04</span>
+        <button type="button" class="nav-btn" data-panel="forensics" onclick="selectPanel('forensics')">
+          <span class="nav-num mono">03</span>
           <span>SHA-256 &amp; Forensics</span>
         </button>
-        <button type="button" class="nav-item" data-tab="suite" onclick="switchTab('suite')">
-          <span class="nav-idx mono">05</span>
-          <span>Phishing, UPI &amp; Passwords</span>
+        <button type="button" class="nav-btn" data-panel="spyware" onclick="selectPanel('spyware')">
+          <span class="nav-num mono">04</span>
+          <span>Spyware, RAT &amp; Stalker</span>
         </button>
-        <button type="button" class="nav-item" data-tab="vaultfeed" onclick="switchTab('vaultfeed')">
-          <span class="nav-idx mono">06</span>
-          <span>AES Vault &amp; Threat Feed</span>
+        <button type="button" class="nav-btn" data-panel="suite" onclick="selectPanel('suite')">
+          <span class="nav-num mono">05</span>
+          <span>Link, UPI &amp; Passwords</span>
+        </button>
+        <button type="button" class="nav-btn" data-panel="vault" onclick="selectPanel('vault')">
+          <span class="nav-num mono">06</span>
+          <span>AES-256 Vault &amp; Help</span>
         </button>
       </nav>
 
       <main>
         <!-- =================================================================
-             MODULE 1: DEVICE & OS SCANNER ("IS MY DEVICE SAFE?")
+             MODULE 1: UNIVERSAL PHONE & COMPUTER SCANNER
              ================================================================= -->
-        <section id="tab-scanner" class="tab-section active">
+        <section id="panel-scanner" class="panel active">
           <div class="card">
-            <div class="module-head">
+            <div class="card-head">
               <div>
-                <div class="module-kicker mono">Module 01 // Client Telemetry, Permissions &amp; Fingerprint Probe</div>
-                <h1 class="module-title">Device &amp; OS Scanner — <span id="scannerProfileHeading">Auto-Detect</span></h1>
-                <p class="module-desc">
-                  Evaluates HTTPS/TLS context, hardware cores/memory hints, media &amp; geolocation permissions, WebRTC local IP exposure, automation/webdriver flags, cookies &amp; storage availability, and canvas/font fingerprinting surface.
+                <div class="kicker mono">Module 01 // Universal Phone &amp; Computer Scanner</div>
+                <h1 class="h-title">Device Security Diagnostic — <span id="activeOsHeading">Auto-Detect</span></h1>
+                <p class="h-sub">
+                  Evaluates HTTPS/TLS transport, WebRTC local/ICE IP leaks, browser permissions &amp; automation flags, Canvas &amp; AudioContext fingerprinting surface, storage APIs, and OS-specific hardening steps to compute a 0–100 security score.
                 </p>
               </div>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                <button type="button" id="scanDeviceBtn" class="btn btn-primary" onclick="runDeviceScanner()">
-                  Scan Device
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button type="button" class="btn btn-emerald btn-sm" onclick="applyOneClickHardening()">
+                  One-Click Hardening Fix
                 </button>
-                <button type="button" class="btn btn-sm mono" onclick="copyTextReport()">
-                  Copy Report
+                <button type="button" id="scanNowBtn" class="btn btn-cyan" onclick="runDeviceScan()">
+                  Scan Device
                 </button>
               </div>
             </div>
 
-            <div class="scanner-layout">
+            <div class="scan-top">
               <div>
-                <div class="grid-4" style="margin-bottom: 14px;">
-                  <div class="tile">
-                    <div class="tile-label">Active OS Profile</div>
-                    <div class="tile-val mono" id="scanOsVal">--</div>
-                    <div class="tile-sub" id="scanHardwareVal">CPU &amp; memory hints</div>
+                <div class="g-4" style="margin-bottom: 12px;">
+                  <div class="box">
+                    <div class="box-label">HTTPS / TLS Check</div>
+                    <div class="box-val mono" id="sHttpsVal">--</div>
+                    <div class="box-note" id="sHttpsNote">Transport encryption status</div>
                   </div>
-                  <div class="tile">
-                    <div class="tile-label">HTTPS / TLS Context</div>
-                    <div class="tile-val mono" id="scanHttpsVal">--</div>
-                    <div class="tile-sub" id="scanProtocolVal">Origin protocol check</div>
+                  <div class="box">
+                    <div class="box-label">WebRTC Local IP Leak</div>
+                    <div class="box-val mono" id="sRtcVal">--</div>
+                    <div class="box-note" id="sRtcNote">ICE candidate IP check</div>
                   </div>
-                  <div class="tile">
-                    <div class="tile-label">Cookies &amp; Storage</div>
-                    <div class="tile-val mono" id="scanStorageVal">--</div>
-                    <div class="tile-sub" id="scanCookieDetail">localStorage &amp; cookies</div>
+                  <div class="box">
+                    <div class="box-label">Permissions &amp; Automation</div>
+                    <div class="box-val mono" id="sAutoVal">--</div>
+                    <div class="box-note" id="sAutoNote">webdriver &amp; grants</div>
                   </div>
-                  <div class="tile">
-                    <div class="tile-label">WebDriver / Bot Flag</div>
-                    <div class="tile-val mono" id="scanWebdriverVal">--</div>
-                    <div class="tile-sub">Automation API check</div>
+                  <div class="box">
+                    <div class="box-label">Canvas Fingerprinting</div>
+                    <div class="box-val mono" id="sFpVal">--</div>
+                    <div class="box-note" id="sFpNote">Canvas &amp; AudioContext</div>
+                  </div>
+                </div>
+
+                <div class="g-3" style="margin-bottom: 12px;">
+                  <div class="box">
+                    <div class="box-label">Storage &amp; Cookie Hygiene</div>
+                    <div class="box-val mono" id="sStorVal">--</div>
+                    <div class="box-note" id="sStorNote">Cookies, local &amp; session storage</div>
+                  </div>
+                  <div class="box">
+                    <div class="box-label">Clipboard &amp; Media APIs</div>
+                    <div class="box-val mono" id="sApisVal">--</div>
+                    <div class="box-note" id="sApisNote">clipboard &amp; mediaDevices</div>
+                  </div>
+                  <div class="box">
+                    <div class="box-label">Platform &amp; Hardware</div>
+                    <div class="box-val mono" id="sHwVal">--</div>
+                    <div class="box-note" id="sHwNote">Cores, memory &amp; OS</div>
                   </div>
                 </div>
 
                 <div style="display: flex; justify-content: space-between; font-size: 12px;" class="mono">
-                  <span id="scanStatusLabel" style="color: var(--accent-cyan);">Ready for security scan</span>
-                  <span id="scanPctLabel" style="color: var(--text-secondary);">0%</span>
+                  <span id="scanProgressText" style="color: var(--cyan);">Ready to scan device</span>
+                  <span id="scanProgressPct" style="color: var(--ink-muted);">0%</span>
                 </div>
-                <div class="progress-bar">
-                  <div class="progress-fill" id="scanProgressBar"></div>
+                <div class="meter">
+                  <div class="meter-fill" id="scanProgressFill"></div>
                 </div>
 
-                <div class="console-log mono" id="scanLogBox">
-                  <div class="log-row">[READY] CYBERNEX v4.1 scanner standing by. Click "Scan Device" or "Run Full Audit".</div>
+                <div class="log-box mono" id="scanConsoleLog">
+                  <div class="log-line">[READY] CYBERNEX v4.1 diagnostic engine initialized. Click "Scan Device" or "Run Full Audit".</div>
                 </div>
               </div>
 
-              <div class="score-box">
-                <div class="score-ring" id="scoreRing" style="--pct: 0;">
+              <div class="gauge-card">
+                <div class="gauge-ring" id="scoreGauge" style="--p: 0;">
                   <div>
-                    <div class="score-num mono" id="scoreRingNum">--</div>
-                    <div class="score-cap mono">/ 100</div>
+                    <div class="gauge-num mono" id="scoreGaugeNum">--</div>
+                    <div style="font-size: 10px; color: var(--ink-dim);" class="mono">/ 100</div>
                   </div>
                 </div>
-                <span id="scoreVerdictBadge" class="badge-cyan mono">UNSCANNED</span>
-                <p class="tile-sub" id="scoreVerdictText" style="margin-top: 8px; text-align: center;">
-                  Run a scan to calculate your security score and verdict.
+                <span id="scoreVerdictTag" class="badge b-cyan mono">PENDING</span>
+                <p class="box-note" id="scoreVerdictDesc" style="margin-top: 8px; text-align: center;">
+                  Run a scan to get your 0–100 security score and verdict.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="grid-2">
+          <div class="g-2">
             <div class="card">
-              <div class="module-kicker mono">Diagnostic Probes</div>
-              <h2 style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">Browser &amp; Hardware Check Results</h2>
-              <div id="probeResultsList" style="display: flex; flex-direction: column; gap: 10px;">
-                <div class="tile">
-                  <div class="tile-label">Pending</div>
-                  <div class="tile-val">No scan executed yet</div>
-                  <div class="tile-sub">Click "Scan Device" to inspect permissions, WebRTC IPs, and canvas/font surface.</div>
+              <div class="kicker mono">Diagnostic Breakdown</div>
+              <h2 class="sub-title">Check Findings &amp; Remediation</h2>
+              <div id="scannerFindingsList" style="display: flex; flex-direction: column; gap: 8px;">
+                <div class="box">
+                  <div class="box-label">Awaiting Scan</div>
+                  <div class="box-val">No scan executed yet</div>
+                  <div class="box-note">Click "Scan Device" to inspect transport, WebRTC, permissions, automation, and fingerprinting checks.</div>
                 </div>
               </div>
             </div>
 
             <div class="card">
-              <div class="module-kicker mono">Actionable Hardening</div>
-              <h2 style="font-size: 16px; font-weight: 700; margin-bottom: 12px;" id="hardeningTitle">OS Hardening Checklist</h2>
-              <div id="hardeningChecklist" style="display: flex; flex-direction: column; gap: 9px;"></div>
+              <div class="kicker mono">One-Click Hardening Fixes</div>
+              <h2 class="sub-title" id="osChecklistHeading">OS Hardening Checklist</h2>
+              <div id="osChecklistItems" style="display: flex; flex-direction: column; gap: 8px;"></div>
+              <div id="hardeningActionStatus" class="box-note mono" style="margin-top: 10px; color: var(--emerald);"></div>
             </div>
           </div>
         </section>
 
         <!-- =================================================================
-             MODULE 2: SPYWARE, RAT & STALKERWARE AUDIT
+             MODULE 2: IP & NETWORK CONFIGURATION AUDITOR
              ================================================================= -->
-        <section id="tab-spyware" class="tab-section">
+        <section id="panel-network" class="panel">
           <div class="card">
-            <div class="module-head">
+            <div class="card-head">
               <div>
-                <div class="module-kicker mono">Module 02 // Behavioral Indicators, USSD Codes &amp; Containment</div>
-                <h2 class="module-title">Spyware, RAT &amp; Stalkerware Audit (<span id="spywareOsLabel">Windows</span>)</h2>
-                <p class="module-desc">
-                  Assess suspicious device symptoms, verify or reset mobile call/SMS forwarding codes (*#21#, ##002#), and follow OS-specific containment steps for Windows, Linux, macOS, Android, and iOS.
+                <div class="kicker mono">Module 02 // IP &amp; Network Configuration Auditor</div>
+                <h2 class="h-title">Network, WebRTC ICE, DNS &amp; Wi-Fi Auditor</h2>
+                <p class="h-sub">
+                  Inspect WebRTC local/ICE candidate IPs, check public IP with offline/fallback handling, apply DNS resolver presets (1.1.1.1 / 8.8.8.8), audit Wi-Fi encryption &amp; WPS risk, and calculate IPv4 subnets or inspect common ports.
                 </p>
               </div>
-              <span id="spywareRiskBadge" class="badge-safe mono">RISK LEVEL: LOW (0%)</span>
+              <button type="button" id="refreshNetBtn" class="btn btn-cyan btn-sm" onclick="refreshNetworkSuite()">
+                Refresh Network
+              </button>
             </div>
 
-            <div class="grid-2">
+            <div class="g-3" style="margin-bottom: 16px;">
+              <div class="box">
+                <div class="box-label mono">WebRTC Local / ICE Discovery</div>
+                <div class="box-val mono" id="rtcCandidateIps">Probing...</div>
+                <div class="box-note" id="rtcCandidateMeta">Scanning STUN/ICE candidates</div>
+                <button type="button" class="btn btn-sm mono" style="margin-top: 8px;" onclick="refreshNetworkSuite()">Re-Probe ICE</button>
+              </div>
+
+              <div class="box">
+                <div class="box-label mono">Public IP &amp; Connection Status</div>
+                <div class="box-val mono" id="pubIpVal">Checking...</div>
+                <div class="box-note" id="pubIpMeta">Online status, link speed &amp; offline fallback</div>
+              </div>
+
+              <div class="box">
+                <div class="box-label mono">Custom DNS Presets (1.1.1.1 / 8.8.8.8)</div>
+                <div class="field" style="margin-top: 6px; margin-bottom: 6px;">
+                  <select id="dnsPresetSelect" class="select mono" onchange="applyDnsPreset()">
+                    <option value="cloudflare">Cloudflare (1.1.1.1 / 1.0.0.1)</option>
+                    <option value="google">Google (8.8.8.8 / 8.8.4.4)</option>
+                    <option value="quad9">Quad9 (9.9.9.9 / 149.112.112.112)</option>
+                  </select>
+                </div>
+                <div class="copy-box" style="margin-top: 4px;">
+                  <span id="dnsConfigString" class="mono">Primary: 1.1.1.1 | Secondary: 1.0.0.1 | DoH: https://cloudflare-dns.com/dns-query</span>
+                  <button type="button" class="btn btn-sm mono" onclick="copyElement('dnsConfigString', 'DNS preset')">Copy</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="g-3">
+              <div class="box">
+                <div class="box-label mono">Wi-Fi Encryption &amp; WPS Auditor</div>
+                <div class="field" style="margin-top: 8px; margin-bottom: 6px;">
+                  <label class="lbl" for="wifiAuthSelect">Security Mode</label>
+                  <select id="wifiAuthSelect" class="select mono" onchange="auditWifiConfig()">
+                    <option value="WPA3">WPA3 (SAE)</option>
+                    <option value="WPA2" selected>WPA2 (AES-CCMP)</option>
+                    <option value="WEP">WEP (Weak / Legacy)</option>
+                    <option value="OPEN">Open (Unencrypted)</option>
+                  </select>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; margin-bottom: 8px;">
+                  <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                    <input type="checkbox" id="wpsEnabledChk" onchange="auditWifiConfig()" />
+                    <span>WPS Enabled</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                    <input type="checkbox" id="macRandChk" checked onchange="auditWifiConfig()" />
+                    <span>MAC Randomization</span>
+                  </label>
+                </div>
+                <div id="wifiAuditOutput" class="box-note" style="color: var(--ink-main);"></div>
+              </div>
+
+              <div class="box">
+                <div class="box-label mono">Subnet / CIDR IPv4 Calculator</div>
+                <div style="display: flex; gap: 6px; margin-top: 8px;">
+                  <input type="text" id="cidrTextInput" class="input mono" value="192.168.1.10/24" placeholder="192.168.1.0/24" />
+                  <button type="button" class="btn btn-cyan btn-sm" onclick="runCidrCalc()">Calc</button>
+                </div>
+                <div id="cidrOutputBox" class="box-note mono" style="margin-top: 8px; color: var(--ink-main);"></div>
+              </div>
+
+              <div class="box">
+                <div class="box-label mono">Common Port &amp; Service Reference</div>
+                <div style="display: flex; gap: 6px; margin-top: 8px;">
+                  <select id="portSelectInput" class="select mono" onchange="checkPortRisk()">
+                    <option value="21">21 - FTP</option>
+                    <option value="22">22 - SSH</option>
+                    <option value="23">23 - Telnet</option>
+                    <option value="53">53 - DNS</option>
+                    <option value="80">80 - HTTP</option>
+                    <option value="135">135 - MSRPC</option>
+                    <option value="139">139 - NetBIOS</option>
+                    <option value="443" selected>443 - HTTPS</option>
+                    <option value="445">445 - SMB</option>
+                    <option value="3389">3389 - RDP</option>
+                    <option value="8080">8080 - HTTP-Alt</option>
+                  </select>
+                  <button type="button" class="btn btn-sm mono" onclick="checkPortRisk()">Check</button>
+                </div>
+                <div id="portRiskOutput" class="box-note" style="margin-top: 8px; color: var(--ink-main);"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             MODULE 3: ZERO-UPLOAD SHA-256 & FILE FORENSICS
+             ================================================================= -->
+        <section id="panel-forensics" class="panel">
+          <div class="card">
+            <div class="card-head">
               <div>
-                <div class="field-label mono">Symptom &amp; Anomaly Checklist</div>
-                <div style="display: flex; flex-direction: column; gap: 9px;">
-                  <label class="check-row">
-                    <input type="checkbox" class="spyware-symptom" data-pts="20" onchange="calculateSpywareAudit()" />
+                <div class="kicker mono">Module 03 // Zero-Upload SHA-256 &amp; File Forensics</div>
+                <h2 class="h-title">File &amp; Text Forensics (.APK, .PDF, .EXE, Archives &amp; Media)</h2>
+                <p class="h-sub">
+                  Inspect files locally in memory with zero server upload using WebCrypto SHA-256 &amp; SHA-1, magic-byte header checks for extension spoofing, Shannon entropy analysis, expected hash comparison, and Base64/Hex conversion.
+                </p>
+              </div>
+            </div>
+
+            <div class="dropzone" id="forensicDropzone" onclick="document.getElementById('forensicFileInput').click()">
+              <input type="file" id="forensicFileInput" style="display: none;" onchange="handleForensicFile(this.files[0])" />
+              <div style="font-weight: 700; font-size: 14px; color: var(--cyan);">
+                Click to Select or Drag &amp; Drop File (.APK, .PDF, .EXE, .ZIP, .PNG, .JPG, or Any File)
+              </div>
+              <div class="box-note">100% local browser processing — files are never uploaded to any server.</div>
+            </div>
+
+            <div id="forensicFileResult" style="display: none; margin-top: 14px;">
+              <div class="g-4" style="margin-bottom: 10px;">
+                <div class="box">
+                  <div class="box-label">Filename &amp; Size</div>
+                  <div class="box-val mono" id="ffName">--</div>
+                  <div class="box-note mono" id="ffSize">--</div>
+                </div>
+                <div class="box">
+                  <div class="box-label">Magic Bytes Header</div>
+                  <div class="box-val mono" id="ffMagic">--</div>
+                  <div class="box-note mono" id="ffHexHead">--</div>
+                </div>
+                <div class="box">
+                  <div class="box-label">Extension Alignment</div>
+                  <div class="box-val" id="ffMatchBadge">--</div>
+                  <div class="box-note" id="ffMatchNote">--</div>
+                </div>
+                <div class="box">
+                  <div class="box-label">Shannon Entropy</div>
+                  <div class="box-val mono" id="ffEntropyVal">--</div>
+                  <div class="box-note" id="ffEntropyNote">--</div>
+                </div>
+              </div>
+
+              <div class="g-2" style="margin-bottom: 10px;">
+                <div class="box">
+                  <div class="box-label">File SHA-256</div>
+                  <div class="copy-box">
+                    <span id="ffSha256" class="mono">--</span>
+                    <button type="button" class="btn btn-sm mono" onclick="copyElement('ffSha256', 'File SHA-256')">Copy</button>
+                  </div>
+                </div>
+                <div class="box">
+                  <div class="box-label">File SHA-1</div>
+                  <div class="copy-box">
+                    <span id="ffSha1" class="mono">--</span>
+                    <button type="button" class="btn btn-sm mono" onclick="copyElement('ffSha1', 'File SHA-1')">Copy</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box">
+                <div class="box-label mono">Expected Hash Compare (SHA-256 or SHA-1)</div>
+                <div style="display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap;">
+                  <input type="text" id="expectedHashInput" class="input mono" style="flex: 1 1 260px;" placeholder="Paste expected SHA-256 or SHA-1 hex digest..." oninput="compareExpectedHash()" />
+                  <button type="button" class="btn btn-sm mono" onclick="compareExpectedHash()">Verify Match</button>
+                </div>
+                <div id="hashCompareResult" class="box-note mono" style="margin-top: 6px;">Paste a reference hash above to verify integrity.</div>
+              </div>
+            </div>
+
+            <div class="g-2" style="margin-top: 14px;">
+              <div class="box">
+                <div class="box-label mono">Raw Text SHA-256 &amp; SHA-1 Generator</div>
+                <div class="field" style="margin-top: 8px;">
+                  <input type="text" id="textHashInput" class="input mono" placeholder="Type or paste raw text to hash..." oninput="updateTextHashes()" />
+                </div>
+                <div class="box-label" style="margin-top: 6px;">SHA-256</div>
+                <div class="copy-box" style="margin-top: 4px;">
+                  <span id="textSha256Out" class="mono">--</span>
+                  <button type="button" class="btn btn-sm mono" onclick="copyElement('textSha256Out', 'Text SHA-256')">Copy</button>
+                </div>
+                <div class="box-label" style="margin-top: 8px;">SHA-1</div>
+                <div class="copy-box" style="margin-top: 4px;">
+                  <span id="textSha1Out" class="mono">--</span>
+                  <button type="button" class="btn btn-sm mono" onclick="copyElement('textSha1Out', 'Text SHA-1')">Copy</button>
+                </div>
+              </div>
+
+              <div class="box">
+                <div class="box-label mono">Base64 &amp; Hex Encoder / Decoder</div>
+                <div class="field" style="margin-top: 8px;">
+                  <textarea id="codecIoArea" class="textarea mono" placeholder="Enter text, Base64, or Hex..."></textarea>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  <button type="button" class="btn btn-cyan btn-sm mono" onclick="codecAction('b64enc')">Base64 Encode</button>
+                  <button type="button" class="btn btn-sm mono" onclick="codecAction('b64dec')">Base64 Decode</button>
+                  <button type="button" class="btn btn-sm mono" onclick="codecAction('hexenc')">Hex Encode</button>
+                  <button type="button" class="btn btn-sm mono" onclick="codecAction('hexdec')">Hex Decode</button>
+                </div>
+                <div id="codecStatusMsg" class="box-note mono" style="margin-top: 6px;">Ready for Base64 or Hex conversion.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             MODULE 4: SPYWARE, RAT & STALKERWARE AUDIT
+             ================================================================= -->
+        <section id="panel-spyware" class="panel">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="kicker mono">Module 04 // Spyware, RAT &amp; Stalkerware Audit</div>
+                <h2 class="h-title">Surveillance &amp; Remote Access Audit (<span id="spyOsBadge">Windows</span>)</h2>
+                <p class="h-sub">
+                  Score behavioral &amp; surveillance symptoms, review OS-specific RAT/stalkerware indicators, use USSD codes (*#21# and ##002#) with copy or dial actions, and follow step-by-step incident response steps.
+                </p>
+              </div>
+              <span id="spyRiskBadge" class="badge b-safe mono">RISK: LOW (0%)</span>
+            </div>
+
+            <div class="g-2">
+              <div>
+                <div class="lbl mono">Behavioral &amp; Surveillance Symptom Checklist</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <label class="chk-item">
+                    <input type="checkbox" class="spy-chk" data-w="20" onchange="evalSpywareRisk()" />
                     <div>
-                      <div style="font-weight: 600; font-size: 13px;">Unexplained Battery Drain or Overheating</div>
-                      <div class="tile-sub" style="margin-top: 2px;">Sustained background CPU/radio activity while idle or locked.</div>
+                      <div style="font-weight: 600; font-size: 13px;">Abnormal Battery Drain or Device Overheating</div>
+                      <div class="box-note" style="margin-top: 1px;">High thermal output or rapid battery drop while idle.</div>
                     </div>
                   </label>
-                  <label class="check-row">
-                    <input type="checkbox" class="spyware-symptom" data-pts="25" onchange="calculateSpywareAudit()" />
+                  <label class="chk-item">
+                    <input type="checkbox" class="spy-chk" data-w="20" onchange="evalSpywareRisk()" />
                     <div>
-                      <div style="font-weight: 600; font-size: 13px;">Unknown Background Processes, Apps, or Remote Access Tools</div>
-                      <div class="tile-sub" style="margin-top: 2px;">Unrecognized startup entries, services, accessibility apps, or RAT/RMM agents.</div>
+                      <div style="font-weight: 600; font-size: 13px;">Unexplained Outbound Data or Background Activity</div>
+                      <div class="box-note" style="margin-top: 1px;">Unexpected data spikes or background processes/services.</div>
                     </div>
                   </label>
-                  <label class="check-row">
-                    <input type="checkbox" class="spyware-symptom" data-pts="20" onchange="calculateSpywareAudit()" />
+                  <label class="chk-item">
+                    <input type="checkbox" class="spy-chk" data-w="20" onchange="evalSpywareRisk()" />
                     <div>
-                      <div style="font-weight: 600; font-size: 13px;">Unexpected Mobile Data or Outbound Traffic Spikes</div>
-                      <div class="tile-sub" style="margin-top: 2px;">Sudden data usage surges without media streaming or large updates.</div>
+                      <div style="font-weight: 600; font-size: 13px;">Camera / Microphone Indicators or Unknown Profiles</div>
+                      <div class="box-note" style="margin-top: 1px;">Unprompted sensor usage, accessibility services, or unfamiliar MDM/profiles.</div>
                     </div>
                   </label>
-                  <label class="check-row">
-                    <input type="checkbox" class="spyware-symptom" data-pts="35" onchange="calculateSpywareAudit()" />
+                  <label class="chk-item">
+                    <input type="checkbox" class="spy-chk" data-w="20" onchange="evalSpywareRisk()" />
                     <div>
-                      <div style="font-weight: 600; font-size: 13px;">Camera/Mic Indicators, Call Forwarding, or Control Anomalies</div>
-                      <div class="tile-sub" style="margin-top: 2px;">Active sensor indicators when unused, unexpected call/SMS forwarding, or cursor/screen movement.</div>
+                      <div style="font-weight: 600; font-size: 13px;">Remote Control, RAT Tools or Suspicious Prompts</div>
+                      <div class="box-note" style="margin-top: 1px;">Unrecognized remote desktop/RAT software or unexpected permission prompts.</div>
+                    </div>
+                  </label>
+                  <label class="chk-item">
+                    <input type="checkbox" class="spy-chk" data-w="20" onchange="evalSpywareRisk()" />
+                    <div>
+                      <div style="font-weight: 600; font-size: 13px;">Call / SMS Forwarding or Suppressed Alerts</div>
+                      <div class="box-note" style="margin-top: 1px;">Unauthorized call/SMS redirection or missing OTP/security alerts.</div>
                     </div>
                   </label>
                 </div>
 
                 <div style="margin-top: 14px;">
-                  <div class="field-label mono">Mobile Call &amp; Forwarding USSD Codes</div>
-                  <div class="mono-box">
-                    <div>
-                      <div style="font-size: 11px; color: var(--text-secondary);">Check Call / Data / SMS Forwarding Status</div>
-                      <div id="ussdCheckCode" class="mono" style="font-weight: 700;">*#21#</div>
+                  <div class="lbl mono">USSD Verification &amp; Clearing Codes (*#21# &amp; ##002#)</div>
+                  <div class="g-2" style="gap: 8px;">
+                    <div class="copy-box" style="margin-top: 0;">
+                      <div>
+                        <div style="font-size: 10px; color: var(--ink-muted);">Check Forwarding (*#21#)</div>
+                        <span id="ussd21" class="mono" style="font-weight: 700;">*#21#</span>
+                      </div>
+                      <div style="display: flex; gap: 4px;">
+                        <a href="tel:*%2321%23" class="btn btn-sm mono">Dial</a>
+                        <button type="button" class="btn btn-sm mono" onclick="copyElement('ussd21', '*#21#')">Copy</button>
+                      </div>
                     </div>
-                    <button type="button" class="btn btn-sm mono" onclick="copyElementText('ussdCheckCode', 'USSD *#21#')">Copy</button>
-                  </div>
-                  <div class="mono-box">
-                    <div>
-                      <div style="font-size: 11px; color: var(--text-secondary);">Reset / Cancel All Call Forwarding</div>
-                      <div id="ussdResetCode" class="mono" style="font-weight: 700;">##002#</div>
+                    <div class="copy-box" style="margin-top: 0;">
+                      <div>
+                        <div style="font-size: 10px; color: var(--ink-muted);">Cancel All Forwarding (##002#)</div>
+                        <span id="ussd002" class="mono" style="font-weight: 700;">##002#</span>
+                      </div>
+                      <div style="display: flex; gap: 4px;">
+                        <a href="tel:%23%23002%23" class="btn btn-sm mono">Dial</a>
+                        <button type="button" class="btn btn-sm mono" onclick="copyElement('ussd002', '##002#')">Copy</button>
+                      </div>
                     </div>
-                    <button type="button" class="btn btn-sm mono" onclick="copyElementText('ussdResetCode', 'USSD ##002#')">Copy</button>
                   </div>
                 </div>
               </div>
 
-              <div class="tile">
-                <div class="tile-label mono">OS-Specific Containment Playbook</div>
-                <div id="spywareGuidanceBox" style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);"></div>
+              <div class="box">
+                <div class="box-label mono">OS-Specific RAT / Stalkerware Checklist &amp; Incident Response</div>
+                <div id="containmentPlaybookBox" style="margin-top: 8px; font-size: 13px; color: var(--ink-muted);"></div>
               </div>
             </div>
           </div>
         </section>
 
         <!-- =================================================================
-             MODULE 3: IP, DNS & NETWORK CONFIG
+             MODULE 5: LINK, UPI QR & PASSWORD SUITE
              ================================================================= -->
-        <section id="tab-network" class="tab-section">
+        <section id="panel-suite" class="panel">
           <div class="card">
-            <div class="module-head">
+            <div class="card-head">
               <div>
-                <div class="module-kicker mono">Module 03 // Telemetry, WebRTC IPs, DNS, CIDR Subnet &amp; Wi-Fi</div>
-                <h2 class="module-title">IP, DNS &amp; Network Configuration</h2>
-                <p class="module-desc">
-                  Displays browser connection telemetry, discovers WebRTC ICE/local IP candidates, performs an optional public IP lookup with clean offline/blocked fallback, provides DNS presets (1.1.1.1 / 8.8.8.8), calculates IPv4 CIDR subnets, and compares Wi-Fi security protocols.
+                <div class="kicker mono">Module 05 // Link, UPI QR &amp; Password Suite</div>
+                <h2 class="h-title">Phishing Link Scanner, UPI Intent Inspector &amp; Password Suite</h2>
+                <p class="h-sub">
+                  Detect lookalike domains/typosquatting, raw IP links, high-risk TLDs, and URL shorteners; distinguish upi://pay from upi://collect requests; estimate password entropy &amp; crack time; and generate strong passwords.
                 </p>
               </div>
-              <button type="button" id="refreshNetBtn" class="btn btn-primary btn-sm" onclick="refreshNetworkTelemetry()">
-                Refresh Telemetry
+            </div>
+
+            <div class="g-2" style="margin-bottom: 14px;">
+              <div class="box">
+                <div class="box-label mono">Phishing, Typosquatting &amp; Link Scanner</div>
+                <div class="field" style="margin-top: 8px;">
+                  <input type="text" id="linkInput" class="input mono" placeholder="https://g00gle-login.xyz/auth?next=http://203.0.113.45" />
+                </div>
+                <button type="button" class="btn btn-cyan btn-sm" onclick="analyzeLink()">Scan Link</button>
+                <div id="linkAnalysisOut" class="box-note" style="margin-top: 10px; color: var(--ink-main);">
+                  Enter a URL or domain to check for lookalikes, raw IPs, risky TLDs, redirects, or shorteners.
+                </div>
+              </div>
+
+              <div class="box">
+                <div class="box-label mono">UPI Intent Inspector (upi://pay vs upi://collect)</div>
+                <div class="field" style="margin-top: 8px;">
+                  <input type="text" id="upiInput" class="input mono" placeholder="upi://pay?pa=merchant@okaxis&pn=VerifiedShop&am=150&cu=INR" />
+                </div>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                  <button type="button" class="btn btn-cyan btn-sm" onclick="inspectUpi()">Inspect UPI</button>
+                  <button type="button" class="btn btn-sm mono" onclick="fillSampleCollect()">Sample upi://collect</button>
+                </div>
+                <div id="upiAnalysisOut" class="box-note" style="margin-top: 10px; color: var(--ink-main);">
+                  Inspects <span class="mono">upi://pay</span> (outgoing payment) vs <span class="mono">upi://collect</span> (money pull request).
+                </div>
+              </div>
+            </div>
+
+            <div class="g-2">
+              <div class="box">
+                <div class="box-label mono">Password Entropy, Crack-Time &amp; Generator</div>
+                <div class="field" style="margin-top: 8px;">
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <input type="text" id="pwInput" class="input mono" style="flex: 1 1 180px;" value="Cyb3rN3x!2026#Vault" oninput="calcPasswordStats()" />
+                    <button type="button" class="btn btn-emerald btn-sm" onclick="genPassword()">Generate</button>
+                    <button type="button" class="btn btn-sm mono" onclick="copyElement('pwInput', 'Password')">Copy</button>
+                  </div>
+                </div>
+                <div class="meter">
+                  <div class="meter-fill" id="pwBarFill" style="width: 75%;"></div>
+                </div>
+                <div class="box-note" style="color: var(--ink-main);">
+                  <div><strong>Entropy:</strong> <span id="pwBitsVal" class="mono">--</span> | <strong>Est. Crack Time:</strong> <span id="pwCrackVal" class="mono" style="color: var(--cyan);">--</span></div>
+                  <div id="pwFeedbackLine" class="box-note" style="margin-top: 4px;"></div>
+                </div>
+              </div>
+
+              <div class="box">
+                <div class="box-label mono">JWT Decoder &amp; Expiry Check</div>
+                <div class="field" style="margin-top: 8px;">
+                  <textarea id="jwtInput" class="textarea mono" style="min-height: 62px;" placeholder="Paste JWT (header.payload.signature)..."></textarea>
+                </div>
+                <button type="button" class="btn btn-cyan btn-sm" onclick="decodeJwtToken()">Decode JWT</button>
+                <div id="jwtOutputBox" class="box-note mono" style="margin-top: 8px; color: var(--ink-main);">
+                  Decodes JWT header, payload claims, and expiration (<span class="mono">exp</span>) status locally.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             MODULE 6: AES-256-GCM CRYPTO VAULT & CYBER HELPLINE
+             ================================================================= -->
+        <section id="panel-vault" class="panel">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="kicker mono">Module 06 // AES-256-GCM Crypto Vault &amp; Cyber Helpline</div>
+                <h2 class="h-title">PBKDF2 + AES-256-GCM Vault, Privacy Tools &amp; Incident Reporting</h2>
+                <p class="h-sub">
+                  Encrypt and decrypt notes locally with PBKDF2 + AES-256-GCM, inspect image EXIF/dimensions &amp; security headers, export a JSON diagnostic report, and access emergency reporting details (1930 / cybercrime.gov.in).
+                </p>
+              </div>
+              <button type="button" class="btn btn-cyan btn-sm mono" onclick="exportJsonReport()">
+                Export JSON
               </button>
             </div>
 
-            <div class="grid-4" style="margin-bottom: 16px;">
-              <div class="tile">
-                <div class="tile-label">Connection &amp; Speed</div>
-                <div class="tile-val mono" id="netConnType">--</div>
-                <div class="tile-sub" id="netConnSpeed">Checking link metrics</div>
-              </div>
-              <div class="tile">
-                <div class="tile-label">WebRTC Local / ICE IPs</div>
-                <div class="tile-val mono" id="netWebrtcIp">Probing...</div>
-                <div class="tile-sub" id="netWebrtcNote">ICE candidate discovery</div>
-              </div>
-              <div class="tile">
-                <div class="tile-label">Public IP (Optional Lookup)</div>
-                <div class="tile-val mono" id="netPublicIp">Pending...</div>
-                <div class="tile-sub" id="netPublicNote">Graceful offline/blocked fallback</div>
-              </div>
-              <div class="tile">
-                <div class="tile-label">DNS Guidance</div>
-                <div class="tile-val mono" id="netDnsSummary">1.1.1.1 / 8.8.8.8</div>
-                <div class="tile-sub">Use DoH / DoT where supported</div>
-              </div>
-            </div>
-
-            <div class="grid-2">
-              <!-- DNS Presets & IPv4 CIDR Subnet Calculator -->
-              <div class="tile">
-                <div class="tile-label mono">Custom DNS Presets (1.1.1.1 &amp; 8.8.8.8)</div>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
-                  <button type="button" class="btn btn-sm mono" onclick="setDnsPreset('Cloudflare 1.1.1.1', 'Primary: 1.1.1.1 | Secondary: 1.0.0.1 | DoH: https://cloudflare-dns.com/dns-query')">
-                    Cloudflare 1.1.1.1
-                  </button>
-                  <button type="button" class="btn btn-sm mono" onclick="setDnsPreset('Google 8.8.8.8', 'Primary: 8.8.8.8 | Secondary: 8.8.4.4 | DoH: https://dns.google/dns-query')">
-                    Google 8.8.8.8
-                  </button>
-                </div>
-                <div class="mono-box">
-                  <span id="dnsPresetOutput" class="mono">Primary: 1.1.1.1 | Secondary: 1.0.0.1 | DoH: https://cloudflare-dns.com/dns-query</span>
-                  <button type="button" class="btn btn-sm mono" onclick="copyElementText('dnsPresetOutput', 'DNS configuration')">Copy</button>
-                </div>
-
-                <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border-slate);">
-                  <div class="tile-label mono">IPv4 Subnet / CIDR Calculator</div>
-                  <div style="display: flex; gap: 8px; margin-top: 8px;">
-                    <input type="text" id="cidrInput" class="input mono" value="192.168.1.0/24" placeholder="e.g. 192.168.1.0/24 or 10.0.0.1/24" />
-                    <button type="button" class="btn btn-primary btn-sm" onclick="calculateCidrSubnet()">Calculate</button>
-                  </div>
-                  <div id="cidrResultBox" class="mono-box" style="display: block; color: var(--text-primary);"></div>
-                </div>
-              </div>
-
-              <!-- Wi-Fi Security Protocol Comparison -->
-              <div class="tile">
-                <div class="tile-label mono">Wi-Fi Security Protocol Comparison</div>
-                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px; font-size: 12px;">
-                  <div class="tile" style="padding: 10px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <strong class="mono" style="color: #fff;">WPA3 (Personal / Enterprise)</strong>
-                      <span class="badge-safe mono">RECOMMENDED</span>
-                    </div>
-                    <div class="tile-sub">Uses SAE (Dragonfly) handshake, resists offline dictionary guessing, and provides 192-bit security suite option.</div>
-                  </div>
-                  <div class="tile" style="padding: 10px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <strong class="mono" style="color: #fff;">WPA2 (AES / CCMP)</strong>
-                      <span class="badge-cyan mono">SOLID</span>
-                    </div>
-                    <div class="tile-sub">Strong encryption when paired with a long, unique passphrase and WPS disabled; avoid legacy TKIP.</div>
-                  </div>
-                  <div class="tile" style="padding: 10px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <strong class="mono" style="color: #fff;">WEP</strong>
-                      <span class="badge-danger mono">BROKEN</span>
-                    </div>
-                    <div class="tile-sub">Cryptographically broken (RC4 IV weaknesses); can be cracked rapidly. Upgrade router immediately.</div>
-                  </div>
-                  <div class="tile" style="padding: 10px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <strong class="mono" style="color: #fff;">Open Wi-Fi</strong>
-                      <span class="badge-danger mono">UNENCRYPTED</span>
-                    </div>
-                    <div class="tile-sub">No wireless encryption; traffic is exposed to local eavesdropping unless protected by HTTPS + trusted VPN.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- =================================================================
-             MODULE 4: SHA-256 & FILE FORENSICS (.APK, .PDF, .EXE)
-             ================================================================= -->
-        <section id="tab-forensics" class="tab-section">
-          <div class="card">
-            <div class="module-head">
-              <div>
-                <div class="module-kicker mono">Module 04 // Zero-Upload FileReader + WebCrypto SHA-256 &amp; SHA-1</div>
-                <h2 class="module-title">SHA-256 &amp; File Forensics (.APK, .PDF, .EXE)</h2>
-                <p class="module-desc">
-                  Inspects files locally in your browser using FileReader and <span class="mono">crypto.subtle.digest</span>. Computes SHA-256 and SHA-1 digests, checks file size, verifies header Magic Bytes (ZIP/APK, PDF, PE/EXE MZ, ELF, PNG/JPEG) to detect extension spoofing, and computes byte Shannon entropy.
-                </p>
-              </div>
-            </div>
-
-            <div class="drop-area" id="fileDropArea" onclick="document.getElementById('forensicFilePicker').click()">
-              <input type="file" id="forensicFilePicker" style="display: none;" onchange="inspectSelectedFile(this.files[0])" />
-              <div style="font-weight: 700; font-size: 14px; color: var(--accent-cyan);">
-                Click to Choose or Drag &amp; Drop a File (.APK, .PDF, .EXE, .ZIP, .ELF, Image)
-              </div>
-              <div class="tile-sub">100% local browser execution — files are never uploaded to any server.</div>
-            </div>
-
-            <div id="fileReportPanel" style="display: none; margin-top: 16px;">
-              <div class="grid-4" style="margin-bottom: 12px;">
-                <div class="tile">
-                  <div class="tile-label">File &amp; Size</div>
-                  <div class="tile-val mono" id="fOutName">--</div>
-                  <div class="tile-sub mono" id="fOutSize">--</div>
-                </div>
-                <div class="tile">
-                  <div class="tile-label">Magic Bytes Signature</div>
-                  <div class="tile-val mono" id="fOutMagic">--</div>
-                  <div class="tile-sub mono" id="fOutHex">--</div>
-                </div>
-                <div class="tile">
-                  <div class="tile-label">Extension Spoof Check</div>
-                  <div class="tile-val" id="fOutSpoofBadge">--</div>
-                  <div class="tile-sub" id="fOutSpoofDetail">--</div>
-                </div>
-                <div class="tile">
-                  <div class="tile-label">Shannon Entropy</div>
-                  <div class="tile-val mono" id="fOutEntropy">--</div>
-                  <div class="tile-sub" id="fOutEntropyNote">--</div>
-                </div>
-              </div>
-
-              <div class="tile" style="margin-bottom: 10px;">
-                <div class="tile-label">SHA-256 Digest</div>
-                <div class="mono-box">
-                  <span id="fOutSha256" class="mono">--</span>
-                  <button type="button" class="btn btn-sm mono" onclick="copyElementText('fOutSha256', 'File SHA-256')">Copy</button>
-                </div>
-              </div>
-
-              <div class="tile">
-                <div class="tile-label">SHA-1 Digest</div>
-                <div class="mono-box">
-                  <span id="fOutSha1" class="mono">--</span>
-                  <button type="button" class="btn btn-sm mono" onclick="copyElementText('fOutSha1', 'File SHA-1')">Copy</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Live Text / String SHA-256 & SHA-1 Hash Generator -->
-            <div class="tile" style="margin-top: 16px;">
-              <div class="tile-label mono">Live Text / String SHA-256 &amp; SHA-1 Hash Generator</div>
-              <div class="field" style="margin-top: 8px; margin-bottom: 8px;">
-                <input type="text" id="hashStringInput" class="input mono" placeholder="Type or paste any text/string to compute live SHA-256 &amp; SHA-1..." oninput="computeLiveTextHashes()" />
-              </div>
-              <div class="grid-2">
-                <div>
-                  <div class="tile-label">Text SHA-256</div>
-                  <div class="mono-box">
-                    <span id="liveTextSha256" class="mono">--</span>
-                    <button type="button" class="btn btn-sm mono" onclick="copyElementText('liveTextSha256', 'Text SHA-256')">Copy</button>
-                  </div>
-                </div>
-                <div>
-                  <div class="tile-label">Text SHA-1</div>
-                  <div class="mono-box">
-                    <span id="liveTextSha1" class="mono">--</span>
-                    <button type="button" class="btn btn-sm mono" onclick="copyElementText('liveTextSha1', 'Text SHA-1')">Copy</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- =================================================================
-             MODULE 5: PHISHING, UPI QR & PASSWORD SUITE
-             ================================================================= -->
-        <section id="tab-suite" class="tab-section">
-          <div class="card">
-            <div class="module-head">
-              <div>
-                <div class="module-kicker mono">Module 05 // Link Auditor, UPI Intent Parser &amp; Password Entropy</div>
-                <h2 class="module-title">Phishing, UPI QR &amp; Password Suite</h2>
-                <p class="module-desc">
-                  Audit URLs for raw IPs, lookalike domains, high-risk TLDs, suspicious query parameters, and shorteners; inspect <span class="mono">upi://</span> payment vs collect intents; and evaluate or generate strong passwords.
-                </p>
-              </div>
-            </div>
-
-            <div class="grid-3">
-              <!-- Link & Domain Auditor -->
-              <div class="tile">
-                <div class="tile-label mono">Link &amp; Domain Auditor</div>
+            <div class="g-2" style="margin-bottom: 14px;">
+              <div class="box">
+                <div class="box-label mono">PBKDF2 + AES-256-GCM Text Vault</div>
                 <div class="field" style="margin-top: 8px;">
-                  <input type="text" id="urlAuditInput" class="input mono" placeholder="https://paypa1-login.xyz/auth?redirect=http://evil.com" />
-                </div>
-                <button type="button" class="btn btn-primary btn-sm" onclick="auditUrlLink()">Audit Link</button>
-                <div id="urlAuditOutput" style="margin-top: 10px; font-size: 12px; color: var(--text-secondary);">
-                  Enter a URL or domain to check risk heuristics.
-                </div>
-              </div>
-
-              <!-- UPI Intent / QR Payload Inspector -->
-              <div class="tile">
-                <div class="tile-label mono">UPI Intent / QR Payload Inspector</div>
-                <div class="field" style="margin-top: 8px;">
-                  <input type="text" id="upiPayloadInput" class="input mono" placeholder="upi://pay?pa=shop@okicici&pn=Shop&am=150&cu=INR" />
-                </div>
-                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                  <button type="button" class="btn btn-primary btn-sm" onclick="inspectUpiString()">Inspect UPI</button>
-                  <button type="button" class="btn btn-sm mono" onclick="loadSampleCollect()">Sample Collect</button>
-                </div>
-                <div id="upiAuditOutput" style="margin-top: 10px; font-size: 12px; color: var(--text-secondary);">
-                  Paste a <span class="mono">upi://</span> payload to inspect action, payee (<span class="mono">pa</span>), amount (<span class="mono">am</span>), and flags.
-                </div>
-              </div>
-
-              <!-- Password Strength & Generator -->
-              <div class="tile">
-                <div class="tile-label mono">Password Strength &amp; Generator</div>
-                <div class="field" style="margin-top: 8px;">
-                  <div style="display: flex; gap: 6px;">
-                    <input type="text" id="pwSuiteInput" class="input mono" value="S3cur3#N3xus!2026" oninput="updatePasswordMetrics()" />
-                    <button type="button" class="btn btn-emerald btn-sm" onclick="generateCryptoPassword()">Generate</button>
-                  </div>
-                </div>
-                <div class="progress-bar" style="margin: 8px 0;">
-                  <div class="progress-fill" id="pwMeterFill" style="width: 70%;"></div>
-                </div>
-                <div style="font-size: 12px; color: var(--text-secondary);">
-                  <div><strong style="color: #fff;">Entropy:</strong> <span id="pwEntropyOut" class="mono">--</span></div>
-                  <div><strong style="color: #fff;">Est. Crack Time:</strong> <span id="pwCrackOut" class="mono" style="color: var(--accent-cyan);">--</span></div>
-                  <div id="pwNoteOut" style="margin-top: 4px; font-size: 11px;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- =================================================================
-             MODULE 6: AES-256-GCM VAULT & THREAT FEED
-             ================================================================= -->
-        <section id="tab-vaultfeed" class="tab-section">
-          <div class="card">
-            <div class="module-head">
-              <div>
-                <div class="module-kicker mono">Module 06 // PBKDF2 + AES-256-GCM Encryption, Threat Feed &amp; Export</div>
-                <h2 class="module-title">AES-256-GCM Vault &amp; Threat Feed</h2>
-                <p class="module-desc">
-                  Encrypt or decrypt text locally using PBKDF2 (SHA-256) + AES-256-GCM with random salt and IV, filter security advisories by category, and export JSON or text diagnostic reports.
-                </p>
-              </div>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                <button type="button" class="btn btn-sm mono" onclick="exportDiagnosticJson()">Export JSON Report</button>
-                <button type="button" class="btn btn-sm mono" onclick="exportDiagnosticText()">Export Text Report</button>
-              </div>
-            </div>
-
-            <div class="grid-2">
-              <!-- Client-Side AES-256-GCM Vault -->
-              <div class="tile">
-                <div class="tile-label mono">AES-256-GCM Local Vault</div>
-                <div class="field" style="margin-top: 8px;">
-                  <label class="field-label" for="vaultKeyInput">Passphrase</label>
-                  <input type="password" id="vaultKeyInput" class="input mono" placeholder="Enter passphrase..." />
+                  <label class="lbl" for="vaultPassphrase">Passphrase</label>
+                  <input type="password" id="vaultPassphrase" class="input mono" placeholder="Enter passphrase..." />
                 </div>
                 <div class="field">
-                  <label class="field-label" for="vaultDataInput">Plaintext or Encrypted JSON Envelope</label>
-                  <textarea id="vaultDataInput" class="textarea mono" placeholder="Enter secret text to encrypt, or paste encrypted JSON to decrypt..."></textarea>
+                  <label class="lbl" for="vaultTextArea">Plaintext or Encrypted JSON</label>
+                  <textarea id="vaultTextArea" class="textarea mono" placeholder="Enter secret text to encrypt or encrypted JSON to decrypt..."></textarea>
                 </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                  <button type="button" class="btn btn-primary btn-sm" onclick="vaultEncrypt()">Encrypt</button>
-                  <button type="button" class="btn btn-sm" onclick="vaultDecrypt()">Decrypt</button>
-                  <button type="button" class="btn btn-sm mono" onclick="copyElementText('vaultDataInput', 'Vault text')">Copy</button>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  <button type="button" class="btn btn-cyan btn-sm" onclick="runVaultEncrypt()">Encrypt AES-256-GCM</button>
+                  <button type="button" class="btn btn-sm" onclick="runVaultDecrypt()">Decrypt</button>
+                  <button type="button" class="btn btn-sm mono" onclick="copyElement('vaultTextArea', 'Vault text')">Copy</button>
                 </div>
-                <div id="vaultStatusLine" class="tile-sub mono" style="margin-top: 8px;">Uses PBKDF2-SHA256 (200,000 iter) + AES-256-GCM + random salt/IV.</div>
+                <div id="vaultStatusText" class="box-note mono" style="margin-top: 8px;">PBKDF2-SHA256 (200k iterations) + AES-256-GCM + fresh salt/IV.</div>
               </div>
 
-              <!-- Filterable Cyber Threat & Advisory Stream -->
-              <div class="tile">
-                <div class="tile-label mono">Cyber Threat &amp; Advisory Stream</div>
-                <div class="filter-row" style="margin-top: 8px;">
-                  <button type="button" class="filter-btn active" data-cat="ALL" onclick="setThreatFilter('ALL')">All</button>
-                  <button type="button" class="filter-btn" data-cat="Phishing" onclick="setThreatFilter('Phishing')">Phishing</button>
-                  <button type="button" class="filter-btn" data-cat="Malware" onclick="setThreatFilter('Malware')">Malware</button>
-                  <button type="button" class="filter-btn" data-cat="Spyware" onclick="setThreatFilter('Spyware')">Spyware</button>
-                  <button type="button" class="filter-btn" data-cat="UPI/Financial" onclick="setThreatFilter('UPI/Financial')">UPI/Financial</button>
+              <div class="box">
+                <div class="box-label mono">Image EXIF / Dimensions &amp; Security Hygiene</div>
+                <div class="field" style="margin-top: 8px;">
+                  <input type="file" id="imgMetaInput" class="input mono" accept="image/*" onchange="inspectImageMeta(this.files[0])" />
                 </div>
-                <div id="threatFeedList" style="display: flex; flex-direction: column; gap: 9px; max-height: 310px; overflow-y: auto;"></div>
+                <div id="imgMetaOutput" class="box-note mono" style="color: var(--ink-main); margin-bottom: 10px;">
+                  Select an image to inspect dimensions, MIME type, and JPEG EXIF/PNG markers locally.
+                </div>
+                <div class="box-label mono" style="margin-top: 8px;">Security Header &amp; Tracker Hygiene</div>
+                <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 6px; font-size: 12px;">
+                  <label class="chk-item" style="padding: 7px 10px;">
+                    <input type="checkbox" class="hyg-chk" checked onchange="updateHygieneScore()" />
+                    <span>Enforce HTTPS + HSTS &amp; strict Content-Security-Policy (CSP).</span>
+                  </label>
+                  <label class="chk-item" style="padding: 7px 10px;">
+                    <input type="checkbox" class="hyg-chk" onchange="updateHygieneScore()" />
+                    <span>Block cross-site trackers &amp; restrict camera/mic/location APIs.</span>
+                  </label>
+                </div>
+                <div id="hygieneSummary" class="box-note mono" style="margin-top: 6px; color: var(--cyan);">Hygiene Readiness: 50% (1/2 checked)</div>
+              </div>
+            </div>
+
+            <div class="g-2">
+              <div class="box">
+                <div class="box-label mono">Cyber Helpline &amp; Emergency Reporting</div>
+                <p class="box-note" style="margin-top: 6px; color: var(--ink-main);">
+                  In case of fraud or hacking, immediately dial <strong class="mono" style="color: var(--cyan);">1930</strong> or report it at <strong class="mono" style="color: var(--cyan);">cybercrime.gov.in</strong>.
+                </p>
+                <div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
+                  <a href="tel:1930" class="btn btn-crimson btn-sm mono">Dial 1930</a>
+                  <button type="button" class="btn btn-sm mono" onclick="copyEmergencyInfo()">Copy Helpline Info</button>
+                </div>
+              </div>
+
+              <div class="box">
+                <div class="box-label mono">JSON Diagnostic Snapshot</div>
+                <div style="display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap;">
+                  <button type="button" class="btn btn-cyan btn-sm mono" onclick="exportJsonReport()">Download JSON</button>
+                  <button type="button" class="btn btn-sm mono" onclick="copyJsonSnapshot()">Copy JSON</button>
+                </div>
+                <pre id="jsonPreviewBox" class="log-box mono" style="margin-top: 8px; max-height: 130px; white-space: pre-wrap;">Run a scan or click Export JSON to view snapshot.</pre>
               </div>
             </div>
           </div>
@@ -1368,147 +1401,131 @@
     </div>
   </div>
 
-  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
 
   <script>
     /* =========================================================================
-       APPLICATION STATE & OS PROFILES
+       GLOBAL STATE & OS PLAYBOOKS
        ========================================================================= */
-    const state = {
+    const APP = {
       detectedOs: "Windows",
-      osProfile: "AUTO",
-      activeTab: "scanner",
-      threatCategory: "ALL",
+      osMode: "AUTO",
+      activePanel: "scanner",
       lastScore: null,
-      lastReport: null
+      lastReport: null,
+      hardeningApplied: false
     };
 
-    const OS_PROFILES = {
-      Windows: {
-        hardening: [
-          "Keep Windows Security (Defender), SmartScreen, and Core Isolation / Memory Integrity enabled.",
-          "Audit Startup Apps, Task Scheduler, and installed programs for unknown software or remote tools.",
-          "Disable unused RDP / remote assistance ports and avoid running untrusted .exe, .ps1, .vbs, or .bat files.",
-          "Install Windows cumulative security updates promptly."
-        ],
-        spywareSteps: [
-          "Open Task Manager > Startup apps and Details; disable or investigate unrecognized background processes.",
-          "Check installed apps and Control Panel / Settings for unauthorized remote access or monitoring clients.",
-          "Run a full Windows Defender / offline scan and disconnect untrusted network sessions if hijacked."
-        ]
-      },
-      Linux: {
-        hardening: [
-          "Enable host firewall (ufw / nftables) and restrict SSH access to key-based authentication.",
-          "Review systemd services, user/root cron jobs, and shell initialization files (~/.bashrc, ~/.profile).",
-          "Verify SHA-256 checksums for downloaded archives, scripts, and AppImages before running.",
-          "Keep system packages and browsers updated."
-        ],
-        spywareSteps: [
-          "Inspect active connections and listening sockets with 'ss -tulpn' and review running processes.",
-          "Check '/etc/cron*', 'crontab -l', and 'systemctl list-units --type=service' for unauthorized persistence.",
-          "Audit SSH authorized_keys and recent login logs if unexpected sessions are suspected."
-        ]
-      },
-      macOS: {
-        hardening: [
-          "Keep Gatekeeper and XProtect active; avoid bypassing quarantine on unverified downloads.",
-          "Review System Settings > General > Login Items & Extensions and installed Profiles.",
-          "Enable FileVault full-disk encryption and the macOS Firewall.",
-          "Audit Screen Recording, Input Monitoring, and Accessibility permissions in Privacy & Security."
-        ],
-        spywareSteps: [
-          "Check System Settings > General > Login Items & Extensions and inspect ~/Library/LaunchAgents.",
-          "Remove any unknown Configuration Profiles or MDM enrollment entries.",
-          "Revoke unfamiliar Screen Recording, Accessibility, or Input Monitoring permissions immediately."
-        ]
-      },
+    const PLAYBOOKS = {
       Android: {
         hardening: [
-          "Keep 'Install unknown apps' disabled for browsers, messaging apps, and file managers.",
+          "Disable 'Install unknown apps' in Settings > Apps for browsers, file managers, and chat apps.",
           "Audit Accessibility Services, Notification Access, and Device Admin apps; remove unfamiliar entries.",
-          "Keep Google Play Protect enabled and apply Android security patches.",
-          "Use *#21# to inspect call forwarding and ##002# to reset forwarding if needed."
+          "Keep Google Play Protect enabled and install Android security updates promptly.",
+          "Verify call/SMS forwarding with *#21# and clear unwanted forwarding with ##002#."
         ],
-        spywareSteps: [
-          "Go to Settings > Accessibility (and Special app access) and disable any unknown app with screen/input control.",
-          "Dial *#21# to check call/SMS forwarding and ##002# to cancel unauthorized forwarding rules.",
-          "Boot into Safe Mode if a malicious app resists uninstallation, then remove it or back up and factory reset."
+        containment: [
+          "Enable Airplane Mode immediately if active spyware or remote control is suspected.",
+          "Review Settings > Accessibility and Special app access; revoke suspicious privileges.",
+          "Dial *#21# to check forwarding and ##002# to reset active call forwarding.",
+          "Uninstall unknown apps (in Safe Mode if needed) or back up data and factory reset."
         ]
       },
       iOS: {
         hardening: [
-          "Audit Settings > General > VPN & Device Management and remove unknown profiles or MDM management.",
-          "Review Camera, Microphone, Location, and Local Network permissions under Settings > Privacy & Security.",
+          "Inspect Settings > General > VPN & Device Management and remove unauthorized profiles or MDM.",
+          "Review Camera, Microphone, Location, and Local Network access under Privacy & Security.",
           "Keep iOS updated to the latest security patch and enable Stolen Device Protection.",
-          "Use *#21# and ##002# to verify or clear call forwarding if unusual call behavior occurs."
+          "Check call forwarding with *#21# and reset with ##002# if needed."
         ],
-        spywareSteps: [
-          "Check Settings > General > VPN & Device Management for unauthorized profiles or certificates.",
-          "Review Settings > Privacy & Security for unexpected app access to Camera, Mic, Location, or Local Network.",
-          "Update iOS immediately, restart the device, and consider Lockdown Mode if targeted risk is suspected."
+        containment: [
+          "Disconnect from untrusted networks and inspect VPN & Device Management profiles.",
+          "Revoke unexpected Camera, Mic, Location, or Local Network permissions.",
+          "Update iOS, restart the device, and enable Lockdown Mode if targeted spyware is suspected."
+        ]
+      },
+      Windows: {
+        hardening: [
+          "Keep Windows Security (Defender), SmartScreen, and Core Isolation / Memory Integrity enabled.",
+          "Audit Startup Apps, Task Scheduler, and installed programs for unknown software or RAT tools.",
+          "Disable unused RDP / remote access services and avoid running untrusted executables or scripts.",
+          "Install Windows cumulative security updates regularly."
+        ],
+        containment: [
+          "Disconnect from the network if active RAT or unauthorized remote access is suspected.",
+          "Check Task Manager (Startup apps & Details), Services, and installed apps for unknown tools.",
+          "Run a Windows Defender offline scan and rotate passwords/sessions from a clean device."
+        ]
+      },
+      Linux: {
+        hardening: [
+          "Enable a host firewall (ufw / nftables) and enforce SSH key-based authentication.",
+          "Audit systemd services, cron jobs, SSH authorized_keys, and shell startup scripts.",
+          "Verify SHA-256 checksums for downloaded archives, scripts, and binaries before execution.",
+          "Keep system packages and browsers updated."
+        ],
+        containment: [
+          "Inspect active network sockets, running processes, systemd units, and cron jobs.",
+          "Isolate the host from untrusted networks if unauthorized persistence or traffic is found.",
+          "Verify package integrity or restore from a clean known-good backup."
+        ]
+      },
+      macOS: {
+        hardening: [
+          "Keep Gatekeeper and XProtect enabled; avoid bypassing quarantine on unverified apps.",
+          "Review System Settings > General > Login Items & Extensions and installed Profiles.",
+          "Enable FileVault encryption and the macOS Firewall.",
+          "Audit Screen Recording, Input Monitoring, and Accessibility permissions."
+        ],
+        containment: [
+          "Inspect Login Items & Extensions, ~/Library/LaunchAgents, and Configuration Profiles.",
+          "Revoke unfamiliar Screen Recording, Input Monitoring, or Accessibility permissions.",
+          "Disconnect from the network if compromised, update macOS, and rotate account credentials."
         ]
       }
     };
 
-    const THREAT_ADVISORIES = [
-      {
-        category: "Phishing",
-        severity: "HIGH",
-        badge: "badge-danger",
-        title: "Lookalike Login & Account Verification Portals",
-        detail: "Attackers register visually similar domains or use URL shorteners/redirects to harvest credentials and session tokens. Always verify the exact domain and use multi-factor authentication."
-      },
-      {
-        category: "Malware",
-        severity: "HIGH",
-        badge: "badge-danger",
-        title: "Disguised .APK & Executable Droppers",
-        detail: "Malicious installers and archives often mimic invoices, updates, or media files. Always check file hashes (SHA-256), magic bytes, and avoid sideloading untrusted APKs or executables."
-      },
-      {
-        category: "Spyware",
-        severity: "MEDIUM",
-        badge: "badge-warn",
-        title: "Over-Privileged Accessibility & Remote Access Abuse",
-        detail: "Stalkerware and RATs frequently abuse accessibility permissions, startup persistence, or remote support tools to monitor activity. Audit permissions and startup items regularly."
-      },
-      {
-        category: "UPI/Financial",
-        severity: "HIGH",
-        badge: "badge-danger",
-        title: "Fraudulent UPI Collect Requests & Fake Support Numbers",
-        detail: "Approving a UPI 'collect' request sends money out rather than receiving it. Never enter your UPI PIN to receive funds, and verify support contacts from official channels."
-      }
-    ];
+    const PORT_DB = {
+      21: { svc: "FTP", risk: "HIGH", cls: "b-danger", note: "Unencrypted credentials/transfers by default; prefer SFTP (22) or FTPS." },
+      22: { svc: "SSH", risk: "LOW-MED", cls: "b-cyan", note: "Encrypted remote shell; restrict exposure and use key authentication." },
+      23: { svc: "Telnet", risk: "HIGH", cls: "b-danger", note: "Cleartext remote terminal protocol; avoid exposure and use SSH." },
+      53: { svc: "DNS", risk: "MEDIUM", cls: "b-warn", note: "Name resolution port; block open external recursion and prefer DoH/DoT." },
+      80: { svc: "HTTP", risk: "MEDIUM", cls: "b-warn", note: "Unencrypted web traffic; redirect to HTTPS (443) with HSTS." },
+      135: { svc: "MSRPC", risk: "HIGH", cls: "b-danger", note: "Windows RPC endpoint mapper; block from external/untrusted networks." },
+      139: { svc: "NetBIOS", risk: "HIGH", cls: "b-danger", note: "Legacy Windows sharing transport; disable or block externally." },
+      443: { svc: "HTTPS", risk: "LOW", cls: "b-safe", note: "TLS-encrypted web traffic; maintain valid certificates and modern TLS." },
+      445: { svc: "SMB", risk: "HIGH", cls: "b-danger", note: "High-risk file sharing protocol; never expose directly to the internet." },
+      3389: { svc: "RDP", risk: "HIGH", cls: "b-danger", note: "Frequent remote desktop target; keep behind VPN and enforce MFA." },
+      8080: { svc: "HTTP-Alt", risk: "MEDIUM", cls: "b-warn", note: "Alternate HTTP/proxy port; verify authentication and TLS." }
+    };
 
     /* =========================================================================
-       UTILITY FUNCTIONS: TOASTS, CLIPBOARD, ESCAPING
+       UI HELPERS: TOAST, CLIPBOARD, ESCAPE, TIMING
        ========================================================================= */
-    function notify(msg) {
-      const stack = document.getElementById("toastStack");
-      const item = document.createElement("div");
-      item.className = "toast-item mono";
-      item.textContent = msg;
-      stack.appendChild(item);
+    function toast(message) {
+      const wrap = document.getElementById("toastWrap");
+      const el = document.createElement("div");
+      el.className = "toast mono";
+      el.textContent = message;
+      wrap.appendChild(el);
       setTimeout(() => {
-        item.style.opacity = "0";
-        item.style.transition = "opacity 0.2s ease";
-        setTimeout(() => item.remove(), 220);
-      }, 2800);
+        el.style.opacity = "0";
+        el.style.transition = "opacity 0.2s ease";
+        setTimeout(() => el.remove(), 220);
+      }, 2700);
     }
 
-    function copyText(text, label) {
+    function copyStr(text, label) {
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text).then(() => {
-          notify(`${label} copied.`);
-        }).catch(() => copyFallback(text, label));
+          toast(`${label} copied.`);
+        }).catch(() => copyExec(text, label));
       } else {
-        copyFallback(text, label);
+        copyExec(text, label);
       }
     }
 
-    function copyFallback(text, label) {
+    function copyExec(text, label) {
       const ta = document.createElement("textarea");
       ta.value = text;
       ta.style.position = "fixed";
@@ -1518,28 +1535,29 @@
       ta.select();
       try {
         document.execCommand("copy");
-        notify(`${label} copied.`);
+        toast(`${label} copied.`);
       } catch (e) {
-        notify("Copy not available in this browser.");
+        toast("Clipboard unavailable.");
       }
       document.body.removeChild(ta);
     }
 
-    function copyElementText(elementId, label) {
-      const el = document.getElementById(elementId);
+    function copyElement(id, label) {
+      const el = document.getElementById(id);
       if (!el) return;
-      copyText(el.textContent.trim(), label);
+      const val = "value" in el ? el.value : el.textContent;
+      copyStr(String(val).trim(), label);
     }
 
-    function copyEmergencyAlert() {
-      copyText(
+    function copyEmergencyInfo() {
+      copyStr(
         "In case of fraud or hacking, immediately dial 1930 or report it at cybercrime.gov.in.",
-        "Emergency 1930 alert"
+        "Emergency Cyber Alert"
       );
     }
 
-    function esc(str) {
-      return String(str)
+    function escHtml(v) {
+      return String(v)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
@@ -1547,863 +1565,982 @@
         .replace(/'/g, "&#39;");
     }
 
-    function waitMs(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
+    function sleep(ms) {
+      return new Promise(r => setTimeout(r, ms));
     }
 
     /* =========================================================================
-       OS DETECTION, PROFILE SWITCHING & TAB NAVIGATION
+       OS DETECTION & TAB SWITCHING
        ========================================================================= */
-    function detectHostOs() {
+    function detectOs() {
       const ua = navigator.userAgent || "";
       const plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "";
-      const sig = `${ua} ${plat}`;
-      if (/Android/i.test(sig)) return "Android";
-      if (/iPhone|iPad|iPod/i.test(sig)) return "iOS";
-      if (/Mac|Macintosh|Mac OS X/i.test(sig)) return "macOS";
-      if (/Linux|X11/i.test(sig) && !/Android/i.test(sig)) return "Linux";
-      if (/Win/i.test(sig)) return "Windows";
+      const combined = `${ua} ${plat}`;
+      if (/Android/i.test(combined)) return "Android";
+      if (/iPhone|iPad|iPod/i.test(combined)) return "iOS";
+      if (/Mac|Macintosh|Mac OS X/i.test(combined)) return "macOS";
+      if (/Linux|X11/i.test(combined) && !/Android/i.test(combined)) return "Linux";
+      if (/Win/i.test(combined)) return "Windows";
       return "Windows";
     }
 
-    function getActiveOs() {
-      return state.osProfile === "AUTO" ? state.detectedOs : state.osProfile;
+    function currentOs() {
+      return APP.osMode === "AUTO" ? APP.detectedOs : APP.osMode;
     }
 
-    function handleOsSelectChange(val) {
-      state.osProfile = val;
-      syncOsViews();
-      notify(val === "AUTO" ? `OS set to Auto-Detect (${state.detectedOs}).` : `OS profile set to ${val}.`);
+    function onOsSwitch(val) {
+      APP.osMode = val;
+      refreshOsContext();
+      toast(val === "AUTO" ? `OS set to Auto-Detect (${APP.detectedOs}).` : `OS profile switched to ${val}.`);
     }
 
-    function syncOsViews() {
-      const activeOs = getActiveOs();
-      const profile = OS_PROFILES[activeOs] || OS_PROFILES.Windows;
+    function refreshOsContext() {
+      const os = currentOs();
+      const pb = PLAYBOOKS[os] || PLAYBOOKS.Windows;
 
-      document.getElementById("topDetectedLabel").textContent =
-        state.osProfile === "AUTO" ? `Detected: ${state.detectedOs} |` : "Profile:";
-      document.getElementById("scannerProfileHeading").textContent =
-        state.osProfile === "AUTO" ? `Auto-Detect (${activeOs})` : activeOs;
-      document.getElementById("scanOsVal").textContent = activeOs;
+      document.getElementById("osAutoHint").textContent =
+        APP.osMode === "AUTO" ? `Detected: ${APP.detectedOs} |` : "OS:";
+      document.getElementById("activeOsHeading").textContent =
+        APP.osMode === "AUTO" ? `Auto-Detect (${os})` : os;
+      document.getElementById("spyOsBadge").textContent = os;
+      document.getElementById("osChecklistHeading").textContent = `${os} Hardening Checklist`;
 
-      const cores = navigator.hardwareConcurrency || "N/A";
-      const mem = navigator.deviceMemory ? `${navigator.deviceMemory} GB` : "N/A";
-      document.getElementById("scanHardwareVal").textContent = `CPU Cores: ${cores} | RAM: ${mem}`;
-
-      document.getElementById("hardeningTitle").textContent = `${activeOs} Hardening Checklist`;
-      document.getElementById("hardeningChecklist").innerHTML = profile.hardening.map((step, i) => `
-        <div class="tile" style="padding: 10px 12px;">
-          <div class="tile-label mono">${esc(activeOs.toUpperCase())} STEP 0${i + 1}</div>
-          <div style="font-size: 13px; color: var(--text-primary);">${esc(step)}</div>
+      document.getElementById("osChecklistItems").innerHTML = pb.hardening.map((item, idx) => `
+        <div class="box" style="padding: 10px 12px;">
+          <div class="box-label mono">${escHtml(os.toUpperCase())} HARDENING 0${idx + 1}</div>
+          <div style="font-size: 13px; color: var(--ink-main);">${escHtml(item)}</div>
         </div>
       `).join("");
 
-      document.getElementById("spywareOsLabel").textContent = activeOs;
-      document.getElementById("spywareGuidanceBox").innerHTML = `
-        <div class="badge-cyan mono" style="margin-bottom: 10px;">${esc(activeOs.toUpperCase())} CONTAINMENT STEPS</div>
-        <ol style="padding-left: 18px; display: flex; flex-direction: column; gap: 8px;">
-          ${profile.spywareSteps.map(s => `<li>${esc(s)}</li>`).join("")}
+      document.getElementById("containmentPlaybookBox").innerHTML = `
+        <span class="badge b-cyan mono">${escHtml(os.toUpperCase())} PLAYBOOK</span>
+        <ol style="padding-left: 18px; display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+          ${pb.containment.map(step => `<li>${escHtml(step)}</li>`).join("")}
         </ol>
-        <div class="tile" style="margin-top: 12px; padding: 10px;">
-          <div class="tile-label">If Active Compromise Is Suspected</div>
-          <div class="tile-sub">Disconnect from Wi-Fi/cellular, revoke active account sessions/passwords from a clean device, back up essential files, and restore or reinstall the OS.</div>
-        </div>
       `;
     }
 
-    function switchTab(tabName) {
-      state.activeTab = tabName;
-      document.querySelectorAll(".nav-item[data-tab]").forEach(btn => {
-        btn.classList.toggle("active", btn.getAttribute("data-tab") === tabName);
+    function selectPanel(panelKey) {
+      APP.activePanel = panelKey;
+      document.querySelectorAll(".nav-btn[data-panel]").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-panel") === panelKey);
       });
-      document.querySelectorAll(".tab-section").forEach(sec => {
-        sec.classList.toggle("active", sec.id === `tab-${tabName}`);
+      document.querySelectorAll(".panel").forEach(sec => {
+        sec.classList.toggle("active", sec.id === `panel-${panelKey}`);
       });
     }
 
     /* =========================================================================
-       MODULE 1: DEVICE & OS SCANNER ("IS MY DEVICE SAFE?")
+       MODULE 1: UNIVERSAL PHONE & COMPUTER SCANNER
        ========================================================================= */
-    function appendScanLog(msg) {
-      const box = document.getElementById("scanLogBox");
-      const row = document.createElement("div");
-      row.className = "log-row";
-      const ts = new Date().toLocaleTimeString([], { hour12: false });
-      row.textContent = `[${ts}] ${msg}`;
-      box.appendChild(row);
+    function addScanLog(msg) {
+      const box = document.getElementById("scanConsoleLog");
+      const div = document.createElement("div");
+      div.className = "log-line";
+      const time = new Date().toLocaleTimeString([], { hour12: false });
+      div.textContent = `[${time}] ${msg}`;
+      box.appendChild(div);
       box.scrollTop = box.scrollHeight;
     }
 
-    function setScanProgress(pct, label) {
-      document.getElementById("scanProgressBar").style.width = `${pct}%`;
-      document.getElementById("scanPctLabel").textContent = `${pct}%`;
-      if (label) document.getElementById("scanStatusLabel").textContent = label;
+    function setScanGaugeProgress(pct, statusText) {
+      document.getElementById("scanProgressFill").style.width = `${pct}%`;
+      document.getElementById("scanProgressPct").textContent = `${pct}%`;
+      if (statusText) document.getElementById("scanProgressText").textContent = statusText;
     }
 
-    function readStorageAndCookies() {
-      let lsAvailable = false;
+    function checkStorageSuite() {
+      let localOk = false;
+      let sessionOk = false;
       try {
-        const key = "__cybernex_ls_test__";
-        localStorage.setItem(key, "1");
-        localStorage.removeItem(key);
-        lsAvailable = true;
-      } catch (e) {
-        lsAvailable = false;
-      }
+        localStorage.setItem("__cbx_l__", "1");
+        localStorage.removeItem("__cbx_l__");
+        localOk = true;
+      } catch (e) { localOk = false; }
+
+      try {
+        sessionStorage.setItem("__cbx_s__", "1");
+        sessionStorage.removeItem("__cbx_s__");
+        sessionOk = true;
+      } catch (e) { sessionOk = false; }
+
       return {
-        localStorage: lsAvailable,
-        cookies: Boolean(navigator.cookieEnabled)
+        cookies: Boolean(navigator.cookieEnabled),
+        localStorage: localOk,
+        sessionStorage: sessionOk
       };
     }
 
-    function updateScannerSummaryTiles() {
-      const secureCtx = Boolean(window.isSecureContext);
-      const webdriver = Boolean(navigator.webdriver);
-      const st = readStorageAndCookies();
-
-      document.getElementById("scanHttpsVal").textContent = secureCtx ? "SECURE" : "INSECURE";
-      document.getElementById("scanHttpsVal").style.color = secureCtx ? "var(--safe-emerald)" : "var(--warn-amber)";
-      document.getElementById("scanProtocolVal").textContent = `Protocol: ${window.location.protocol || "unknown"}`;
-
-      document.getElementById("scanStorageVal").textContent = st.localStorage ? "LS + COOKIES" : "LIMITED";
-      document.getElementById("scanCookieDetail").textContent = `localStorage: ${st.localStorage ? "OK" : "Blocked"} | Cookies: ${st.cookies ? "On" : "Off"}`;
-
-      document.getElementById("scanWebdriverVal").textContent = webdriver ? "FLAGGED" : "CLEAN";
-      document.getElementById("scanWebdriverVal").style.color = webdriver ? "var(--danger-crimson)" : "var(--safe-emerald)";
-    }
-
-    async function checkPermissionsMap() {
-      const targets = ["camera", "microphone", "geolocation", "notifications"];
-      const map = {};
+    async function checkBrowserPermissions() {
+      const perms = ["camera", "microphone", "geolocation", "notifications"];
+      const out = {};
       if (!navigator.permissions || !navigator.permissions.query) {
-        targets.forEach(t => { map[t] = "unsupported"; });
-        return map;
+        perms.forEach(p => { out[p] = "n/a"; });
+        return out;
       }
-      for (const name of targets) {
+      for (const p of perms) {
         try {
-          const res = await navigator.permissions.query({ name });
-          map[name] = res.state;
+          const r = await navigator.permissions.query({ name: p });
+          out[p] = r.state;
         } catch (e) {
-          map[name] = "prompt/restricted";
+          out[p] = "prompt";
         }
       }
-      return map;
+      return out;
     }
 
-    async function discoverWebRtcIps() {
+    function probeWebRtcCandidates() {
       return new Promise(resolve => {
         const RTCPeer = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
         if (!RTCPeer) {
-          resolve({ supported: false, ips: [], privateFound: false });
+          resolve({ supported: false, ips: [], hasPrivate: false });
           return;
         }
         let pc;
         try {
           pc = new RTCPeer({ iceServers: [{ urls: "stun:stun.l.google.com:19302" }] });
         } catch (e) {
-          resolve({ supported: true, ips: [], privateFound: false });
+          resolve({ supported: true, ips: [], hasPrivate: false });
           return;
         }
 
-        const ips = new Set();
-        let privateFound = false;
-        const ipv4Re = /\b(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\b/;
-        const privRe = /^(?:10\.|127\.|172\.(?:1[6-9]|2\d|3[01])\.|192\.168\.)/;
+        const found = new Set();
+        let hasPrivate = false;
+        const ipRegex = /\b(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\b/;
+        const privRegex = /^(?:10\.|127\.|172\.(?:1[6-9]|2\d|3[01])\.|192\.168\.)/;
 
-        pc.createDataChannel("cybernex-rtc");
-        pc.onicecandidate = ev => {
-          if (!ev || !ev.candidate || !ev.candidate.candidate) return;
-          const line = ev.candidate.candidate;
-          const match = line.match(ipv4Re);
-          if (match) {
-            ips.add(match[0]);
-            if (privRe.test(match[0])) privateFound = true;
-          } else if (line.includes(".local")) {
-            ips.add("mDNS (.local)");
+        pc.createDataChannel("cbx-probe");
+        pc.onicecandidate = evt => {
+          if (!evt || !evt.candidate || !evt.candidate.candidate) return;
+          const c = evt.candidate.candidate;
+          const m = c.match(ipRegex);
+          if (m) {
+            found.add(m[0]);
+            if (privRegex.test(m[0])) hasPrivate = true;
+          } else if (c.includes(".local")) {
+            found.add("mDNS (.local)");
           }
         };
 
-        pc.createOffer()
-          .then(offer => pc.setLocalDescription(offer))
-          .catch(() => {});
-
+        pc.createOffer().then(d => pc.setLocalDescription(d)).catch(() => {});
         setTimeout(() => {
           try { pc.close(); } catch (e) {}
-          resolve({ supported: true, ips: Array.from(ips), privateFound });
-        }, 800);
+          resolve({ supported: true, ips: Array.from(found), hasPrivate });
+        }, 700);
       });
     }
 
-    function probeCanvasAndFontSurface() {
-      let canvasSig = "N/A";
+    function probeCanvasAndAudio() {
+      let canvasDigest = "N/A";
       try {
-        const c = document.createElement("canvas");
-        c.width = 180;
-        c.height = 36;
-        const ctx = c.getContext("2d");
+        const cvs = document.createElement("canvas");
+        cvs.width = 160;
+        cvs.height = 32;
+        const ctx = cvs.getContext("2d");
         if (ctx) {
-          ctx.font = "13px monospace";
-          ctx.fillStyle = "#00f0ff";
-          ctx.fillRect(2, 2, 18, 18);
-          ctx.fillStyle = "#f1f5f9";
-          ctx.fillText("CYBERNEX-SURFACE", 26, 12);
-          const data = c.toDataURL();
-          let hash = 2166136261;
-          for (let i = 0; i < data.length; i++) {
-            hash ^= data.charCodeAt(i);
-            hash = Math.imul(hash, 16777619);
+          ctx.font = "12px monospace";
+          ctx.fillStyle = "#22d3ee";
+          ctx.fillRect(2, 4, 14, 14);
+          ctx.fillStyle = "#f8fafc";
+          ctx.fillText("CYBERNEX-FP", 22, 14);
+          const dataUrl = cvs.toDataURL();
+          let h = 2166136261;
+          for (let i = 0; i < dataUrl.length; i++) {
+            h ^= dataUrl.charCodeAt(i);
+            h = Math.imul(h, 16777619);
           }
-          canvasSig = `0x${(hash >>> 0).toString(16).padStart(8, "0").toUpperCase()}`;
+          canvasDigest = (h >>> 0).toString(16).toUpperCase().padStart(8, "0");
         }
       } catch (e) {
-        canvasSig = "BLOCKED";
+        canvasDigest = "BLOCKED";
       }
 
-      const fontCandidates = ["Inter", "JetBrains Mono", "Arial", "Georgia", "Courier New"];
-      const availableFonts = [];
-      try {
-        const span = document.createElement("span");
-        span.textContent = "mmmmmmmmmmlli";
-        span.style.position = "absolute";
-        span.style.left = "-9999px";
-        span.style.fontSize = "32px";
-        document.body.appendChild(span);
-
-        span.style.fontFamily = "monospace";
-        const baseW = span.getBoundingClientRect().width;
-        for (const f of fontCandidates) {
-          span.style.fontFamily = `'${f}', monospace`;
-          if (Math.abs(span.getBoundingClientRect().width - baseW) > 0.5) {
-            availableFonts.push(f);
-          }
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      let audioState = "UNAVAILABLE";
+      if (AudioCtx) {
+        try {
+          const ac = new AudioCtx();
+          audioState = `${ac.state.toUpperCase()} (${ac.sampleRate}Hz)`;
+          if (typeof ac.close === "function") ac.close().catch(() => {});
+        } catch (e) {
+          audioState = "RESTRICTED";
         }
-        document.body.removeChild(span);
-      } catch (e) {}
+      }
 
-      return { canvasSig, availableFonts };
+      return { canvasDigest, audioState };
     }
 
-    async function runDeviceScanner() {
-      const btn = document.getElementById("scanDeviceBtn");
+    function checkClipboardAndMediaApis() {
+      return {
+        clipboardReady: Boolean(navigator.clipboard),
+        mediaReady: Boolean(navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === "function")
+      };
+    }
+
+    function applyOneClickHardening() {
+      APP.hardeningApplied = true;
+      const os = currentOs();
+      const pb = PLAYBOOKS[os] || PLAYBOOKS.Windows;
+      const statusEl = document.getElementById("hardeningActionStatus");
+      statusEl.textContent = `Hardening plan applied for ${os}: ${pb.hardening.join(" | ")}`;
+      addScanLog(`One-click hardening profile prepared for ${os}.`);
+      toast(`Hardening checklist activated for ${os}.`);
+    }
+
+    async function runDeviceScan() {
+      const btn = document.getElementById("scanNowBtn");
       btn.disabled = true;
-      document.getElementById("scanLogBox").innerHTML = "";
-      updateScannerSummaryTiles();
+      document.getElementById("scanConsoleLog").innerHTML = "";
+      refreshOsContext();
 
-      const osName = getActiveOs();
       let score = 100;
-      const probes = [];
+      const findings = [];
+      const osLabel = currentOs();
 
-      setScanProgress(20, "Stage 1/4: Checking HTTPS/TLS context & hardware hints...");
-      appendScanLog(`Starting device scan for ${osName} (host detected: ${state.detectedOs}).`);
-      await waitMs(160);
+      setScanGaugeProgress(20, "Checking HTTPS/TLS transport & hardware...");
+      addScanLog(`Starting diagnostic scan on ${osLabel} (detected: ${APP.detectedOs}).`);
+      await sleep(130);
 
-      const isSecure = Boolean(window.isSecureContext);
-      const cores = navigator.hardwareConcurrency || "unknown";
-      const mem = navigator.deviceMemory ? `${navigator.deviceMemory} GB` : "unknown";
-      if (!isSecure) {
+      const httpsOk = Boolean(window.isSecureContext);
+      const cores = navigator.hardwareConcurrency || "N/A";
+      const mem = navigator.deviceMemory ? `${navigator.deviceMemory} GB` : "N/A";
+      const plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "N/A";
+
+      document.getElementById("sHttpsVal").textContent = httpsOk ? "HTTPS / SECURE" : "UNENCRYPTED";
+      document.getElementById("sHttpsVal").style.color = httpsOk ? "var(--emerald)" : "var(--amber)";
+      document.getElementById("sHttpsNote").textContent = `Protocol: ${window.location.protocol}`;
+
+      document.getElementById("sHwVal").textContent = `${cores} Cores | ${mem}`;
+      document.getElementById("sHwNote").textContent = `Platform: ${plat}`;
+
+      if (!httpsOk) {
         score -= 20;
-        probes.push({
-          name: "HTTPS / Secure Context",
-          status: "WARN",
-          badge: "badge-warn",
-          desc: "Page is not in a secure context; prefer HTTPS for encrypted transport."
+        findings.push({
+          title: "HTTPS / TLS Transport",
+          tag: "WARN",
+          cls: "b-warn",
+          detail: "Non-secure transport detected; use HTTPS for encrypted traffic and full API support."
         });
       } else {
-        probes.push({
-          name: "HTTPS / Secure Context",
-          status: "PASS",
-          badge: "badge-safe",
-          desc: `Secure context active (${window.location.protocol}).`
+        findings.push({
+          title: "HTTPS / TLS Transport",
+          tag: "PASS",
+          cls: "b-safe",
+          detail: `Secure context active (${window.location.protocol}).`
         });
       }
-      probes.push({
-        name: "Hardware Concurrency & Memory Hints",
-        status: "INFO",
-        badge: "badge-cyan",
-        desc: `Logical CPU cores: ${cores} | Reported device memory: ${mem}.`
-      });
 
-      setScanProgress(48, "Stage 2/4: Checking WebDriver flag, cookies & storage...");
-      await waitMs(160);
+      setScanGaugeProgress(48, "Checking permissions, automation & APIs...");
+      await sleep(130);
+
       const webdriver = Boolean(navigator.webdriver);
-      const st = readStorageAndCookies();
+      const perms = await checkBrowserPermissions();
+      const granted = Object.entries(perms).filter(([, v]) => v === "granted").map(([k]) => k);
+      const apis = checkClipboardAndMediaApis();
+
+      document.getElementById("sAutoVal").textContent = webdriver ? "WEBDRIVER TRUE" : "CLEAN";
+      document.getElementById("sAutoVal").style.color = webdriver ? "var(--crimson)" : "var(--emerald)";
+      document.getElementById("sAutoNote").textContent = granted.length ? `Granted: ${granted.join(", ")}` : "No sensitive grants active";
+
+      document.getElementById("sApisVal").textContent = `${apis.clipboardReady ? "CLIP:OK" : "CLIP:NO"} | ${apis.mediaReady ? "MEDIA:OK" : "MEDIA:NO"}`;
+      document.getElementById("sApisNote").textContent = "Clipboard & mediaDevices APIs";
+
       if (webdriver) {
         score -= 25;
-        probes.push({
-          name: "Automation / WebDriver Flag",
-          status: "ALERT",
-          badge: "badge-danger",
-          desc: "navigator.webdriver is true — automated or remote browser control detected."
+        findings.push({
+          title: "Automation / WebDriver Probe",
+          tag: "ALERT",
+          cls: "b-danger",
+          detail: "navigator.webdriver is true — automated or remote control environment detected."
         });
       } else {
-        probes.push({
-          name: "Automation / WebDriver Flag",
-          status: "PASS",
-          badge: "badge-safe",
-          desc: "No WebDriver automation flag detected."
+        findings.push({
+          title: "Automation / WebDriver Probe",
+          tag: "PASS",
+          cls: "b-safe",
+          detail: "No navigator.webdriver automation flag detected."
         });
       }
-      probes.push({
-        name: "Cookies & Storage Availability",
-        status: st.localStorage ? "READY" : "RESTRICTED",
-        badge: "badge-safe",
-        desc: `localStorage available: ${st.localStorage} | cookiesEnabled: ${st.cookies}.`
+
+      if (granted.length > 0) {
+        score -= Math.min(20, granted.length * 7);
+        findings.push({
+          title: "Permission Grants Audit",
+          tag: "REVIEW",
+          cls: "b-warn",
+          detail: `Granted permissions: ${granted.join(", ")}.`
+        });
+      } else {
+        findings.push({
+          title: "Permission Grants Audit",
+          tag: "PASS",
+          cls: "b-safe",
+          detail: "No camera, microphone, geolocation, or notification permissions granted."
+        });
+      }
+
+      setScanGaugeProgress(78, "Checking WebRTC IPs, Canvas/Audio & Storage...");
+      const rtc = await probeWebRtcCandidates();
+      const fp = probeCanvasAndAudio();
+      const stor = checkStorageSuite();
+
+      document.getElementById("sRtcVal").textContent = rtc.hasPrivate ? "PRIVATE IP LEAK" : (rtc.ips.length ? `${rtc.ips.length} CAND.` : "NONE");
+      document.getElementById("sRtcVal").style.color = rtc.hasPrivate ? "var(--amber)" : "var(--emerald)";
+      document.getElementById("sRtcNote").textContent = rtc.ips.length ? rtc.ips.join(", ") : "No ICE IPv4 candidate observed";
+
+      document.getElementById("sFpVal").textContent = `CVS:${fp.canvasDigest}`;
+      document.getElementById("sFpNote").textContent = `AudioContext: ${fp.audioState}`;
+
+      document.getElementById("sStorVal").textContent = `C:${stor.cookies ? "Y" : "N"} L:${stor.localStorage ? "Y" : "N"} S:${stor.sessionStorage ? "Y" : "N"}`;
+      document.getElementById("sStorNote").textContent = `Cores: ${cores} | Mem: ${mem}`;
+
+      if (rtc.hasPrivate) {
+        score -= 10;
+        findings.push({
+          title: "WebRTC Local IP Leak Check",
+          tag: "EXPOSED",
+          cls: "b-warn",
+          detail: `Private IPv4 candidate(s) discovered: ${rtc.ips.join(", ")}.`
+        });
+      } else {
+        findings.push({
+          title: "WebRTC Local IP Leak Check",
+          tag: "PASS",
+          cls: "b-safe",
+          detail: rtc.ips.length ? `Candidates: ${rtc.ips.join(", ")}.` : "No private IPv4 leak detected."
+        });
+      }
+
+      findings.push({
+        title: "Canvas & AudioContext Fingerprinting",
+        tag: "SURFACE",
+        cls: "b-cyan",
+        detail: `Canvas hash: ${fp.canvasDigest} | AudioContext: ${fp.audioState}.`
       });
 
-      setScanProgress(74, "Stage 3/4: Querying media/geolocation permissions & WebRTC IPs...");
-      const perms = await checkPermissionsMap();
-      const grantedPerms = Object.entries(perms).filter(([, v]) => v === "granted").map(([k]) => k);
-      if (grantedPerms.length > 0) {
-        score -= Math.min(24, grantedPerms.length * 8);
-        probes.push({
-          name: "Media, Geolocation & Notification Permissions",
-          status: "GRANTED",
-          badge: "badge-warn",
-          desc: `Granted permissions: ${grantedPerms.join(", ")}.`
-        });
-      } else {
-        probes.push({
-          name: "Media, Geolocation & Notification Permissions",
-          status: "PASS",
-          badge: "badge-safe",
-          desc: "No camera, microphone, geolocation, or notification permissions currently granted."
-        });
-      }
-
-      const rtc = await discoverWebRtcIps();
-      if (rtc.privateFound) {
-        score -= 12;
-        probes.push({
-          name: "WebRTC Local IP Exposure",
-          status: "EXPOSED",
-          badge: "badge-warn",
-          desc: `Private IPv4 candidate observed: ${rtc.ips.join(", ")}.`
-        });
-      } else {
-        probes.push({
-          name: "WebRTC Local IP Exposure",
-          status: "PASS",
-          badge: "badge-safe",
-          desc: rtc.ips.length ? `ICE candidates: ${rtc.ips.join(", ")}.` : "No private IPv4 leak detected."
-        });
-      }
-
-      setScanProgress(100, "Stage 4/4: Probing canvas & font fingerprinting surface...");
-      const fp = probeCanvasAndFontSurface();
-      probes.push({
-        name: "Canvas & Font Fingerprinting Surface",
-        status: "SURFACE",
-        badge: "badge-cyan",
-        desc: `Canvas signature: ${fp.canvasSig} | Detected fonts: ${fp.availableFonts.length ? fp.availableFonts.join(", ") : "Standard fallback"}.`
+      findings.push({
+        title: "Storage, Hardware & API Surface",
+        tag: "INFO",
+        cls: "b-cyan",
+        detail: `Cookies: ${stor.cookies} | localStorage: ${stor.localStorage} | sessionStorage: ${stor.sessionStorage} | Cores: ${cores} | Mem: ${mem} | Clipboard: ${apis.clipboardReady} | Media: ${apis.mediaReady}.`
       });
 
+      setScanGaugeProgress(100, "Scan complete.");
       score = Math.max(0, Math.min(100, score));
-      state.lastScore = score;
-      document.getElementById("topScorePill").textContent = `SCORE: ${score}/100`;
-      document.getElementById("scoreRing").style.setProperty("--pct", score);
-      document.getElementById("scoreRingNum").textContent = `${score}`;
+      APP.lastScore = score;
+
+      document.getElementById("headerScoreBadge").textContent = `SCORE: ${score}/100`;
+      document.getElementById("scoreGauge").style.setProperty("--p", score);
+      document.getElementById("scoreGaugeNum").textContent = `${score}`;
 
       let verdict = "SAFE";
-      let verdictClass = "badge-safe";
-      let verdictText = `${osName} posture looks healthy based on current checks.`;
+      let vCls = "b-safe";
+      let vDesc = `${osLabel} security posture looks healthy.`;
       if (score < 55) {
         verdict = "HIGH RISK";
-        verdictClass = "badge-danger";
-        verdictText = `High-risk indicators found on ${osName}. Apply hardening steps immediately.`;
+        vCls = "b-danger";
+        vDesc = `High-risk findings on ${osLabel}. Apply hardening steps immediately.`;
       } else if (score < 80) {
         verdict = "MODERATE RISK";
-        verdictClass = "badge-warn";
-        verdictText = `Moderate exposure detected on ${osName}. Review permissions and network settings.`;
+        vCls = "b-warn";
+        vDesc = `Moderate exposure on ${osLabel}. Review permissions and network privacy.`;
       }
 
-      const badgeEl = document.getElementById("scoreVerdictBadge");
-      badgeEl.textContent = verdict;
-      badgeEl.className = `${verdictClass} mono`;
-      document.getElementById("scoreVerdictText").textContent = verdictText;
+      const vTag = document.getElementById("scoreVerdictTag");
+      vTag.textContent = verdict;
+      vTag.className = `badge ${vCls} mono`;
+      document.getElementById("scoreVerdictDesc").textContent = vDesc;
 
-      document.getElementById("probeResultsList").innerHTML = probes.map(p => `
-        <div class="tile" style="padding: 11px 12px;">
+      document.getElementById("scannerFindingsList").innerHTML = findings.map(f => `
+        <div class="box" style="padding: 10px 12px;">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
-            <span style="font-weight: 700; font-size: 13px; color: #fff;">${esc(p.name)}</span>
-            <span class="${p.badge} mono">${esc(p.status)}</span>
+            <span style="font-weight: 700; font-size: 13px; color: #fff;">${escHtml(f.title)}</span>
+            <span class="badge ${f.cls} mono">${escHtml(f.tag)}</span>
           </div>
-          <div class="tile-sub" style="margin-top: 5px;">${esc(p.desc)}</div>
+          <div class="box-note" style="margin-top: 4px;">${escHtml(f.detail)}</div>
         </div>
       `).join("");
 
-      state.lastReport = {
-        tool: "CYBERNEX v4.1",
-        generatedAt: new Date().toISOString(),
-        detectedOs: state.detectedOs,
-        activeOs: osName,
-        securityScore: score,
+      APP.lastReport = {
+        suite: "CYBERNEX v4.1",
+        timestamp: new Date().toISOString(),
+        detectedOs: APP.detectedOs,
+        activeOs: osLabel,
+        score,
         verdict,
-        verdictText,
-        probes
+        verdictDescription: vDesc,
+        findings,
+        emergencyHelpline: "In case of fraud or hacking, immediately dial 1930 or report it at cybercrime.gov.in."
       };
+      syncJsonPreview();
 
-      appendScanLog(`Completed scan: ${score}/100 (${verdict}).`);
+      addScanLog(`Scan finished: ${score}/100 (${verdict}).`);
       btn.disabled = false;
       return score;
     }
 
     /* =========================================================================
-       MODULE 2: SPYWARE, RAT & STALKERWARE AUDIT
+       MODULE 2: IP & NETWORK CONFIGURATION AUDITOR
        ========================================================================= */
-    function calculateSpywareAudit() {
-      const checks = document.querySelectorAll(".spyware-symptom");
-      let total = 0;
-      checks.forEach(cb => {
-        if (cb.checked) total += Number(cb.getAttribute("data-pts") || 0);
-      });
-      const pct = Math.min(100, total);
-      const badge = document.getElementById("spywareRiskBadge");
-
-      if (pct >= 50) {
-        badge.textContent = `RISK LEVEL: HIGH (${pct}%)`;
-        badge.className = "badge-danger mono";
-      } else if (pct >= 20) {
-        badge.textContent = `RISK LEVEL: MODERATE (${pct}%)`;
-        badge.className = "badge-warn mono";
-      } else {
-        badge.textContent = `RISK LEVEL: LOW (${pct}%)`;
-        badge.className = "badge-safe mono";
-      }
-    }
-
-    /* =========================================================================
-       MODULE 3: IP, DNS & NETWORK CONFIG
-       ========================================================================= */
-    async function refreshNetworkTelemetry() {
+    async function refreshNetworkSuite() {
       const btn = document.getElementById("refreshNetBtn");
       if (btn) btn.disabled = true;
 
-      const isOnline = navigator.onLine;
-      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-
-      if (!isOnline) {
-        document.getElementById("netConnType").textContent = "OFFLINE";
-        document.getElementById("netConnSpeed").textContent = "Browser reports no network connection";
-      } else {
-        const eff = conn && conn.effectiveType ? conn.effectiveType.toUpperCase() : "ONLINE";
-        document.getElementById("netConnType").textContent = eff;
-        document.getElementById("netConnSpeed").textContent = conn && typeof conn.downlink === "number"
-          ? `Downlink est.: ~${conn.downlink} Mbps`
-          : "Network online";
-      }
-
-      document.getElementById("netWebrtcIp").textContent = "Probing...";
-      const rtc = await discoverWebRtcIps();
+      document.getElementById("rtcCandidateIps").textContent = "Probing...";
+      const rtc = await probeWebRtcCandidates();
       if (!rtc.supported) {
-        document.getElementById("netWebrtcIp").textContent = "UNSUPPORTED";
-        document.getElementById("netWebrtcNote").textContent = "RTCPeerConnection not available";
+        document.getElementById("rtcCandidateIps").textContent = "UNSUPPORTED";
+        document.getElementById("rtcCandidateMeta").textContent = "WebRTC RTCPeerConnection not available";
       } else if (rtc.ips.length > 0) {
-        document.getElementById("netWebrtcIp").textContent = rtc.ips.slice(0, 2).join(", ");
-        document.getElementById("netWebrtcNote").textContent = rtc.privateFound
-          ? "Private IPv4 candidate visible"
+        document.getElementById("rtcCandidateIps").textContent = rtc.ips.join(", ");
+        document.getElementById("rtcCandidateMeta").textContent = rtc.hasPrivate
+          ? "Private IPv4 candidate detected"
           : `${rtc.ips.length} ICE candidate(s) found`;
       } else {
-        document.getElementById("netWebrtcIp").textContent = "NONE / MASKED";
-        document.getElementById("netWebrtcNote").textContent = "No IPv4 candidate exposed";
+        document.getElementById("rtcCandidateIps").textContent = "NONE / HIDDEN";
+        document.getElementById("rtcCandidateMeta").textContent = "No IPv4 ICE candidate exposed";
       }
 
-      document.getElementById("netPublicIp").textContent = "Checking...";
-      if (!isOnline) {
-        document.getElementById("netPublicIp").textContent = "OFFLINE FALLBACK";
-        document.getElementById("netPublicNote").textContent = "Skipped external fetch while offline";
+      const online = navigator.onLine;
+      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      const effType = conn && conn.effectiveType ? conn.effectiveType.toUpperCase() : "N/A";
+      const dl = conn && typeof conn.downlink === "number" ? `~${conn.downlink} Mbps` : "N/A";
+
+      if (!online) {
+        document.getElementById("pubIpVal").textContent = "OFFLINE (FALLBACK)";
+        document.getElementById("pubIpMeta").textContent = `Offline mode | Link: ${effType} | Est: ${dl}`;
       } else {
-        const ctrl = new AbortController();
-        const tid = setTimeout(() => ctrl.abort(), 3200);
+        document.getElementById("pubIpVal").textContent = "Querying...";
+        const ac = new AbortController();
+        const timer = setTimeout(() => ac.abort(), 3000);
         try {
-          const res = await fetch("https://api.ipify.org?format=json", { signal: ctrl.signal });
-          clearTimeout(tid);
-          if (!res.ok) throw new Error("Bad response");
-          const data = await res.json();
-          document.getElementById("netPublicIp").textContent = data.ip || "Unavailable";
-          document.getElementById("netPublicNote").textContent = "Fetched via api.ipify.org";
+          const resp = await fetch("https://api.ipify.org?format=json", { signal: ac.signal });
+          clearTimeout(timer);
+          if (!resp.ok) throw new Error("Lookup failed");
+          const data = await resp.json();
+          document.getElementById("pubIpVal").textContent = data.ip || "Unavailable";
+          document.getElementById("pubIpMeta").textContent = `Online | Link: ${effType} | Est: ${dl}`;
         } catch (e) {
-          clearTimeout(tid);
-          document.getElementById("netPublicIp").textContent = "BLOCKED / FALLBACK";
-          document.getElementById("netPublicNote").textContent = "External IP request blocked or timed out";
+          clearTimeout(timer);
+          document.getElementById("pubIpVal").textContent = "FALLBACK / BLOCKED";
+          document.getElementById("pubIpMeta").textContent = `Offline/blocked fallback | Link: ${effType} | Est: ${dl}`;
         }
       }
 
       if (btn) btn.disabled = false;
     }
 
-    function setDnsPreset(name, line) {
-      document.getElementById("dnsPresetOutput").textContent = line;
-      notify(`${name} preset selected.`);
-    }
-
-    function ipv4ToInt(ipStr) {
-      const parts = ipStr.trim().split(".");
+    function parseIpv4(str) {
+      const parts = str.trim().split(".");
       if (parts.length !== 4) return null;
-      let val = 0;
+      let n = 0;
       for (const p of parts) {
         if (!/^\d+$/.test(p)) return null;
-        const n = Number(p);
-        if (n < 0 || n > 255) return null;
-        val = (val << 8) + n;
+        const v = Number(p);
+        if (v < 0 || v > 255) return null;
+        n = (n << 8) + v;
       }
-      return val >>> 0;
+      return n >>> 0;
     }
 
-    function intToIpv4(num) {
-      return [
-        (num >>> 24) & 255,
-        (num >>> 16) & 255,
-        (num >>> 8) & 255,
-        num & 255
-      ].join(".");
+    function fmtIpv4(num) {
+      return [(num >>> 24) & 255, (num >>> 16) & 255, (num >>> 8) & 255, num & 255].join(".");
     }
 
-    function calculateCidrSubnet() {
-      const raw = document.getElementById("cidrInput").value.trim();
-      const out = document.getElementById("cidrResultBox");
-      const match = raw.match(/^(\d{1,3}(?:\.\d{1,3}){3})\s*\/\s*(\d{1,2})$/);
-      if (!match) {
-        out.innerHTML = `<span class="badge-danger">INVALID CIDR</span> Use format like 192.168.1.0/24`;
+    function runCidrCalc() {
+      const raw = document.getElementById("cidrTextInput").value.trim();
+      const out = document.getElementById("cidrOutputBox");
+      const m = raw.match(/^(\d{1,3}(?:\.\d{1,3}){3})\s*\/\s*(\d{1,2})$/);
+      if (!m) {
+        out.innerHTML = `<span class="badge b-danger">INVALID</span> Use IPv4/CIDR (e.g. 192.168.1.0/24).`;
         return;
       }
-
-      const ipInt = ipv4ToInt(match[1]);
-      const prefix = Number(match[2]);
+      const ipInt = parseIpv4(m[1]);
+      const prefix = Number(m[2]);
       if (ipInt === null || prefix < 0 || prefix > 32) {
-        out.innerHTML = `<span class="badge-danger">OUT OF RANGE</span> Enter valid IPv4 and /0 to /32 prefix.`;
+        out.innerHTML = `<span class="badge b-danger">RANGE ERROR</span> Use valid IPv4 and /0 to /32.`;
         return;
       }
-
       const mask = prefix === 0 ? 0 : (0xffffffff << (32 - prefix)) >>> 0;
-      const network = (ipInt & mask) >>> 0;
-      const broadcast = (network | (~mask >>> 0)) >>> 0;
+      const net = (ipInt & mask) >>> 0;
+      const bcast = (net | (~mask >>> 0)) >>> 0;
 
-      let usableHosts = 0;
-      let firstHost = "N/A";
-      let lastHost = "N/A";
+      let hosts = 0, first = "N/A", last = "N/A";
       if (prefix === 32) {
-        usableHosts = 1;
-        firstHost = intToIpv4(network);
-        lastHost = intToIpv4(network);
+        hosts = 1; first = fmtIpv4(net); last = fmtIpv4(net);
       } else if (prefix === 31) {
-        usableHosts = 2;
-        firstHost = intToIpv4(network);
-        lastHost = intToIpv4(broadcast);
+        hosts = 2; first = fmtIpv4(net); last = fmtIpv4(bcast);
       } else {
-        usableHosts = Math.max(0, Math.pow(2, 32 - prefix) - 2);
-        firstHost = intToIpv4((network + 1) >>> 0);
-        lastHost = intToIpv4((broadcast - 1) >>> 0);
+        hosts = Math.max(0, Math.pow(2, 32 - prefix) - 2);
+        first = fmtIpv4((net + 1) >>> 0);
+        last = fmtIpv4((bcast - 1) >>> 0);
       }
 
       out.innerHTML = `
-        <div><strong>Network:</strong> ${intToIpv4(network)}/${prefix} | <strong>Mask:</strong> ${intToIpv4(mask)}</div>
-        <div><strong>Broadcast:</strong> ${intToIpv4(broadcast)} | <strong>Usable Hosts:</strong> ${usableHosts.toLocaleString()}</div>
-        <div><strong>Host Range:</strong> ${firstHost} - ${lastHost}</div>
+        <div>Net: ${fmtIpv4(net)}/${prefix} | Mask: ${fmtIpv4(mask)}</div>
+        <div>Broadcast: ${fmtIpv4(bcast)} | Hosts: ${hosts.toLocaleString()}</div>
+        <div>Usable: ${first} - ${last}</div>
+      `;
+    }
+
+    function applyDnsPreset() {
+      const sel = document.getElementById("dnsPresetSelect").value;
+      const box = document.getElementById("dnsConfigString");
+      if (sel === "google") {
+        box.textContent = "Primary: 8.8.8.8 | Secondary: 8.8.4.4 | DoH: https://dns.google/dns-query";
+      } else if (sel === "quad9") {
+        box.textContent = "Primary: 9.9.9.9 | Secondary: 149.112.112.112 | DoH: https://dns.quad9.net/dns-query";
+      } else {
+        box.textContent = "Primary: 1.1.1.1 | Secondary: 1.0.0.1 | DoH: https://cloudflare-dns.com/dns-query";
+      }
+      toast("DNS resolver preset applied.");
+    }
+
+    function auditWifiConfig() {
+      const auth = document.getElementById("wifiAuthSelect").value;
+      const wps = document.getElementById("wpsEnabledChk").checked;
+      const macRand = document.getElementById("macRandChk").checked;
+      const out = document.getElementById("wifiAuditOutput");
+
+      const notes = [];
+      let badge = `<span class="badge b-safe mono">STRONG</span>`;
+
+      if (auth === "OPEN") {
+        badge = `<span class="badge b-danger mono">OPEN / UNENCRYPTED</span>`;
+        notes.push("Unencrypted Wi-Fi; rely on HTTPS and a trusted VPN.");
+      } else if (auth === "WEP") {
+        badge = `<span class="badge b-danger mono">WEP WEAK</span>`;
+        notes.push("WEP is deprecated; upgrade router to WPA3 or WPA2-AES.");
+      } else if (auth === "WPA2") {
+        notes.push("WPA2-AES is solid; prefer WPA3 if supported.");
+      } else {
+        notes.push("WPA3 provides strong SAE protection.");
+      }
+
+      if (wps) {
+        badge = `<span class="badge b-warn mono">WPS ENABLED</span>`;
+        notes.push("WPS enabled — disable WPS in router admin settings.");
+      }
+
+      notes.push(macRand ? "MAC randomization enabled." : "MAC randomization disabled.");
+      out.innerHTML = `${badge} <div style="margin-top: 6px;">${notes.map(n => `<div>• ${escHtml(n)}</div>`).join("")}</div>`;
+    }
+
+    function checkPortRisk() {
+      const p = document.getElementById("portSelectInput").value;
+      const info = PORT_DB[p] || { svc: "Custom", risk: "INFO", cls: "b-cyan", note: "Verify service exposure and firewall rules." };
+      document.getElementById("portRiskOutput").innerHTML = `
+        <span class="badge ${info.cls} mono">${escHtml(info.risk)}</span>
+        <strong class="mono" style="margin-left: 6px;">${escHtml(info.svc)}</strong>
+        <div style="margin-top: 5px;">${escHtml(info.note)}</div>
       `;
     }
 
     /* =========================================================================
-       MODULE 4: SHA-256 & FILE FORENSICS (.APK, .PDF, .EXE)
+       MODULE 3: ZERO-UPLOAD SHA-256 & FILE FORENSICS
        ========================================================================= */
-    function setupFileDropzone() {
-      const area = document.getElementById("fileDropArea");
+    function initDropzone() {
+      const dz = document.getElementById("forensicDropzone");
       ["dragenter", "dragover"].forEach(ev => {
-        area.addEventListener(ev, e => {
-          e.preventDefault();
-          area.classList.add("drag");
-        });
+        dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add("over"); });
       });
       ["dragleave", "drop"].forEach(ev => {
-        area.addEventListener(ev, e => {
-          e.preventDefault();
-          area.classList.remove("drag");
-        });
+        dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove("over"); });
       });
-      area.addEventListener("drop", e => {
+      dz.addEventListener("drop", e => {
         const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
-        if (file) inspectSelectedFile(file);
+        if (file) handleForensicFile(file);
       });
     }
 
-    function detectFileMagic(bytes) {
-      if (!bytes || bytes.length < 2) return { type: "Empty / Too Small", exts: [] };
+    function identifyMagic(bytes) {
+      if (!bytes || bytes.length < 2) return { label: "Empty / Tiny", exts: [] };
       const b0 = bytes[0], b1 = bytes[1], b2 = bytes[2] || 0, b3 = bytes[3] || 0;
-
       if (b0 === 0x50 && b1 === 0x4B && b2 === 0x03 && b3 === 0x04) {
-        return { type: "ZIP / APK / JAR / Office", exts: ["zip", "apk", "jar", "docx", "xlsx", "pptx"] };
+        return { label: "ZIP / APK / JAR / OOXML", exts: ["zip", "apk", "jar", "docx", "xlsx", "pptx"] };
       }
       if (b0 === 0x25 && b1 === 0x50 && b2 === 0x44 && b3 === 0x46) {
-        return { type: "PDF Document (%PDF)", exts: ["pdf"] };
+        return { label: "PDF Document (%PDF)", exts: ["pdf"] };
       }
       if (b0 === 0x4D && b1 === 0x5A) {
-        return { type: "PE / EXE / DLL (MZ)", exts: ["exe", "dll", "sys", "scr", "ocx"] };
-      }
-      if (b0 === 0x7F && b1 === 0x45 && b2 === 0x4C && b3 === 0x46) {
-        return { type: "ELF Executable (Linux)", exts: ["elf", "bin", "so", "out", ""] };
+        return { label: "PE / EXE / DLL (MZ)", exts: ["exe", "dll", "sys", "scr"] };
       }
       if (b0 === 0x89 && b1 === 0x50 && b2 === 0x4E && b3 === 0x47) {
-        return { type: "PNG Image", exts: ["png"] };
+        return { label: "PNG Image", exts: ["png"] };
       }
       if (b0 === 0xFF && b1 === 0xD8 && b2 === 0xFF) {
-        return { type: "JPEG Image", exts: ["jpg", "jpeg"] };
+        return { label: "JPEG Image", exts: ["jpg", "jpeg"] };
       }
-      return { type: "Unmapped / Raw Binary", exts: [] };
+      if (b0 === 0x52 && b1 === 0x61 && b2 === 0x72 && b3 === 0x21) {
+        return { label: "RAR Archive", exts: ["rar"] };
+      }
+      if (b0 === 0x7F && b1 === 0x45 && b2 === 0x4C && b3 === 0x46) {
+        return { label: "ELF Executable", exts: ["elf", "bin", "so", "out"] };
+      }
+      return { label: "General / Unmapped Binary", exts: [] };
     }
 
-    function computeShannonEntropy(bytes) {
+    function calcShannonEntropy(bytes) {
       if (!bytes || bytes.length === 0) return 0;
-      const freq = new Uint32Array(256);
-      for (let i = 0; i < bytes.length; i++) freq[bytes[i]]++;
-      let ent = 0;
+      const counts = new Uint32Array(256);
+      for (let i = 0; i < bytes.length; i++) counts[bytes[i]]++;
+      let h = 0;
       for (let i = 0; i < 256; i++) {
-        if (freq[i] > 0) {
-          const p = freq[i] / bytes.length;
-          ent -= p * Math.log2(p);
+        if (counts[i] > 0) {
+          const p = counts[i] / bytes.length;
+          h -= p * Math.log2(p);
         }
       }
-      return ent;
+      return h;
     }
 
-    function bufToHex(arrayBuffer) {
-      return Array.from(new Uint8Array(arrayBuffer))
-        .map(b => b.toString(16).padStart(2, "0"))
-        .join("");
+    function bytesToHex(buf) {
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
     }
 
-    function inspectSelectedFile(file) {
+    function handleForensicFile(file) {
       if (!file) return;
       const reader = new FileReader();
       reader.onload = async function (evt) {
         try {
-          const buffer = evt.target.result;
-          const bytes = new Uint8Array(buffer);
-          const [sha256Buf, sha1Buf] = await Promise.all([
-            crypto.subtle.digest("SHA-256", buffer),
-            crypto.subtle.digest("SHA-1", buffer)
+          const ab = evt.target.result;
+          const bytes = new Uint8Array(ab);
+          const [d256, d1] = await Promise.all([
+            crypto.subtle.digest("SHA-256", ab),
+            crypto.subtle.digest("SHA-1", ab)
           ]);
 
-          const magic = detectFileMagic(bytes);
-          const hexHeader = Array.from(bytes.slice(0, 6))
-            .map(b => b.toString(16).toUpperCase().padStart(2, "0"))
-            .join(" ");
+          const magic = identifyMagic(bytes);
+          const hexPrefix = Array.from(bytes.slice(0, 6))
+            .map(b => b.toString(16).toUpperCase().padStart(2, "0")).join(" ");
           const ext = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "";
 
-          let spoofBadge = `<span class="badge-cyan mono">UNMAPPED</span>`;
-          let spoofDetail = "No strict extension rule for this signature.";
+          let matchBadge = `<span class="badge b-cyan mono">GENERAL</span>`;
+          let matchNote = "No fixed extension rule for this header.";
           if (magic.exts.length > 0) {
             if (magic.exts.includes(ext)) {
-              spoofBadge = `<span class="badge-safe mono">VERIFIED</span>`;
-              spoofDetail = `.${ext || "(none)"} matches ${magic.type}.`;
+              matchBadge = `<span class="badge b-safe mono">MATCHED</span>`;
+              matchNote = `.${ext || "(none)"} matches ${magic.label}.`;
             } else {
-              spoofBadge = `<span class="badge-danger mono">SPOOFED</span>`;
-              spoofDetail = `Extension .${ext || "(none)"} does not match ${magic.type}.`;
+              matchBadge = `<span class="badge b-danger mono">SPOOF / MISMATCH</span>`;
+              matchNote = `.${ext || "(none)"} does not match ${magic.label}.`;
             }
           }
 
-          const entropy = computeShannonEntropy(bytes);
-          const entNote = entropy >= 7.5
-            ? "High entropy — likely compressed, encrypted, or packed."
-            : entropy >= 5.8
-              ? "Moderate-high entropy — archive or compiled code."
-              : "Low/moderate entropy — plain text or structured data.";
+          const ent = calcShannonEntropy(bytes);
+          const entNote = ent >= 7.5
+            ? "High entropy — compressed, encrypted, or packed data."
+            : ent >= 5.5
+              ? "Moderate entropy — binary, archive, or encoded data."
+              : "Low entropy — structured or plain text data.";
 
-          document.getElementById("fileReportPanel").style.display = "block";
-          document.getElementById("fOutName").textContent = file.name;
-          document.getElementById("fOutSize").textContent = `${file.size.toLocaleString()} bytes`;
-          document.getElementById("fOutMagic").textContent = magic.type;
-          document.getElementById("fOutHex").textContent = `Magic: ${hexHeader || "N/A"}`;
-          document.getElementById("fOutSpoofBadge").innerHTML = spoofBadge;
-          document.getElementById("fOutSpoofDetail").textContent = spoofDetail;
-          document.getElementById("fOutEntropy").textContent = `${entropy.toFixed(3)} / 8.0`;
-          document.getElementById("fOutEntropyNote").textContent = entNote;
-          document.getElementById("fOutSha256").textContent = bufToHex(sha256Buf);
-          document.getElementById("fOutSha1").textContent = bufToHex(sha1Buf);
+          document.getElementById("forensicFileResult").style.display = "block";
+          document.getElementById("ffName").textContent = file.name;
+          document.getElementById("ffSize").textContent = `${file.size.toLocaleString()} bytes`;
+          document.getElementById("ffMagic").textContent = magic.label;
+          document.getElementById("ffHexHead").textContent = `Magic: ${hexPrefix || "N/A"}`;
+          document.getElementById("ffMatchBadge").innerHTML = matchBadge;
+          document.getElementById("ffMatchNote").textContent = matchNote;
+          document.getElementById("ffEntropyVal").textContent = `${ent.toFixed(3)} bits/byte`;
+          document.getElementById("ffEntropyNote").textContent = entNote;
+          document.getElementById("ffSha256").textContent = bytesToHex(d256);
+          document.getElementById("ffSha1").textContent = bytesToHex(d1);
 
-          notify(`Inspected ${file.name} locally.`);
-        } catch (err) {
-          notify("Error reading file locally.");
+          compareExpectedHash();
+          toast(`Inspected ${file.name} locally.`);
+        } catch (e) {
+          toast("Unable to inspect file.");
         }
-      };
-      reader.onerror = function () {
-        notify("FileReader could not read file.");
       };
       reader.readAsArrayBuffer(file);
     }
 
-    async function computeLiveTextHashes() {
-      const txt = document.getElementById("hashStringInput").value;
-      if (!txt) {
-        document.getElementById("liveTextSha256").textContent = "--";
-        document.getElementById("liveTextSha1").textContent = "--";
+    function compareExpectedHash() {
+      const exp = document.getElementById("expectedHashInput").value.trim().toLowerCase();
+      const out = document.getElementById("hashCompareResult");
+      const h256 = document.getElementById("ffSha256").textContent.trim().toLowerCase();
+      const h1 = document.getElementById("ffSha1").textContent.trim().toLowerCase();
+      if (!exp) {
+        out.innerHTML = `Paste a reference hash above to verify integrity.`;
         return;
       }
-      const encoded = new TextEncoder().encode(txt);
+      if (exp === h256) {
+        out.innerHTML = `<span class="badge b-safe mono">SHA-256 MATCH</span> Reference digest matches file SHA-256.`;
+      } else if (exp === h1) {
+        out.innerHTML = `<span class="badge b-safe mono">SHA-1 MATCH</span> Reference digest matches file SHA-1.`;
+      } else {
+        out.innerHTML = `<span class="badge b-danger mono">MISMATCH</span> Does not match computed SHA-256 or SHA-1.`;
+      }
+    }
+
+    async function updateTextHashes() {
+      const txt = document.getElementById("textHashInput").value;
+      if (!txt) {
+        document.getElementById("textSha256Out").textContent = "--";
+        document.getElementById("textSha1Out").textContent = "--";
+        return;
+      }
+      const enc = new TextEncoder().encode(txt);
       const [h256, h1] = await Promise.all([
-        crypto.subtle.digest("SHA-256", encoded),
-        crypto.subtle.digest("SHA-1", encoded)
+        crypto.subtle.digest("SHA-256", enc),
+        crypto.subtle.digest("SHA-1", enc)
       ]);
-      document.getElementById("liveTextSha256").textContent = bufToHex(h256);
-      document.getElementById("liveTextSha1").textContent = bufToHex(h1);
+      document.getElementById("textSha256Out").textContent = bytesToHex(h256);
+      document.getElementById("textSha1Out").textContent = bytesToHex(h1);
+    }
+
+    function codecAction(mode) {
+      const area = document.getElementById("codecIoArea");
+      const msg = document.getElementById("codecStatusMsg");
+      const val = area.value.trim();
+      if (!val) {
+        msg.textContent = "Enter text, Base64, or Hex first.";
+        return;
+      }
+      try {
+        if (mode === "b64enc") {
+          const bytes = new TextEncoder().encode(val);
+          let bin = "";
+          for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+          area.value = btoa(bin);
+          msg.textContent = "Encoded UTF-8 text to Base64.";
+        } else if (mode === "b64dec") {
+          const bin = atob(val.replace(/\s+/g, ""));
+          const bytes = new Uint8Array(bin.length);
+          for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          area.value = new TextDecoder().decode(bytes);
+          msg.textContent = "Decoded Base64 to UTF-8 text.";
+        } else if (mode === "hexenc") {
+          const bytes = new TextEncoder().encode(val);
+          area.value = Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join("");
+          msg.textContent = "Encoded UTF-8 text to Hex.";
+        } else if (mode === "hexdec") {
+          const clean = val.replace(/[^0-9a-fA-F]/g, "");
+          if (!clean || clean.length % 2 !== 0) throw new Error("Invalid hex");
+          const bytes = new Uint8Array(clean.length / 2);
+          for (let i = 0; i < clean.length; i += 2) {
+            bytes[i / 2] = parseInt(clean.slice(i, i + 2), 16);
+          }
+          area.value = new TextDecoder().decode(bytes);
+          msg.textContent = "Decoded Hex to UTF-8 text.";
+        }
+      } catch (e) {
+        msg.textContent = "Invalid input for selected conversion.";
+      }
     }
 
     /* =========================================================================
-       MODULE 5: PHISHING, UPI QR & PASSWORD SUITE
+       MODULE 4: SPYWARE, RAT & STALKERWARE AUDIT
        ========================================================================= */
-    function auditUrlLink() {
-      const input = document.getElementById("urlAuditInput").value.trim();
-      const out = document.getElementById("urlAuditOutput");
-      if (!input) {
-        out.innerHTML = `<span class="badge-warn mono">EMPTY</span> Paste a URL or domain to audit.`;
+    function evalSpywareRisk() {
+      let score = 0;
+      document.querySelectorAll(".spy-chk").forEach(chk => {
+        if (chk.checked) score += Number(chk.getAttribute("data-w") || 0);
+      });
+      score = Math.min(100, score);
+      const badge = document.getElementById("spyRiskBadge");
+
+      if (score >= 60) {
+        badge.textContent = `RISK: HIGH (${score}%)`;
+        badge.className = "badge b-danger mono";
+      } else if (score >= 20) {
+        badge.textContent = `RISK: MODERATE (${score}%)`;
+        badge.className = "badge b-warn mono";
+      } else {
+        badge.textContent = `RISK: LOW (${score}%)`;
+        badge.className = "badge b-safe mono";
+      }
+    }
+
+    /* =========================================================================
+       MODULE 5: LINK, UPI QR & PASSWORD SUITE
+       ========================================================================= */
+    function analyzeLink() {
+      const raw = document.getElementById("linkInput").value.trim();
+      const out = document.getElementById("linkAnalysisOut");
+      if (!raw) {
+        out.innerHTML = `<span class="badge b-warn mono">EMPTY</span> Enter a URL or domain.`;
         return;
       }
-
-      const normalized = /^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(input) ? input : `https://${input}`;
-      let urlObj;
+      const candidate = /^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(raw) ? raw : `https://${raw}`;
+      let parsed;
       try {
-        urlObj = new URL(normalized);
+        parsed = new URL(candidate);
       } catch (e) {
-        out.innerHTML = `<span class="badge-danger mono">INVALID</span> Unable to parse URL.`;
+        out.innerHTML = `<span class="badge b-danger mono">INVALID</span> Could not parse URL.`;
         return;
       }
 
-      const host = urlObj.hostname.toLowerCase();
-      const fullQuery = urlObj.search.toLowerCase();
+      const host = parsed.hostname.toLowerCase();
+      const search = parsed.search.toLowerCase();
       const flags = [];
 
       if (/^(\d{1,3}\.){3}\d{1,3}$/.test(host)) {
-        flags.push("Raw IPv4 address used instead of a domain name.");
+        flags.push("Raw IPv4 address used instead of domain.");
       }
-      if (/^(bit\.ly|tinyurl\.com|t\.co|goo\.gl|ow\.ly|rb\.gy|is\.gd|cutt\.ly)$/i.test(host)) {
-        flags.push("URL shortener masks the final destination.");
+      if (/^(bit\.ly|tinyurl\.com|t\.co|goo\.gl|ow\.ly|rb\.gy|is\.gd|v\.gd|cutt\.ly)$/i.test(host)) {
+        flags.push("URL shortener masks final destination.");
       }
-      if (/\.(tk|ml|ga|cf|gq|xyz|top|zip|mov|click|loan|work)$/i.test(host)) {
-        flags.push("High-risk or frequently abused TLD detected.");
+      if (/\.(tk|ml|ga|cf|gq|xyz|top|zip|mov|click|rest|icu)$/i.test(host)) {
+        flags.push("High-risk or frequently abused TLD.");
       }
-      if (/1|0/.test(host.replace(/\.[a-z]+$/, "")) && /(paypa|amaz|micr|goog|app|bank|upi)/i.test(host)) {
-        flags.push("Possible brand lookalike / typosquatting pattern.");
+      if (/[0137]/.test(host.replace(/\.[a-z]+$/, "")) && /(g00gle|paypa1|micr0s0ft|amaz0n|app1e|sbi|icici|hdfc|upi)/i.test(host)) {
+        flags.push("Lookalike / typosquatting brand pattern.");
       }
-      if (/[?&](url|next|redirect|return|dest|goto|continue)=/i.test(fullQuery)) {
-        flags.push("Suspicious redirect/target query parameter detected.");
+      if (/[?&](url|next|redirect|return|dest|target|continue|out)=/i.test(search)) {
+        flags.push("Redirect / target URL parameter detected.");
       }
 
       if (flags.length === 0) {
-        out.innerHTML = `<span class="badge-safe mono">LOW RISK</span> <span class="mono" style="color:#fff;">${esc(host)}</span><div style="margin-top:6px;">No high-risk link heuristics triggered.</div>`;
+        out.innerHTML = `<span class="badge b-safe mono">LOW RISK</span> <span class="mono">${escHtml(host)}</span><div style="margin-top: 6px;">No lookalike, raw IP, TLD, shortener, or redirect flags found.</div>`;
       } else {
-        const cls = flags.length >= 2 ? "badge-danger" : "badge-warn";
-        out.innerHTML = `<span class="${cls} mono">${flags.length} FLAG(S)</span><ul style="padding-left:16px;margin-top:6px;display:flex;flex-direction:column;gap:4px;">${flags.map(f => `<li>${esc(f)}</li>`).join("")}</ul>`;
+        const cls = flags.length >= 2 ? "b-danger" : "b-warn";
+        out.innerHTML = `<span class="badge ${cls} mono">${flags.length} FLAG(S)</span><ul style="padding-left: 16px; margin-top: 6px;">${flags.map(f => `<li>${escHtml(f)}</li>`).join("")}</ul>`;
       }
     }
 
-    function loadSampleCollect() {
-      document.getElementById("upiPayloadInput").value = "upi://collect?pa=claim.reward@okbank&pn=PrizeClaim&am=500&cu=INR";
-      inspectUpiString();
+    function fillSampleCollect() {
+      document.getElementById("upiInput").value = "upi://collect?pa=claim.desk@okbank&pn=RefundDesk&am=1200&cu=INR";
+      inspectUpi();
     }
 
-    function inspectUpiString() {
-      const raw = document.getElementById("upiPayloadInput").value.trim();
-      const out = document.getElementById("upiAuditOutput");
+    function inspectUpi() {
+      const raw = document.getElementById("upiInput").value.trim();
+      const out = document.getElementById("upiAnalysisOut");
       if (!raw) {
-        out.innerHTML = `<span class="badge-warn mono">EMPTY</span> Enter a <span class="mono">upi://</span> string.`;
+        out.innerHTML = `<span class="badge b-warn mono">EMPTY</span> Paste a <span class="mono">upi://</span> URI.`;
         return;
       }
       if (!raw.toLowerCase().startsWith("upi://")) {
-        out.innerHTML = `<span class="badge-warn mono">NON-UPI</span> String does not start with <span class="mono">upi://</span>.`;
+        out.innerHTML = `<span class="badge b-warn mono">NOT UPI://</span> URI should start with <span class="mono">upi://</span>.`;
         return;
       }
 
-      const matchAction = raw.toLowerCase().match(/^upi:\/\/([a-z0-9_-]+)/);
-      const action = matchAction ? matchAction[1] : "unknown";
-      const qStr = raw.includes("?") ? raw.split("?")[1] : "";
-      const params = new URLSearchParams(qStr);
-      const pa = params.get("pa") || "(missing)";
-      const pn = params.get("pn") || "(missing)";
-      const am = params.get("am") || "Any / Unspecified";
+      const m = raw.toLowerCase().match(/^upi:\/\/([a-z0-9_-]+)/);
+      const mode = m ? m[1] : "unknown";
+      const qs = raw.includes("?") ? raw.split("?")[1] : "";
+      const params = new URLSearchParams(qs);
+      const pa = params.get("pa") || "(missing pa)";
+      const pn = params.get("pn") || "(missing pn)";
+      const am = params.get("am") || "(any amount)";
+      const cu = params.get("cu") || "(unspecified)";
 
-      if (action === "collect") {
+      if (mode === "collect") {
         out.innerHTML = `
-          <span class="badge-danger mono">HIGH RISK: UPI COLLECT</span>
-          <div style="margin-top:6px;color:#fecaca;"><strong>upi://collect</strong> pulls/requests money FROM your account. Never enter your UPI PIN to receive money.</div>
-          <div class="mono" style="margin-top:5px;">Payee (pa): ${esc(pa)}<br/>Name (pn): ${esc(pn)}<br/>Amount (am): ${esc(am)}</div>
+          <span class="badge b-danger mono">ALERT: upi://collect (PULL REQUEST)</span>
+          <div style="margin-top: 6px; color: #fecaca;"><strong>upi://collect</strong> initiates a money collection request from your account. Never enter a UPI PIN to receive money.</div>
+          <div class="mono" style="margin-top: 5px;">pa: ${escHtml(pa)} | pn: ${escHtml(pn)} | am: ${escHtml(am)} | cu: ${escHtml(cu)}</div>
         `;
-      } else if (action === "pay") {
+      } else if (mode === "pay") {
         out.innerHTML = `
-          <span class="badge-safe mono">PAYMENT INTENT: UPI PAY</span>
-          <div style="margin-top:6px;">Verify merchant/payee ID and amount before authorizing payment.</div>
-          <div class="mono" style="margin-top:5px;">Payee (pa): ${esc(pa)}<br/>Name (pn): ${esc(pn)}<br/>Amount (am): ${esc(am)}</div>
+          <span class="badge b-safe mono">upi://pay (PAYMENT PUSH)</span>
+          <div style="margin-top: 6px;">Verify payee VPA (<span class="mono">pa</span>), name, and amount before confirming payment.</div>
+          <div class="mono" style="margin-top: 5px;">pa: ${escHtml(pa)} | pn: ${escHtml(pn)} | am: ${escHtml(am)} | cu: ${escHtml(cu)}</div>
         `;
       } else {
         out.innerHTML = `
-          <span class="badge-warn mono">ACTION: ${esc(action.toUpperCase())}</span>
-          <div class="mono" style="margin-top:5px;">Payee (pa): ${esc(pa)}<br/>Name (pn): ${esc(pn)}<br/>Amount (am): ${esc(am)}</div>
+          <span class="badge b-warn mono">INTENT: ${escHtml(mode.toUpperCase())}</span>
+          <div class="mono" style="margin-top: 5px;">pa: ${escHtml(pa)} | pn: ${escHtml(pn)} | am: ${escHtml(am)} | cu: ${escHtml(cu)}</div>
         `;
       }
     }
 
-    function formatCrackDuration(bits) {
+    function estimateCrackTime(bits) {
       if (bits <= 0) return "Instant";
-      const guessesPerSec = 1e10; // 10B guesses/sec offline benchmark
-      const avgGuesses = Math.pow(2, Math.min(bits, 128) - 1);
-      const sec = avgGuesses / guessesPerSec;
-      if (sec < 1) return "< 1 second";
-      if (sec < 60) return `${Math.round(sec)} seconds`;
-      if (sec < 3600) return `${Math.round(sec / 60)} minutes`;
-      if (sec < 86400) return `${Math.round(sec / 3600)} hours`;
+      const rate = 1e10;
+      const combos = Math.pow(2, Math.min(bits, 128) - 1);
+      const sec = combos / rate;
+      if (sec < 1) return "< 1 sec";
+      if (sec < 60) return `${Math.round(sec)} sec`;
+      if (sec < 3600) return `${Math.round(sec / 60)} min`;
+      if (sec < 86400) return `${Math.round(sec / 3600)} hrs`;
       const days = sec / 86400;
       if (days < 365) return `${Math.round(days)} days`;
-      const years = days / 365.25;
-      if (years < 1e6) return `${Math.round(years).toLocaleString()} years`;
+      const yrs = days / 365.25;
+      if (yrs < 1e6) return `${Math.round(yrs).toLocaleString()} years`;
       return "Millions+ years";
     }
 
-    function updatePasswordMetrics() {
-      const pw = document.getElementById("pwSuiteInput").value || "";
+    function calcPasswordStats() {
+      const pw = document.getElementById("pwInput").value || "";
       if (!pw) {
-        document.getElementById("pwEntropyOut").textContent = "0.0 bits";
-        document.getElementById("pwCrackOut").textContent = "Instant";
-        document.getElementById("pwNoteOut").textContent = "Enter a password or click Generate.";
-        document.getElementById("pwMeterFill").style.width = "0%";
+        document.getElementById("pwBitsVal").textContent = "0.0 bits";
+        document.getElementById("pwCrackVal").textContent = "Instant";
+        document.getElementById("pwFeedbackLine").textContent = "Enter a password or click Generate.";
+        document.getElementById("pwBarFill").style.width = "0%";
         return;
       }
 
-      let charsetSize = 0;
-      if (/[a-z]/.test(pw)) charsetSize += 26;
-      if (/[A-Z]/.test(pw)) charsetSize += 26;
-      if (/[0-9]/.test(pw)) charsetSize += 10;
-      if (/[^A-Za-z0-9]/.test(pw)) charsetSize += 32;
-      charsetSize = Math.max(charsetSize, 1);
+      let pool = 0;
+      if (/[a-z]/.test(pw)) pool += 26;
+      if (/[A-Z]/.test(pw)) pool += 26;
+      if (/[0-9]/.test(pw)) pool += 10;
+      if (/[^A-Za-z0-9]/.test(pw)) pool += 32;
+      pool = Math.max(pool, 1);
 
-      const entropy = pw.length * Math.log2(charsetSize);
-      const widthPct = Math.min(100, Math.round((entropy / 115) * 100));
+      const bits = pw.length * Math.log2(pool);
+      const pct = Math.min(100, Math.round((bits / 120) * 100));
+      let fb = "Weak — increase length and mix character classes.";
+      if (bits >= 85) fb = "Strong — high entropy against offline attacks.";
+      else if (bits >= 60) fb = "Moderate-Strong — 16+ characters recommended for critical accounts.";
 
-      let note = "Weak password — increase length and mix character types.";
-      if (entropy >= 85) note = "Strong entropy — resistant to offline guessing.";
-      else if (entropy >= 60) note = "Good strength — 16+ characters with symbols is even stronger.";
-      else if (entropy >= 40) note = "Moderate strength — add more length or symbols.";
-
-      document.getElementById("pwEntropyOut").textContent = `${entropy.toFixed(1)} bits`;
-      document.getElementById("pwCrackOut").textContent = formatCrackDuration(entropy);
-      document.getElementById("pwNoteOut").textContent = note;
-      document.getElementById("pwMeterFill").style.width = `${widthPct}%`;
+      document.getElementById("pwBitsVal").textContent = `${bits.toFixed(1)} bits`;
+      document.getElementById("pwCrackVal").textContent = estimateCrackTime(bits);
+      document.getElementById("pwFeedbackLine").textContent = fb;
+      document.getElementById("pwBarFill").style.width = `${pct}%`;
     }
 
-    function generateCryptoPassword() {
-      const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*()-_=+";
-      const rand = new Uint32Array(22);
-      crypto.getRandomValues(rand);
+    function genPassword() {
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*_-+=";
+      const rnd = new Uint32Array(20);
+      crypto.getRandomValues(rnd);
       let out = "";
-      for (let i = 0; i < rand.length; i++) {
-        out += alphabet[rand[i] % alphabet.length];
+      for (let i = 0; i < rnd.length; i++) out += chars[rnd[i] % chars.length];
+      document.getElementById("pwInput").value = out;
+      calcPasswordStats();
+      toast("Generated 20-character strong password.");
+    }
+
+    function decodeBase64Url(segment) {
+      const b64 = segment.replace(/-/g, "+").replace(/_/g, "/");
+      const pad = b64.length % 4 === 0 ? "" : "=".repeat(4 - (b64.length % 4));
+      const bin = atob(b64 + pad);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return JSON.parse(new TextDecoder().decode(bytes));
+    }
+
+    function decodeJwtToken() {
+      const raw = document.getElementById("jwtInput").value.trim();
+      const out = document.getElementById("jwtOutputBox");
+      const parts = raw.split(".");
+      if (parts.length !== 3) {
+        out.innerHTML = `<span class="badge b-warn mono">INVALID JWT</span> Expected 3 dot-separated parts.`;
+        return;
       }
-      document.getElementById("pwSuiteInput").value = out;
-      updatePasswordMetrics();
-      notify("Generated 22-character random password.");
+      try {
+        const header = decodeBase64Url(parts[0]);
+        const payload = decodeBase64Url(parts[1]);
+        let expInfo = "No 'exp' field.";
+        if (typeof payload.exp === "number") {
+          const dt = new Date(payload.exp * 1000);
+          expInfo = `exp: ${dt.toISOString()} (${Date.now() >= payload.exp * 1000 ? "EXPIRED" : "VALID"})`;
+        }
+        out.innerHTML = `
+          <div><strong>Header:</strong> ${escHtml(JSON.stringify(header))}</div>
+          <div style="margin-top: 4px;"><strong>Payload:</strong> ${escHtml(JSON.stringify(payload))}</div>
+          <div style="margin-top: 4px; color: var(--cyan);"><strong>Status:</strong> ${escHtml(expInfo)}</div>
+        `;
+      } catch (e) {
+        out.innerHTML = `<span class="badge b-danger mono">DECODE ERROR</span> Malformed JWT segment.`;
+      }
     }
 
     /* =========================================================================
-       MODULE 6: AES-256-GCM VAULT, THREAT FEED & REPORT EXPORTS
+       MODULE 6: AES-256-GCM CRYPTO VAULT & CYBER HELPLINE
        ========================================================================= */
-    async function deriveVaultKey(passphrase, saltBytes, usages) {
-      const baseKey = await crypto.subtle.importKey(
+    async function deriveAesKey(passphrase, salt, usages) {
+      const base = await crypto.subtle.importKey(
         "raw",
         new TextEncoder().encode(passphrase),
         "PBKDF2",
@@ -2411,199 +2548,193 @@
         ["deriveKey"]
       );
       return crypto.subtle.deriveKey(
-        { name: "PBKDF2", salt: saltBytes, iterations: 200000, hash: "SHA-256" },
-        baseKey,
+        { name: "PBKDF2", salt, iterations: 200000, hash: "SHA-256" },
+        base,
         { name: "AES-GCM", length: 256 },
         false,
         usages
       );
     }
 
-    function toB64(bytes) {
+    function u8ToB64(u8) {
       let s = "";
-      for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
+      for (let i = 0; i < u8.length; i++) s += String.fromCharCode(u8[i]);
       return btoa(s);
     }
 
-    function fromB64(str) {
-      const bin = atob(str);
-      const out = new Uint8Array(bin.length);
-      for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
-      return out;
+    function b64ToU8(b64) {
+      const bin = atob(b64);
+      const u8 = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+      return u8;
     }
 
-    async function vaultEncrypt() {
-      const pass = document.getElementById("vaultKeyInput").value;
-      const plain = document.getElementById("vaultDataInput").value;
-      const status = document.getElementById("vaultStatusLine");
-
+    async function runVaultEncrypt() {
+      const pass = document.getElementById("vaultPassphrase").value;
+      const plain = document.getElementById("vaultTextArea").value;
+      const st = document.getElementById("vaultStatusText");
       if (!pass || !plain) {
-        status.textContent = "Please enter both a passphrase and plaintext.";
+        st.textContent = "Enter both passphrase and plaintext.";
         return;
       }
-
       try {
         const salt = crypto.getRandomValues(new Uint8Array(16));
         const iv = crypto.getRandomValues(new Uint8Array(12));
-        const key = await deriveVaultKey(pass, salt, ["encrypt"]);
-        const cipherBuf = await crypto.subtle.encrypt(
+        const key = await deriveAesKey(pass, salt, ["encrypt"]);
+        const ct = await crypto.subtle.encrypt(
           { name: "AES-GCM", iv },
           key,
           new TextEncoder().encode(plain)
         );
-
         const envelope = {
           alg: "PBKDF2-SHA256+AES-256-GCM",
-          iter: 200000,
-          salt: toB64(salt),
-          iv: toB64(iv),
-          ciphertext: toB64(new Uint8Array(cipherBuf))
+          iterations: 200000,
+          salt: u8ToB64(salt),
+          iv: u8ToB64(iv),
+          ciphertext: u8ToB64(new Uint8Array(ct))
         };
-        document.getElementById("vaultDataInput").value = JSON.stringify(envelope, null, 2);
-        status.textContent = "Encrypted locally with random salt & IV.";
-        notify("Vault payload encrypted.");
+        document.getElementById("vaultTextArea").value = JSON.stringify(envelope, null, 2);
+        st.textContent = "Encrypted locally with AES-256-GCM.";
+        toast("Encrypted with AES-256-GCM.");
       } catch (e) {
-        status.textContent = "Encryption failed.";
+        st.textContent = "Encryption error.";
       }
     }
 
-    async function vaultDecrypt() {
-      const pass = document.getElementById("vaultKeyInput").value;
-      const raw = document.getElementById("vaultDataInput").value.trim();
-      const status = document.getElementById("vaultStatusLine");
-
+    async function runVaultDecrypt() {
+      const pass = document.getElementById("vaultPassphrase").value;
+      const raw = document.getElementById("vaultTextArea").value.trim();
+      const st = document.getElementById("vaultStatusText");
       if (!pass || !raw) {
-        status.textContent = "Please enter both a passphrase and encrypted JSON payload.";
+        st.textContent = "Enter both passphrase and encrypted JSON.";
         return;
       }
-
       try {
         const env = JSON.parse(raw);
-        const key = await deriveVaultKey(pass, fromB64(env.salt), ["decrypt"]);
-        const plainBuf = await crypto.subtle.decrypt(
-          { name: "AES-GCM", iv: fromB64(env.iv) },
+        const key = await deriveAesKey(pass, b64ToU8(env.salt), ["decrypt"]);
+        const pt = await crypto.subtle.decrypt(
+          { name: "AES-GCM", iv: b64ToU8(env.iv) },
           key,
-          fromB64(env.ciphertext)
+          b64ToU8(env.ciphertext)
         );
-        document.getElementById("vaultDataInput").value = new TextDecoder().decode(plainBuf);
-        status.textContent = "Decrypted and verified with AES-GCM authentication tag.";
-        notify("Vault payload decrypted.");
+        document.getElementById("vaultTextArea").value = new TextDecoder().decode(pt);
+        st.textContent = "Decrypted and verified with AES-256-GCM.";
+        toast("Decrypted successfully.");
       } catch (e) {
-        status.textContent = "Decryption failed — wrong passphrase or modified payload.";
-        notify("Decryption failed.");
+        st.textContent = "Decryption failed — check passphrase or ciphertext.";
+        toast("Decryption failed.");
       }
     }
 
-    function setThreatFilter(category) {
-      state.threatCategory = category;
-      document.querySelectorAll(".filter-btn[data-cat]").forEach(btn => {
-        btn.classList.toggle("active", btn.getAttribute("data-cat") === category);
-      });
-      renderThreatFeed();
+    function inspectImageMeta(file) {
+      const out = document.getElementById("imgMetaOutput");
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (evt) {
+        const bytes = new Uint8Array(evt.target.result);
+        const markers = [];
+        if (bytes[0] === 0xFF && bytes[1] === 0xD8) {
+          for (let i = 2; i < bytes.length - 1; i++) {
+            if (bytes[i] === 0xFF && bytes[i + 1] === 0xE1) {
+              markers.push("JPEG APP1 (EXIF present)");
+              break;
+            }
+          }
+          if (!markers.length) markers.push("JPEG without EXIF APP1");
+        } else if (bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4E && bytes[3] === 0x47) {
+          markers.push("PNG image chunks");
+        }
+
+        const url = URL.createObjectURL(file);
+        const img = new Image();
+        img.onload = function () {
+          out.innerHTML = `
+            <div><strong>File:</strong> ${escHtml(file.name)} (${file.size.toLocaleString()} bytes)</div>
+            <div><strong>Type:</strong> ${escHtml(file.type || "unknown")} | <strong>Size:</strong> ${img.naturalWidth}x${img.naturalHeight}px</div>
+            <div><strong>Markers:</strong> ${escHtml(markers.join(", ") || "Standard image")}</div>
+          `;
+          URL.revokeObjectURL(url);
+        };
+        img.onerror = function () {
+          out.innerHTML = `<div><strong>File:</strong> ${escHtml(file.name)} (${file.size.toLocaleString()} bytes)</div>`;
+          URL.revokeObjectURL(url);
+        };
+        img.src = url;
+      };
+      reader.readAsArrayBuffer(file);
     }
 
-    function renderThreatFeed() {
-      const list = document.getElementById("threatFeedList");
-      const filtered = state.threatCategory === "ALL"
-        ? THREAT_ADVISORIES
-        : THREAT_ADVISORIES.filter(item => item.category === state.threatCategory);
-
-      list.innerHTML = filtered.map(item => `
-        <div class="tile" style="padding: 11px 12px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
-            <span class="badge-cyan mono">${esc(item.category)}</span>
-            <span class="${item.badge} mono">${esc(item.severity)}</span>
-          </div>
-          <div style="font-weight: 700; font-size: 13px; color: #fff; margin-top: 6px;">${esc(item.title)}</div>
-          <div class="tile-sub" style="margin-top: 4px;">${esc(item.detail)}</div>
-        </div>
-      `).join("");
+    function updateHygieneScore() {
+      const all = document.querySelectorAll(".hyg-chk");
+      let checked = 0;
+      all.forEach(c => { if (c.checked) checked++; });
+      const pct = Math.round((checked / all.length) * 100);
+      document.getElementById("hygieneSummary").textContent = `Hygiene Readiness: ${pct}% (${checked}/${all.length} checked)`;
     }
 
-    function buildDiagnosticSnapshot() {
-      return state.lastReport || {
-        tool: "CYBERNEX v4.1",
-        generatedAt: new Date().toISOString(),
-        detectedOs: state.detectedOs,
-        activeOs: getActiveOs(),
-        securityScore: state.lastScore,
-        note: "Run 'Scan Device' or 'Run Full Audit' for full probe metrics.",
-        emergencyHelpline: "Dial 1930 or report at cybercrime.gov.in"
+    function getDiagnosticPayload() {
+      return APP.lastReport || {
+        suite: "CYBERNEX v4.1",
+        timestamp: new Date().toISOString(),
+        detectedOs: APP.detectedOs,
+        activeOs: currentOs(),
+        score: APP.lastScore,
+        emergencyHelpline: "In case of fraud or hacking, immediately dial 1930 or report it at cybercrime.gov.in."
       };
     }
 
-    function exportDiagnosticJson() {
-      const snap = buildDiagnosticSnapshot();
-      const blob = new Blob([JSON.stringify(snap, null, 2)], { type: "application/json" });
-      triggerDownload(blob, "cybernex-v4.1-report.json");
-      notify("Exported JSON diagnostic report.");
+    function syncJsonPreview() {
+      document.getElementById("jsonPreviewBox").textContent = JSON.stringify(getDiagnosticPayload(), null, 2);
     }
 
-    function exportDiagnosticText() {
-      const snap = buildDiagnosticSnapshot();
-      const lines = [
-        "CYBERNEX v4.1 DIAGNOSTIC REPORT",
-        `Generated: ${snap.generatedAt}`,
-        `Detected OS: ${snap.detectedOs} | Active OS Profile: ${snap.activeOs}`,
-        `Security Score: ${snap.securityScore !== null ? snap.securityScore + "/100" : "Not scanned"}`,
-        ...(Array.isArray(snap.probes)
-          ? snap.probes.map(p => `[${p.status}] ${p.name}: ${p.desc}`)
-          : [snap.note || ""]),
-        "Emergency: In case of fraud or hacking, immediately dial 1930 or report it at cybercrime.gov.in."
-      ];
-      const blob = new Blob([lines.join("\n")], { type: "text/plain" });
-      triggerDownload(blob, "cybernex-v4.1-report.txt");
-      notify("Exported text diagnostic report.");
-    }
-
-    function copyTextReport() {
-      const snap = buildDiagnosticSnapshot();
-      const lines = [
-        "CYBERNEX v4.1 DIAGNOSTIC SUMMARY",
-        `Detected OS: ${snap.detectedOs} | Active OS: ${snap.activeOs}`,
-        `Security Score: ${snap.securityScore !== null ? snap.securityScore + "/100" : "Not scanned"}`,
-        ...(Array.isArray(snap.probes) ? snap.probes.map(p => `- ${p.name} [${p.status}]: ${p.desc}`) : []),
-        "Emergency: Dial 1930 or report at cybercrime.gov.in."
-      ];
-      copyText(lines.join("\n"), "Diagnostic report");
-    }
-
-    function triggerDownload(blob, filename) {
+    function exportJsonReport() {
+      const jsonStr = JSON.stringify(getDiagnosticPayload(), null, 2);
+      document.getElementById("jsonPreviewBox").textContent = jsonStr;
+      const blob = new Blob([jsonStr], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = filename;
+      a.download = "cybernex-v4.1-report.json";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 500);
+      toast("JSON report exported.");
+    }
+
+    function copyJsonSnapshot() {
+      const jsonStr = JSON.stringify(getDiagnosticPayload(), null, 2);
+      document.getElementById("jsonPreviewBox").textContent = jsonStr;
+      copyStr(jsonStr, "JSON snapshot");
     }
 
     /* =========================================================================
-       FULL AUDIT ORCHESTRATOR & INITIALIZATION
+       FULL AUDIT & INITIALIZATION
        ========================================================================= */
     async function runFullAudit() {
       const btn = document.getElementById("runFullAuditBtn");
       btn.disabled = true;
-      switchTab("scanner");
-      const score = await runDeviceScanner();
-      calculateSpywareAudit();
-      await refreshNetworkTelemetry();
-      updatePasswordMetrics();
+      selectPanel("scanner");
+      const score = await runDeviceScan();
+      evalSpywareRisk();
+      await refreshNetworkSuite();
+      calcPasswordStats();
+      updateHygieneScore();
       btn.disabled = false;
-      notify(`Full audit finished — Score: ${score}/100.`);
+      toast(`Full audit complete — Score: ${score}/100.`);
     }
 
     window.addEventListener("DOMContentLoaded", () => {
-      state.detectedOs = detectHostOs();
-      syncOsViews();
-      updateScannerSummaryTiles();
-      calculateSpywareAudit();
-      calculateCidrSubnet();
-      setupFileDropzone();
-      updatePasswordMetrics();
-      renderThreatFeed();
-      refreshNetworkTelemetry();
+      APP.detectedOs = detectOs();
+      refreshOsContext();
+      initDropzone();
+      runCidrCalc();
+      auditWifiConfig();
+      checkPortRisk();
+      calcPasswordStats();
+      updateHygieneScore();
+      syncJsonPreview();
+      refreshNetworkSuite();
     });
   </script>
 </body>
